@@ -83,6 +83,9 @@ export class User {
   @Prop()
   profile_img_thumb :string;
 
+  @Prop({default:null,expires:0})
+  otp:string
+
   @Prop()
   rt_token: string;
 }

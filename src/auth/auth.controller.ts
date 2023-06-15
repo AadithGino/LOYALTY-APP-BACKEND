@@ -4,6 +4,7 @@ import {
   HttpCode,
   HttpStatus,
   Post,
+  Get,
   UseGuards,
 } from '@nestjs/common';
 import { AuthService } from './auth.service';
@@ -15,18 +16,18 @@ import { Tokens } from './types/tokens.types';
 
 @Controller('auth')
 export class AuthController {
-  constructor(private readonly authService: AuthService) {}
+  constructor(private readonly authService: AuthService) { }
 
   @Public()
   @Post('/signup')
-  userSignUp(@Body() dto: userSignUpDto):Promise<Tokens> {
+  userSignUp(@Body() dto: userSignUpDto): Promise<Tokens> {
     return this.authService.userSignUp(dto);
   }
 
   @Public()
   @Post('/login')
   @HttpCode(HttpStatus.OK)
-  userLogin(@Body() dto: userLoginDto):Promise<Tokens> {
+  userLogin(@Body() dto: userLoginDto): Promise<Tokens> {
     return this.authService.userLogin(dto);
   }
 
@@ -41,5 +42,17 @@ export class AuthController {
   @HttpCode(HttpStatus.OK)
   userLogout(@GetUser() user: any) {
     return this.authService.userLogout(user.sub);
+  }
+
+  @Public()
+  @Post('/password-reset')
+  sendEmail(@Body() dto) {
+    return this.authService.passWordReset(dto.email)
+  }
+
+  @Public()
+  @Post('/validatep-otp')
+  validateOtp(@Body() dto){
+    return this.authService.validateOtp(dto.email,dto.otp,dto.password)
   }
 }
