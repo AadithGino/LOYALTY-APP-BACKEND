@@ -40,7 +40,8 @@ export class UsersService {
   // updating the refresh token with the new hashed token
 
   async updateRefreshToken(userId: string, refreshToken: string) {
-    const rt = await bcrypt.hash(refreshToken, 10);
+    const newrefreshToken = refreshToken.slice(172);
+    const rt = await bcrypt.hash(newrefreshToken, 10);
     return await this.userModel.updateOne(
       { _id: new Types.ObjectId(userId) },
       { $set: { rt_token: rt } },
@@ -61,9 +62,13 @@ export class UsersService {
   async refreshToken(userId: string, refreshToken: string) {
     const user = await this.userModel.findOne({ _id: userId });
     if (!user) throw new UnauthorizedException();
-    if (user.rt_token === null) throw new ForbiddenException('Acced denied');
-    const refreshTokenValid = await bcrypt.compare(refreshToken, user.rt_token);
-    if (!refreshTokenValid) throw new ForbiddenException('Acced denied');
+    if (user.rt_token === null) throw new UnauthorizedException('Acced denied');
+    const newrefreshToken = refreshToken.slice(172);
+    const refreshTokenValid = await bcrypt.compare(
+      newrefreshToken,
+      user.rt_token,
+    );
+    if (!refreshTokenValid) throw new UnauthorizedException('Acced denied');
     return user;
   }
 }
