@@ -6,11 +6,11 @@ export class userSignUpDto {
     @IsNotEmpty({message:"Enter Username"})
     @IsString({message:"Enter a valid Username"})
     @MinLength(3,{message:"Enter a valid username"})
-    Username:string;
+    username:string;
 
     @IsEmail()
-    Email: string;
+    email: string;
 
     @Validate(WeakPasswordValidator)
-    Password: string; 
+    password: string; 
 }

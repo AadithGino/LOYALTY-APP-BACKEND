@@ -23,7 +23,7 @@ export enum LoginMode{
 })
 export class User {
   @Prop({ required: true })
-  Username: string;
+  username: string;
 
   @Prop({
     unique: true,
@@ -36,10 +36,10 @@ export class User {
       message: () => 'Please type a valid email id!',
     },
   })
-  Email: string;
+  email: string;
 
   @Prop()
-  Password: string;
+  password: string;
 
   @Prop()
   firstName: string;
@@ -66,22 +66,22 @@ export class User {
   longitude: number;
 
   @Prop({ default: 0 })
-  LoyaltyPoints: number;
+  loyalty_points: number;
 
   @Prop({ default: 0 })
-  WalletBalance: number;
+  wallet_balance: number;
 
   @Prop({ default: true })
-  isActive: boolean;
+  is_active: boolean;
 
   @Prop({ default: false })
-  isDeleted: boolean;
+  is_deleted: boolean;
 
   @Prop({default:LoginMode.Password})
-  loginMode:LoginMode
+  login_mode:LoginMode
 
   @Prop()
-  profileImgThumb :string;
+  profile_img_thumb :string;
 
   @Prop()
   rt_token: string;

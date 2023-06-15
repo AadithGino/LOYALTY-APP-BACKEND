@@ -42,7 +42,7 @@ export class AuthService {
 
   async userLogin(dto: userLoginDto) {
     const user = await this.userService.userLogin(dto);
-    const tokens = await this.getTokens(user._id.toString(), user.Email);
+    const tokens = await this.getTokens(user._id.toString(), user.email);
     await this.userService.updateRefreshToken(
       user._id.toString(),
       tokens.refresh_token,
@@ -52,7 +52,7 @@ export class AuthService {
 
   async userSignUp(dto: userSignUpDto) {
     const user = await this.userService.userSignUp(dto);
-    const tokens = await this.getTokens(user._id.toString(), user.Email);
+    const tokens = await this.getTokens(user._id.toString(), user.email);
     await this.userService.updateRefreshToken(
       user._id.toString(),
       tokens.refresh_token,
@@ -66,7 +66,7 @@ export class AuthService {
 
   async refreshToken(userId: string, token: string) {
     const user = await this.userService.refreshToken(userId, token);
-    const tokens = await this.getTokens(user._id.toString(), user.Email);
+    const tokens = await this.getTokens(user._id.toString(), user.email);
     await this.userService.updateRefreshToken(userId, tokens.refresh_token);
     return tokens;
   }

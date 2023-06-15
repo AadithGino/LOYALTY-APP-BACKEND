@@ -14,14 +14,14 @@ import { userLoginDto, userSignUpDto } from 'src/auth/dto';
 export class UsersService {
   constructor(
     @InjectModel(User.name) private readonly userModel: Model<User>,
-  ) {}
+  ) { }
 
   async userLogin(dto: userLoginDto) {
-    const result = await this.userModel.findOne({ Email: dto.Email });
+    const result = await this.userModel.findOne({ email: dto.email });
     if (!result)
       throw new UnauthorizedException('Invalid Email and/or Password');
 
-    const validPassword = await bcrypt.compare(dto.Password, result.Password);
+    const validPassword = await bcrypt.compare(dto.password, result.password);
     if (!validPassword)
       throw new UnauthorizedException('Invalid Email and/or Password');
 
@@ -30,7 +30,7 @@ export class UsersService {
 
   async userSignUp(dto: userSignUpDto) {
     try {
-      dto.Password = await bcrypt.hash(dto.Password, 10);
+      dto.password = await bcrypt.hash(dto.password, 10);
       return await this.userModel.create(dto);
     } catch (error) {
       throw new HttpException(error.message, 400);
