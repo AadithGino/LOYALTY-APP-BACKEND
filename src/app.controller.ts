@@ -1,13 +1,15 @@
 import { Controller, Get } from '@nestjs/common';
 import { AppService } from './app.service';
+import { Public } from './shared/decorators/public.decorator';
 
 
-@Controller() 
+@Controller()
 export class AppController {
-    constructor(private readonly appService: AppService){}
+   constructor(private readonly appService: AppService) { }
 
-     @Get()
-     getMessage(){
-        return this.appService.getHello()
-     }
+   @Public()
+   @Get()
+   getMessage() {
+      return this.appService.getHello()
+   }
 }
