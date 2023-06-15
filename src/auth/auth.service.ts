@@ -102,7 +102,7 @@ export class AuthService {
     const user = await this.userService.getUserByEmail(email);
     
 
-    if (!user || !user.is_active || !user.is_deleted) throw new UnauthorizedException('Email does not exist');
+    if (!user || !user.is_active || user.is_deleted) throw new UnauthorizedException('Email does not exist');
     const otp = this.generateOTP();
     const setOtp = await this.userService.updateOtp(email, otp);
     this.resetJob = schedule.scheduleJob(new Date(Date.now() + 2 * 60 * 1000), async () => {
