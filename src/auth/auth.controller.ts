@@ -11,12 +11,17 @@ import { AuthService } from './auth.service';
 import { GetUser } from 'src/shared/decorators/get-user.decorator';
 import { Public } from 'src/shared/decorators/public.decorator';
 import { RtGuard } from 'src/shared/guards';
-import { userLoginDto, userSignUpDto } from './dto';
+import {
+  passwordResetDto,
+  userLoginDto,
+  userSignUpDto,
+  validateOtpDto,
+} from './dto';
 import { Tokens } from './types/tokens.types';
 
 @Controller('auth')
 export class AuthController {
-  constructor(private readonly authService: AuthService) { }
+  constructor(private readonly authService: AuthService) {}
 
   @Public()
   @Post('/signup')
@@ -46,13 +51,13 @@ export class AuthController {
 
   @Public()
   @Post('/password-reset')
-  sendEmail(@Body() dto) {
-    return this.authService.passWordReset(dto.email)
+  sendEmail(@Body() dto: passwordResetDto) {
+    return this.authService.passWordReset(dto.email);
   }
 
   @Public()
   @Post('/validatep-otp')
-  validateOtp(@Body() dto){
-    return this.authService.validateOtp(dto.email,dto.otp,dto.password)
+  validateOtp(@Body() dto: validateOtpDto) {
+    return this.authService.validateOtp(dto.email, dto.otp, dto.password);
   }
 }

@@ -1,5 +1,5 @@
 import {
-  ForbiddenException,
+  InternalServerErrorException,
   HttpException,
   Injectable,
   UnauthorizedException,
@@ -17,15 +17,19 @@ export class UsersService {
   ) {}
 
   async userLogin(dto: userLoginDto) {
-    const result = await this.userModel.findOne({ email: dto.email });
-    if (!result || !result.is_active || result.is_deleted)
-      throw new UnauthorizedException('Invalid Email and/or Password');
+    try {
+      const result = await this.userModel.findOne({ email: dto.email });
+      if (!result || !result.is_active || result.is_deleted)
+        throw new UnauthorizedException('Invalid Email and/or Password');
 
-    const validPassword = await bcrypt.compare(dto.password, result.password);
-    if (!validPassword)
-      throw new UnauthorizedException('Invalid Email and/or Password');
+      const validPassword = await bcrypt.compare(dto.password, result.password);
+      if (!validPassword)
+        throw new UnauthorizedException('Invalid Email and/or Password');
 
-    return result;
+      return result;
+    } catch (error) {
+      throw new InternalServerErrorException();
+    }
   }
 
   async userSignUp(dto: userSignUpDto) {
@@ -73,18 +77,20 @@ export class UsersService {
       );
       if (!refreshTokenValid) throw new UnauthorizedException('Acced denied');
       return user;
-    } catch (error) {}
+    } catch (error) {
+      throw new InternalServerErrorException(error);
+    }
   }
 
   async getUserByEmail(email: string): Promise<User> {
     try {
       return await this.userModel.findOne({ email: email });
-    } catch (error) {}
+    } catch (error) {
+      throw new InternalServerErrorException(error);
+    }
   }
 
   async updateOtp(email: string, otp: string) {
-    console.log(otp);
-
     try {
       const newOtp = await bcrypt.hash(otp, 10);
       return this.userModel.updateOne(
@@ -96,7 +102,9 @@ export class UsersService {
           },
         },
       );
-    } catch (error) {}
+    } catch (error) {
+      throw new InternalServerErrorException(error);
+    }
   }
 
   async compareOtp(email: string, otp: string) {
@@ -105,7 +113,9 @@ export class UsersService {
       const validOtp = await bcrypt.compare(otp, user.otp);
       if (validOtp) return user;
       return false;
-    } catch (error) {}
+    } catch (error) {
+      throw new InternalServerErrorException(error);
+    }
   }
 
   async updatePassword(email: string, password: string) {
@@ -115,7 +125,9 @@ export class UsersService {
         { email: email },
         { $set: { password: newPassword } },
       );
-    } catch (error) {}
+    } catch (error) {
+      throw new InternalServerErrorException(error);
+    }
   }
 
   async setOtpNull(email: string) {
@@ -126,6 +138,8 @@ export class UsersService {
           console.log(data);
           console.log('Otp status changed');
         });
-    } catch (error) {}
+    } catch (error) {
+      throw new InternalServerErrorException(error);
+    }
   }
 }
