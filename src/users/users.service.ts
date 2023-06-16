@@ -17,19 +17,14 @@ export class UsersService {
   ) {}
 
   async userLogin(dto: userLoginDto) {
-    try {
-      const result = await this.userModel.findOne({ email: dto.email });
-      if (!result || !result.is_active || result.is_deleted)
-        throw new UnauthorizedException('Invalid Email and/or Password');
+    const result = await this.userModel.findOne({ email: dto.email });
+    if (!result || !result.is_active || result.is_deleted)
+      throw new UnauthorizedException('Invalid Email and/or Password');
 
-      const validPassword = await bcrypt.compare(dto.password, result.password);
-      if (!validPassword)
-        throw new UnauthorizedException('Invalid Email and/or Password');
-
-      return result;
-    } catch (error) {
-      return error
-    }
+    const validPassword = await bcrypt.compare(dto.password, result.password);
+    if (!validPassword)
+      throw new UnauthorizedException('Invalid Email and/or Password');
+    return result;
   }
 
   async userSignUp(dto: userSignUpDto) {
@@ -64,29 +59,24 @@ export class UsersService {
   // Refresh token service comparing the refresh token with the hashed token
 
   async refreshToken(userId: string, refreshToken: string) {
-    try {
-      const user = await this.userModel.findOne({ _id: userId });
-      if (!user || !user.is_active || user.is_deleted)
-        throw new UnauthorizedException();
-      if (user.rt_token === null)
-        throw new UnauthorizedException('Acced denied');
-      const newrefreshToken = refreshToken.slice(172);
-      const refreshTokenValid = await bcrypt.compare(
-        newrefreshToken,
-        user.rt_token,
-      );
-      if (!refreshTokenValid) throw new UnauthorizedException('Acced denied');
-      return user;
-    } catch (error) {
-      return error
-    }
+    const user = await this.userModel.findOne({ _id: userId });
+    if (!user || !user.is_active || user.is_deleted)
+      throw new UnauthorizedException();
+    if (user.rt_token === null) throw new UnauthorizedException('Acced denied');
+    const newrefreshToken = refreshToken.slice(172);
+    const refreshTokenValid = await bcrypt.compare(
+      newrefreshToken,
+      user.rt_token,
+    );
+    if (!refreshTokenValid) throw new UnauthorizedException('Acced denied');
+    return user;
   }
 
   async getUserByEmail(email: string): Promise<User> {
     try {
       return await this.userModel.findOne({ email: email });
     } catch (error) {
-      return error
+      return error;
     }
   }
 
@@ -103,7 +93,7 @@ export class UsersService {
         },
       );
     } catch (error) {
-      return error
+      return error;
     }
   }
 
@@ -114,7 +104,7 @@ export class UsersService {
       if (validOtp) return user;
       return false;
     } catch (error) {
-      return error
+      return error;
     }
   }
 
@@ -126,7 +116,7 @@ export class UsersService {
         { $set: { password: newPassword } },
       );
     } catch (error) {
-      return error
+      return error;
     }
   }
 
@@ -139,7 +129,7 @@ export class UsersService {
           console.log('Otp status changed');
         });
     } catch (error) {
-      return error
+      return error;
     }
   }
 }

@@ -53,7 +53,7 @@ export class AuthService {
       template: 'password-reset',
       context: { otp },
     });
-    return {message:"Otp has been send successfully to your email address"};
+    return { message: 'Otp has been send successfully to your email address' };
   }
 
   generateOTP(): string {
@@ -100,14 +100,17 @@ export class AuthService {
 
   async passWordReset(email: string) {
     const user = await this.userService.getUserByEmail(email);
-    
 
-    if (!user || !user.is_active || user.is_deleted) throw new UnauthorizedException('Email does not exist');
+    if (!user || !user.is_active || user.is_deleted)
+      throw new UnauthorizedException('Email does not exist');
     const otp = this.generateOTP();
     const setOtp = await this.userService.updateOtp(email, otp);
-    this.resetJob = schedule.scheduleJob(new Date(Date.now() + 2 * 60 * 1000), async () => {
-      await this.userService.setOtpNull(email);
-    });
+    this.resetJob = schedule.scheduleJob(
+      new Date(Date.now() + 2 * 60 * 1000),
+      async () => {
+        await this.userService.setOtpNull(email);
+      },
+    );
     if (setOtp) return await this.sendEmail(email, otp);
   }
 

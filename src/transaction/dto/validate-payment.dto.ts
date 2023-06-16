@@ -8,4 +8,7 @@ export class validatePaymentDto{
     @IsNotEmpty()
     @IsString()
     paymentIntentId:string
+
+    @IsNotEmpty()
+    transactionId:string
 }

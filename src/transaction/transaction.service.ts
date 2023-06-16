@@ -2,7 +2,7 @@ import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
 import { WalletService } from 'src/wallet/wallet.service';
 import Stripe from 'stripe';
 import { validatePaymentDto } from './dto';
-import { Transaction } from 'src/wallet/schema/wallet.schema';
+
 
 @Injectable()
 export class TransactionService {
@@ -34,7 +34,7 @@ export class TransactionService {
       if (paymentValidationResult.isValid) {
         const paymentIntentId = paymentData.paymentIntentId;
 
-        const transaction: Transaction = {
+        const transaction = {
           transcation_id: paymentIntentId,
           amount: paymentData.amount,
           created_at: new Date(),
