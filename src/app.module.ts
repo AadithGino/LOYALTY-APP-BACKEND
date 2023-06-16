@@ -10,6 +10,8 @@ import { AtGuard } from './shared/guards';
 import { MailerModule } from '@nestjs-modules/mailer';
 import { join } from 'path';
 import {HandlebarsAdapter} from '@nestjs-modules/mailer/dist/adapters/handlebars.adapter'
+import { WalletModule } from './wallet/wallet.module';
+import { TransactionModule } from './transaction/transaction.module';
 
 @Module({
   imports: [
@@ -33,6 +35,8 @@ import {HandlebarsAdapter} from '@nestjs-modules/mailer/dist/adapters/handlebars
     }),
     UsersModule,
     AuthModule,
+    WalletModule,
+    TransactionModule,
   ],
   controllers: [AppController],
   providers: [AppService, { provide: APP_GUARD, useClass: AtGuard }],

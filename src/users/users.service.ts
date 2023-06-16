@@ -28,7 +28,7 @@ export class UsersService {
 
       return result;
     } catch (error) {
-      throw new InternalServerErrorException();
+      return error
     }
   }
 
@@ -78,7 +78,7 @@ export class UsersService {
       if (!refreshTokenValid) throw new UnauthorizedException('Acced denied');
       return user;
     } catch (error) {
-      throw new InternalServerErrorException(error);
+      return error
     }
   }
 
@@ -86,7 +86,7 @@ export class UsersService {
     try {
       return await this.userModel.findOne({ email: email });
     } catch (error) {
-      throw new InternalServerErrorException(error);
+      return error
     }
   }
 
@@ -103,7 +103,7 @@ export class UsersService {
         },
       );
     } catch (error) {
-      throw new InternalServerErrorException(error);
+      return error
     }
   }
 
@@ -114,7 +114,7 @@ export class UsersService {
       if (validOtp) return user;
       return false;
     } catch (error) {
-      throw new InternalServerErrorException(error);
+      return error
     }
   }
 
@@ -126,7 +126,7 @@ export class UsersService {
         { $set: { password: newPassword } },
       );
     } catch (error) {
-      throw new InternalServerErrorException(error);
+      return error
     }
   }
 
@@ -139,7 +139,7 @@ export class UsersService {
           console.log('Otp status changed');
         });
     } catch (error) {
-      throw new InternalServerErrorException(error);
+      return error
     }
   }
 }

@@ -9,6 +9,9 @@ async function bootstrap() {
   app.useGlobalPipes(new ValidationPipe())
   app.useGlobalInterceptors(new ErrorInterceptor());
   app.useGlobalFilters(new ErrorFilter());
+  app.enableCors({
+    origin: ['http://localhost:3001', 'http://example2.com']
+  })
   await app.listen(process.env.PORT);
 }
 bootstrap();
