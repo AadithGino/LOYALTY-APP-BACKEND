@@ -1,4 +1,9 @@
-import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
+import {
+  Injectable,
+  HttpException,
+  HttpStatus,
+  InternalServerErrorException,
+} from '@nestjs/common';
 import { WalletService } from 'src/wallet/wallet.service';
 import Stripe from 'stripe';
 import { validatePaymentDto } from './dto';
@@ -30,6 +35,7 @@ export class TransactionService {
     const transaction = await this.addTransactionHistory(
       { amount },
       '648b0aa0f41b9c3449a790d7',
+      'Wallet Recharge'
     );
     return {
       transaction_id: transaction._id,
@@ -116,43 +122,56 @@ export class TransactionService {
   }
 
   // to add the transaction history in the users transaction document
-  async addTransactionHistory(transaction, userId) {
-    const exists = await this.transactionModel.findOne({ user_id: userId });
-    if (exists) {
-      const transactiondetails: TransactionItem = {
-        sender_id: userId,
-        amount: transaction.amount,
-        status: 1,
-      };
-      const document = await this.transactionModel.findOneAndUpdate(
-        { user_id: userId },
-        { $push: { transactions: transactiondetails } },
-        { new: true },
-      );
-      return document.transactions[document.transactions.length - 1];
-    } else {
-      const transactiondetails: TransactionItem = {
-        sender_id: userId,
-        amount: transaction.amount,
-        status: 1,
-      };
-      const document = await this.transactionModel.create({
-        user_id: userId,
-        transactions: transactiondetails,
-      });
-      return document.transactions[document.transactions.length - 1];
+  async addTransactionHistory(transaction, userId, txn_reason) {
+    try {
+      const exists = await this.transactionModel.findOne({ user_id: userId });
+      if (exists) {
+        const transactiondetails: TransactionItem = {
+          sender_id: userId,
+          amount: transaction.amount,
+          status: 1,
+          txn_reason
+        };
+        const document = await this.transactionModel.findOneAndUpdate(
+          { user_id: userId },
+          { $push: { transactions: transactiondetails } },
+          { new: true },
+        );
+        return document.transactions[document.transactions.length - 1];
+      } else {
+        const transactiondetails: TransactionItem = {
+          sender_id: userId,
+          amount: transaction.amount,
+          status: 1,
+          txn_reason
+        };
+        const document = await this.transactionModel.create({
+          user_id: userId,
+          transactions: transactiondetails,
+        });
+        return document.transactions[document.transactions.length - 1];
+      }
+    } catch (error) {
+      throw new InternalServerErrorException();
     }
   }
 
   // to check whether the paymentIndent has been already used or not
   async validateTransactionId(transactionId: string) {
-  
+    try {
       const result = await this.transactionModel.findOne({
         transactions: { $elemMatch: { txn_id: transactionId } },
       });
-      if (result) throw new HttpException("Payment with this id already used",400);
+      if (result)
+        throw new HttpException('Payment with this id already used', 400);
       return true;
-   
+    } catch (error) {
+      if (error instanceof HttpException) {
+        throw new HttpException('Payment with this id already used', 400);
+      } else {
+        throw new InternalServerErrorException();
+      }
+    }
   }
 
   // to update the success transaction
@@ -201,8 +220,6 @@ export class TransactionService {
         },
         { new: true },
       );
-      console.log(updatedDocument);
-
       return updatedDocument;
     } catch (error) {
       return error;

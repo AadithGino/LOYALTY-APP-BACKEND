@@ -1,6 +1,5 @@
 import {
-  InternalServerErrorException,
-  HttpException,
+  ConflictException,
   Injectable,
   UnauthorizedException,
 } from '@nestjs/common';
@@ -14,7 +13,7 @@ import { userLoginDto, userSignUpDto } from 'src/auth/dto';
 export class UsersService {
   constructor(
     @InjectModel(User.name) private readonly userModel: Model<User>,
-  ) {}
+  ) { }
 
   async userLogin(dto: userLoginDto) {
     const result = await this.userModel.findOne({ email: dto.email });
@@ -24,16 +23,15 @@ export class UsersService {
     const validPassword = await bcrypt.compare(dto.password, result.password);
     if (!validPassword)
       throw new UnauthorizedException('Invalid Email and/or Password');
+    
     return result;
   }
 
   async userSignUp(dto: userSignUpDto) {
-    try {
-      dto.password = await bcrypt.hash(dto.password, 10);
-      return await this.userModel.create(dto);
-    } catch (error) {
-      throw new HttpException(error.message, 400);
-    }
+    dto.password = await bcrypt.hash(dto.password, 10);
+    const user = await this.userModel.findOne({ email: dto.email });
+    if(user) throw new ConflictException("email already in use")
+    return await this.userModel.create(dto);
   }
 
   // updating the refresh token with the new hashed token
@@ -73,63 +71,43 @@ export class UsersService {
   }
 
   async getUserByEmail(email: string): Promise<User> {
-    try {
-      return await this.userModel.findOne({ email: email });
-    } catch (error) {
-      return error;
-    }
+    return await this.userModel.findOne({ email: email });
   }
 
   async updateOtp(email: string, otp: string) {
-    try {
-      const newOtp = await bcrypt.hash(otp, 10);
-      return this.userModel.updateOne(
-        { email: email },
-        {
-          $set: {
-            otp: newOtp,
-            expirationTime: new Date(Date.now() + 2 * 60 * 1000),
-          },
+    const newOtp = await bcrypt.hash(otp, 10);
+    return this.userModel.updateOne(
+      { email: email },
+      {
+        $set: {
+          otp: newOtp,
+          expirationTime: new Date(Date.now() + 2 * 60 * 1000),
         },
-      );
-    } catch (error) {
-      return error;
-    }
+      },
+    );
   }
 
   async compareOtp(email: string, otp: string) {
-    try {
-      const user = await this.userModel.findOne({ email: email });
-      const validOtp = await bcrypt.compare(otp, user.otp);
-      if (validOtp) return user;
-      return false;
-    } catch (error) {
-      return error;
-    }
+    const user = await this.userModel.findOne({ email: email });
+    const validOtp = await bcrypt.compare(otp, user.otp);
+    if (validOtp) return user;
+    return false;
   }
 
   async updatePassword(email: string, password: string) {
-    try {
-      const newPassword = await bcrypt.hash(password, 10);
-      return this.userModel.updateOne(
-        { email: email },
-        { $set: { password: newPassword } },
-      );
-    } catch (error) {
-      return error;
-    }
+    const newPassword = await bcrypt.hash(password, 10);
+    return this.userModel.updateOne(
+      { email: email },
+      { $set: { password: newPassword } },
+    );
   }
 
   async setOtpNull(email: string) {
-    try {
-      this.userModel
-        .updateOne({ email: email }, { $set: { otp: null } })
-        .then((data) => {
-          console.log(data);
-          console.log('Otp status changed');
-        });
-    } catch (error) {
-      return error;
-    }
+    this.userModel
+      .updateOne({ email: email }, { $set: { otp: null } })
+      .then((data) => {
+        console.log(data);
+        console.log('Otp status changed');
+      });
   }
 }
