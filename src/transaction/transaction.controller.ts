@@ -13,11 +13,10 @@ export class TransactionController {
   async createTransaction(
     @Body('amount') amount: number = 100,
     @GetUser() user: any,
-  ): Promise<{ clientSecret: string }> {
-    const clientSecret = await this.transactionService.createTransaction(
+  ) {
+    return await this.transactionService.createTransaction(
       amount,
     );
-    return { clientSecret };
   }
 
   @Post('validate-payment')

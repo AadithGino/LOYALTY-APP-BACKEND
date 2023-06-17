@@ -11,8 +11,8 @@ export class WalletService {
 
   async getWalletBalance(user) {
     try {
-      const wallet = await this.walletModel.findOne({ userId: user.sub });
-      if (!wallet) throw new UnauthorizedException();
+      const wallet = await this.walletModel.findOne({ user_id: user.sub });
+      if (!wallet) return await this.walletModel.create({user_id:user.sub,currency:'aed'});
       return wallet;
     } catch (error) {
       return error;
@@ -22,13 +22,12 @@ export class WalletService {
   async updateUserWalletBalance(
     userId: string,
     amount: number,
-    transaction: any,
   ) {
     try {
       this.walletModel
         .updateOne(
-          { userId: userId },
-          { $inc: { balance: amount }, $push: { transactions: transaction } },
+          { user_id: userId },
+          { $inc: { balance: amount } },
         )
         .then((data) => {
           console.log(data);

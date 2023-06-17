@@ -11,7 +11,7 @@ export type WalletDocument = Wallet & Document;
 })
 export class Wallet {
   @Prop({ required: true,ref:'User'})
-  userId: string;
+  user_id: string;
 
   @Prop()
   walletId: string;
