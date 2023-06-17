@@ -68,9 +68,6 @@ export class User {
   @Prop({ default: 0 })
   loyalty_points: number;
 
-  @Prop({ default: 0 })
-  wallet_balance: number;
-
   @Prop({ default: true })
   is_active: boolean;
 

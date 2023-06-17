@@ -5,35 +5,67 @@ import { InjectModel } from '@nestjs/mongoose';
 
 @Injectable()
 export class WalletService {
+  private readonly encryptionKey = process.env.WALLET_ENCRYPTION_KEY; 
   constructor(
     @InjectModel(Wallet.name) private readonly walletModel: Model<Wallet>,
   ) {}
 
   async getWalletBalance(user) {
     try {
-      const wallet = await this.walletModel.findOne({ user_id: user.sub });
-      if (!wallet) return await this.walletModel.create({user_id:user.sub,currency:'aed'});
-      return wallet;
+      const wallet:any = await this.walletModel.findOne({ user_id: user.sub });
+      if (!wallet){
+        const newWallet:any =  await this.walletModel.create({
+          user_id: user.sub,
+          currency: 'aed',
+          balance:this.encryptBalance(0)
+        })
+         newWallet.balance = this.decryptBalance(newWallet.balance);
+         return newWallet;
+      }
+       wallet.balance = this.decryptBalance(wallet.balance);
+       return wallet;
     } catch (error) {
       return error;
     }
   }
 
-  async updateUserWalletBalance(
-    userId: string,
-    amount: number,
-  ) {
+  async updateUserWalletBalance(userId: string, amount: number) {
     try {
-      this.walletModel
-        .updateOne(
-          { user_id: userId },
-          { $inc: { balance: amount } },
-        )
-        .then((data) => {
+      const wallet = await this.walletModel.findOne({ user_id: userId });     
+      const decryptedBalabce = this.decryptBalance(wallet.balance)
+      const newbalance = this.encryptBalance(amount+decryptedBalabce)
+      if (wallet) {
+        this.walletModel
+          .updateOne({ user_id: userId }, { $set: { balance: newbalance } })
+          .then((data) => {
+            console.log(data);
+          });
+      } else {
+         this.walletModel.create({ user_id: userId, balance: newbalance,currency:'aed' }).then((data)=>{
           console.log(data);
-        });
+         }).catch((err)=>console.log(err)
+         )
+      }
     } catch (error) {
       return error;
     }
+  }
+  private encryptBalance(balance: number): string {
+    const key = Buffer.from(this.encryptionKey, 'utf8');
+    const buffer = Buffer.allocUnsafe(8);
+    buffer.writeInt32BE(balance, 0);
+    for (let i = 0; i < buffer.length; i++) {
+      buffer[i] = buffer[i] ^ key[i % key.length];
+    }
+    return buffer.toString('base64');
+  }
+
+  private decryptBalance(encryptedBalance: string): number {
+    const key = Buffer.from(this.encryptionKey, 'utf8');
+    const buffer = Buffer.from(encryptedBalance, 'base64');
+    for (let i = 0; i < buffer.length; i++) {
+      buffer[i] = buffer[i] ^ key[i % key.length];
+    }
+    return buffer.readInt32BE(0);
   }
 }

@@ -11,7 +11,7 @@ export class TransactionController {
   @Public()
   @Post('create-transaction')
   async createTransaction(
-    @Body('amount') amount: number = 100,
+    @Body('amount') amount: number = 500,
     @GetUser() user: any,
   ) {
     return await this.transactionService.createTransaction(

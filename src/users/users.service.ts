@@ -13,7 +13,7 @@ import { userLoginDto, userSignUpDto } from 'src/auth/dto';
 export class UsersService {
   constructor(
     @InjectModel(User.name) private readonly userModel: Model<User>,
-  ) { }
+  ) {}
 
   async userLogin(dto: userLoginDto) {
     const result = await this.userModel.findOne({ email: dto.email });
@@ -23,14 +23,14 @@ export class UsersService {
     const validPassword = await bcrypt.compare(dto.password, result.password);
     if (!validPassword)
       throw new UnauthorizedException('Invalid Email and/or Password');
-    
+
     return result;
   }
 
   async userSignUp(dto: userSignUpDto) {
     dto.password = await bcrypt.hash(dto.password, 10);
     const user = await this.userModel.findOne({ email: dto.email });
-    if(user) throw new ConflictException("email already in use")
+    if (user) throw new ConflictException('email already in use');
     return await this.userModel.create(dto);
   }
 
@@ -48,10 +48,11 @@ export class UsersService {
   //user logout service , setting null for refresh token in db
 
   async userLogout(userId: string) {
-    return await this.userModel.updateOne(
+    const data = await this.userModel.updateOne(
       { _id: new Types.ObjectId(userId) },
       { $set: { rt_token: null } },
     );
+    if(data) return {message:"User successfully Loged Out"};
   }
 
   // Refresh token service comparing the refresh token with the hashed token

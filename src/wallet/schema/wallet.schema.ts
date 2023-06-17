@@ -16,8 +16,8 @@ export class Wallet {
   @Prop()
   walletId: string;
 
-  @Prop({ required: true, default: 0 })
-  balance: number;
+  @Prop({ required: true })
+  balance: string;
 
   @Prop({ required: true })
   currency: string;

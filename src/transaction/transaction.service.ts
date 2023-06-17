@@ -34,7 +34,7 @@ export class TransactionService {
     });
     const transaction = await this.addTransactionHistory(
       { amount },
-      '648b0aa0f41b9c3449a790d7',
+      '648d4c60722311bee7aa2a93',
       'Wallet Recharge'
     );
     return {
@@ -45,7 +45,7 @@ export class TransactionService {
 
   // validate the transaction with transaction id and paymentIntent
   async validateTransaction(paymentData: validatePaymentDto, user: any) {
-    try {
+    // try {
       // Perform payment validation and update wallet balance
       const paymentValidationResult = await this.validatePaymentIntent(
         paymentData,
@@ -53,16 +53,17 @@ export class TransactionService {
 
       if (paymentValidationResult.isValid) {
         const paymentIntentId = paymentData.paymentIntentId;
-        await this.updateSuccessTransactionHistory(
+       const transactionHistory =  await this.updateSuccessTransactionHistory(
           user.sub,
           paymentData.transactionId,
           2,
           paymentIntentId,
         );
-
+        console.log(transactionHistory);
+        
         await this.walletService.updateUserWalletBalance(
           user.sub,
-          paymentData.amount,
+          transactionHistory.amount,
         );
 
         return {
@@ -79,7 +80,7 @@ export class TransactionService {
           HttpStatus.BAD_REQUEST,
         );
       }
-    } catch (error) {
+    // } catch (error) {
       await this.updateFailureTransactionHistory(
         user.sub,
         paymentData.transactionId,
@@ -89,7 +90,7 @@ export class TransactionService {
         'Failed to process payment',
         HttpStatus.INTERNAL_SERVER_ERROR,
       );
-    }
+    // }
   }
 
   // validating the paymentIntent
@@ -195,7 +196,7 @@ export class TransactionService {
         },
         { new: true },
       );
-      return updatedDocument;
+      return updatedDocument.transactions.find((item)=>item.txn_id===paymentId)
     } catch (error) {
       return error;
     }
