@@ -59,6 +59,9 @@ export class User {
   @Prop()
   place: string;
 
+  @Prop({default:'Bronze'})
+  tier:string;
+
   @Prop()
   latitude: number;
 

@@ -9,7 +9,7 @@ import { WalletService } from 'src/wallet/wallet.service';
 import Stripe from 'stripe';
 import { validatePaymentDto } from './dto';
 import { InjectModel } from '@nestjs/mongoose';
-import { Transaction, TransactionItem } from './schema/transaction.schema';
+import { Transaction, TransactionItem,transactionType } from './schema/transaction.schema';
 import { Model } from 'mongoose';
 
 @Injectable()
@@ -36,7 +36,8 @@ export class TransactionService {
     const transaction = await this.addTransactionHistory(
       { amount },
       '648b0aa0f41b9c3449a790d7',
-      'Wallet Recharge'
+      'Wallet Recharge',
+      transactionType.Wallet
     );
     return {
       transaction_id: transaction._id,
@@ -124,7 +125,7 @@ export class TransactionService {
   }
 
   // to add the transaction history in the users transaction document
-  async addTransactionHistory(transaction, userId, txn_reason) {
+  async addTransactionHistory(transaction, userId, txn_reason,txn_type){
     try {
       const exists = await this.transactionModel.findOne({ user_id: userId });
       if (exists) {
@@ -132,7 +133,8 @@ export class TransactionService {
           sender_id: userId,
           amount: transaction.amount,
           status: 1,
-          txn_reason
+          txn_reason,
+          txn_type
         };
         const document = await this.transactionModel.findOneAndUpdate(
           { user_id: userId },
@@ -219,5 +221,9 @@ export class TransactionService {
         { new: true },
       );
       return updatedDocument;
+  }
+
+  async getHistory(userId){
+    return this.transactionModel.findOne({user_id:userId})
   }
 }

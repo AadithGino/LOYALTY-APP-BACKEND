@@ -3,6 +3,11 @@ import { Document, Types } from 'mongoose';
 
 export type TransactionDocument = Transaction & Document;
 
+export enum transactionType{
+  Wallet='Wallet',
+  Points='Points'
+}
+
 export interface TransactionItem {
   _id?: Types.ObjectId; // Add _id property to hold the ObjectId
   txn_id?: string;

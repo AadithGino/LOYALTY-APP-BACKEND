@@ -12,6 +12,8 @@ import { join } from 'path';
 import {HandlebarsAdapter} from '@nestjs-modules/mailer/dist/adapters/handlebars.adapter'
 import { WalletModule } from './wallet/wallet.module';
 import { TransactionModule } from './transaction/transaction.module';
+import { TierModule } from './tier/tier.module';
+import { PointsModule } from './points/points.module';
 
 @Module({
   imports: [
@@ -37,6 +39,8 @@ import { TransactionModule } from './transaction/transaction.module';
     AuthModule,
     WalletModule,
     TransactionModule,
+    TierModule,
+    PointsModule,
   ],
   controllers: [AppController],
   providers: [AppService, { provide: APP_GUARD, useClass: AtGuard }],
