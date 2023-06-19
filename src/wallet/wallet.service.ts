@@ -1,4 +1,4 @@
-import { Injectable, UnauthorizedException } from '@nestjs/common';
+import { Injectable, HttpException } from '@nestjs/common';
 import { Wallet } from './schema/wallet.schema';
 import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
@@ -11,22 +11,18 @@ export class WalletService {
   ) {}
 
   async getWalletBalance(user) {
-    try {
-      const wallet: any = await this.walletModel.findOne({ user_id: user.sub });
-      if (!wallet) {
-        const newWallet: any = await this.walletModel.create({
-          user_id: user.sub,
-          currency: 'aed',
-          balance: this.encryptBalance(0),
-        });
-        newWallet.balance = this.decryptBalance(newWallet.balance);
-        return newWallet;
-      }
-      wallet.balance = this.decryptBalance(wallet.balance);
-      return wallet;
-    } catch (error) {
-      return error;
+    const wallet: any = await this.walletModel.findOne({ user_id: user.sub });
+    if (!wallet) {
+      const newWallet: any = await this.walletModel.create({
+        user_id: user.sub,
+        currency: 'aed',
+        balance: this.encryptBalance(0),
+      });
+      newWallet.balance = this.decryptBalance(newWallet.balance);
+      return newWallet;
     }
+    wallet.balance = this.decryptBalance(wallet.balance);
+    return wallet;
   }
 
   async updateUserWalletBalance(userId: string, amount: number) {
@@ -34,25 +30,24 @@ export class WalletService {
       const wallet = await this.walletModel.findOne({ user_id: userId });
 
       if (wallet) {
-        const decryptedBalabce = this.decryptBalance(wallet.balance);
-        const newbalance = this.encryptBalance(amount + decryptedBalabce);
-        this.walletModel
-          .updateOne({ user_id: userId }, { $set: { balance: newbalance } })
-          .then((data) => {
-            console.log(data);
-          });
+        const decryptedBalance = this.decryptBalance(wallet.balance);
+        const newbalance = this.encryptBalance(amount + decryptedBalance);
+        const updatedWallet = await this.walletModel.updateOne(
+          { user_id: userId },
+          { $set: { balance: newbalance } },
+        );
+        if (updatedWallet) return true;
       } else {
         const newbalance = this.encryptBalance(amount);
-
-        this.walletModel
-          .create({ user_id: userId, balance: newbalance, currency: 'aed' })
-          .then((data) => {
-            console.log(data);
-          })
-          .catch((err) => console.log(err));
+        await this.walletModel.create({
+          user_id: userId,
+          balance: newbalance,
+          currency: 'aed',
+        });
+        return true;
       }
     } catch (error) {
-      return error;
+      throw new HttpException(error.message, 400);
     }
   }
 

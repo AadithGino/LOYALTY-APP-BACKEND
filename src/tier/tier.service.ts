@@ -18,7 +18,7 @@ export class TierService {
       benefits: {
         maxDiscount: dto.maxDiscount,
         moneyToBeSpend: dto.moneyToBeSpend,
-        pointValue: dto.pointValue
+        pointValue: dto.pointValue,
       },
       cretieria: { minPointsForTier: dto.minimumPointsForTier },
     };
@@ -33,8 +33,7 @@ export class TierService {
     return await this.tierModel.findOne({ _id: id });
   }
 
-  async updateTier(userId:string, points:number) {
-    console.log(points);
+  async updateTier(userId: string, points: number) {
     const tiers: any = await this.getTiers();
     let newTier = 'Bronze';
     tiers.forEach((tier) => {

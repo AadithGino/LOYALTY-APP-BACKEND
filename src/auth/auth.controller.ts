@@ -18,6 +18,7 @@ import {
   validateOtpDto,
 } from './dto';
 import { Tokens } from './types/tokens.types';
+import { JwtPayload } from './stragtegies';
 
 @Controller('auth')
 export class AuthController {
@@ -39,13 +40,13 @@ export class AuthController {
   @Public()
   @Post('refresh')
   @UseGuards(RtGuard)
-  refreshTokens(@GetUser() user: any) {
+  refreshTokens(@GetUser() user: any):Promise<Tokens> {
     return this.authService.refreshToken(user.sub, user.refreshToken);
   }
 
   @Post('/logout')
   @HttpCode(HttpStatus.OK)
-  userLogout(@GetUser() user: any) {
+  userLogout(@GetUser() user: JwtPayload) {
     return this.authService.userLogout(user.sub);
   }
 
@@ -57,7 +58,7 @@ export class AuthController {
 
   @Public()
   @Post('/validatep-otp')
-  validateOtp(@Body() dto: validateOtpDto) {
+  validateOtp(@Body() dto: validateOtpDto):Promise<Tokens> {
     return this.authService.validateOtp(dto.email, dto.otp, dto.password);
   }
 }

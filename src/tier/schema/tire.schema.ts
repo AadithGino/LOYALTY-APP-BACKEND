@@ -3,12 +3,12 @@ import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 
 export interface benefits {
   maxDiscount: number;
-  amount_for_one_point: number;
-  one_point_amount: number;
+  moneyToBeSpend: number;
+  pointValue: number;
 }
 
 export interface cretieria {
-  points:number
+  minPointsForTier:number
 }
 
 @Schema({

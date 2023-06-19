@@ -3,7 +3,8 @@ import {
   HttpException,
   HttpStatus,
   InternalServerErrorException,
-  UnauthorizedException
+  UnauthorizedException,
+  ConflictException
 } from '@nestjs/common';
 import { WalletService } from 'src/wallet/wallet.service';
 import Stripe from 'stripe';
@@ -35,7 +36,7 @@ export class TransactionService {
     });
     const transaction = await this.addTransactionHistory(
       { amount },
-      '648b0aa0f41b9c3449a790d7',
+      '648d4c60722311bee7aa2a93',
       'Wallet Recharge',
       transactionType.Wallet
     );
@@ -61,7 +62,7 @@ export class TransactionService {
           2,
           paymentIntentId,
         );
-        console.log(transactionHistory);
+        
         
         await this.walletService.updateUserWalletBalance(
           user.sub,
@@ -102,7 +103,7 @@ export class TransactionService {
     const { paymentIntentId } = paymentData;
     const transactionExists = await this.validateTransactionId(paymentIntentId);
     if (!transactionExists)
-      throw new HttpException('This payment already exists', 400);
+    throw new ConflictException('This payment already exists');
     const paymentIntent = await this.retrievePaymentIntent(paymentIntentId);
     const isValid = paymentIntent.status === 'succeeded';
 
@@ -125,14 +126,14 @@ export class TransactionService {
   }
 
   // to add the transaction history in the users transaction document
-  async addTransactionHistory(transaction, userId, txn_reason,txn_type){
+  async addTransactionHistory(transaction, userId:string, txn_reason:string,txn_type:transactionType,status?:number){
     try {
       const exists = await this.transactionModel.findOne({ user_id: userId });
       if (exists) {
         const transactiondetails: TransactionItem = {
           sender_id: userId,
           amount: transaction.amount,
-          status: 1,
+          status: status?status:1,
           txn_reason,
           txn_type
         };
@@ -197,7 +198,7 @@ export class TransactionService {
           },
         },
         { new: true },
-      );
+      ).lean();
       if(!updatedDocument?.transactions) throw new UnauthorizedException()
       return updatedDocument.transactions.find((item)=>item.txn_id===paymentId)
   }
@@ -219,8 +220,8 @@ export class TransactionService {
           },
         },
         { new: true },
-      );
-      return updatedDocument;
+      ).lean();
+      return updatedDocument.transactions.find((transaction)=>transaction.txn_id===transactionId);
   }
 
   async getHistory(userId){

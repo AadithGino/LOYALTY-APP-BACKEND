@@ -18,11 +18,10 @@ export class UsersService {
   async userLogin(dto: userLoginDto) {
     const result = await this.userModel.findOne({ email: dto.email });
     if (!result || !result.is_active || result.is_deleted)
-      throw new UnauthorizedException('Invalid Email and/or Password');
+      throw new UnauthorizedException('Invalid Email');
 
     const validPassword = await bcrypt.compare(dto.password, result.password);
-    if (!validPassword)
-      throw new UnauthorizedException('Invalid Email and/or Password');
+    if (!validPassword) throw new UnauthorizedException('Invalid Password');
 
     return result;
   }
@@ -52,7 +51,7 @@ export class UsersService {
       { _id: new Types.ObjectId(userId) },
       { $set: { rt_token: null } },
     );
-    if(data) return {message:"User successfully Loged Out"};
+    if (data) return { message: 'User Successfully Loged Out' };
   }
 
   // Refresh token service comparing the refresh token with the hashed token
@@ -97,18 +96,13 @@ export class UsersService {
 
   async updatePassword(email: string, password: string) {
     const newPassword = await bcrypt.hash(password, 10);
-    return this.userModel.updateOne(
+    return await this.userModel.updateOne(
       { email: email },
       { $set: { password: newPassword } },
     );
   }
 
   async setOtpNull(email: string) {
-    this.userModel
-      .updateOne({ email: email }, { $set: { otp: null } })
-      .then((data) => {
-        console.log(data);
-        console.log('Otp status changed');
-      });
+    await this.userModel.updateOne({ email: email }, { $set: { otp: null } });
   }
 }

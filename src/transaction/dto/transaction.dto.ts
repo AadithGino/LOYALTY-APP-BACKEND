@@ -1,6 +1,6 @@
 import { IsNotEmpty, IsNumber } from "class-validator";
 
-export class transactionDtoP{
+export class transactionDto{
     @IsNotEmpty()
     @IsNumber()
     amount:number;

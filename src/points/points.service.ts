@@ -42,25 +42,25 @@ export class PointsService {
       if (pointExists) {
         const decryptedBalabce = this.decryptBalance(pointExists.points);
         const newbalance = this.encryptBalance(points + decryptedBalabce);
-        this.pointModel
+        await this.pointModel
           .updateOne({ user_id: userId }, { $set: { points: newbalance } })
-          .then(async (data) => {
+          // .then(async (data) => {
              await this.tierService.updateTier(
               userId,
               decryptedBalabce + points,
             );
             
-            await this.transactionService.addTransactionHistory({amount:points},userId,'Add Points',transactionType.Points)
-          });
+            await this.transactionService.addTransactionHistory({amount:points},userId,'Add Points',transactionType.Points,2)
+          // });
       } else {
         const newbalance = this.encryptBalance(points);
 
         this.pointModel
           .create({ user_id: userId, balance: newbalance })
-          .then(async (data) => {
+          // .then(async (data) => {
             return await this.tierService.updateTier(userId, points);
-          })
-          .catch((err) => console.log(err));
+          // })
+          // .catch((err) => console.log(err));
       }
     } catch (error) {
       return error;
