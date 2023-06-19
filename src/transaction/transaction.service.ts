@@ -3,6 +3,7 @@ import {
   HttpException,
   HttpStatus,
   InternalServerErrorException,
+  UnauthorizedException
 } from '@nestjs/common';
 import { WalletService } from 'src/wallet/wallet.service';
 import Stripe from 'stripe';
@@ -34,7 +35,7 @@ export class TransactionService {
     });
     const transaction = await this.addTransactionHistory(
       { amount },
-      '648d4c60722311bee7aa2a93',
+      '648b0aa0f41b9c3449a790d7',
       'Wallet Recharge'
     );
     return {
@@ -182,7 +183,6 @@ export class TransactionService {
     status: number,
     paymentId: string,
   ) {
-    try {
       const updatedDocument = await this.transactionModel.findOneAndUpdate(
         { user_id: userId, 'transactions._id': transactionId },
         {
@@ -196,10 +196,8 @@ export class TransactionService {
         },
         { new: true },
       );
+      if(!updatedDocument?.transactions) throw new UnauthorizedException()
       return updatedDocument.transactions.find((item)=>item.txn_id===paymentId)
-    } catch (error) {
-      return error;
-    }
   }
 
   // to update the failed transaction
@@ -208,7 +206,6 @@ export class TransactionService {
     transactionId: string,
     comment: string,
   ) {
-    try {
       const updatedDocument = await this.transactionModel.findOneAndUpdate(
         { user_id: userId, 'transactions._id': transactionId },
         {
@@ -222,8 +219,5 @@ export class TransactionService {
         { new: true },
       );
       return updatedDocument;
-    } catch (error) {
-      return error;
-    }
   }
 }
