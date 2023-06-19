@@ -19,6 +19,6 @@ export class PointsController {
 
     @Post('/add')
     addPoints(@GetUser() user){
-        return this.pointService.upateUserPoints(user.sub,180)
+        return this.pointService.upateUserPoints(user.sub,100)
     }
 }

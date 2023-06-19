@@ -3,6 +3,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Tier } from './schema/tire.schema';
 import { Model } from 'mongoose';
 import { User } from 'src/users/schema/user.schema';
+import { createTierDto } from './dto/createTier.dto';
 
 @Injectable()
 export class TierService {
@@ -11,11 +12,15 @@ export class TierService {
     @InjectModel(User.name) private readonly userModel: Model<User>,
   ) {}
 
-  async addTier(dto) {
+  async addTier(dto: createTierDto) {
     const details = {
       name: dto.name,
-      benefits: { maxDiscount: 10 },
-      cretieria: { points: 300 },
+      benefits: {
+        maxDiscount: dto.maxDiscount,
+        moneyToBeSpend: dto.moneyToBeSpend,
+        pointValue: dto.pointValue
+      },
+      cretieria: { minPointsForTier: dto.minimumPointsForTier },
     };
     return await this.tierModel.create(details);
   }
@@ -28,11 +33,12 @@ export class TierService {
     return await this.tierModel.findOne({ _id: id });
   }
 
-  async updateTier(userId, points) {
+  async updateTier(userId:string, points:number) {
+    console.log(points);
     const tiers: any = await this.getTiers();
     let newTier = 'Bronze';
     tiers.forEach((tier) => {
-      if (points >= tier.cretieria.points) {
+      if (points >= tier.cretieria.minPointsForTier) {
         console.log('Update to' + tier.name);
         newTier = tier.name;
       }
@@ -43,14 +49,13 @@ export class TierService {
     );
   }
 
-  async updatTierDetails(id,dto){
+  async updatTierDetails(id, dto) {
     const details = {
       name: dto.name,
       benefits: { maxDiscount: 10 },
       cretieria: { points: 300 },
     };
-    
-    await this.tierModel.updateOne({_id:dto.tierId},{$set:details})
-  
+
+    await this.tierModel.updateOne({ _id: dto.tierId }, { $set: details });
   }
 }
