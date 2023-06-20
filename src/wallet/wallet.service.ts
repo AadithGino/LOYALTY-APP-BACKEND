@@ -2,20 +2,23 @@ import { Injectable, HttpException } from '@nestjs/common';
 import { Wallet } from './schema/wallet.schema';
 import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
+import { UsersService } from 'src/users/users.service';
 
 @Injectable()
 export class WalletService {
   private readonly encryptionKey = process.env.WALLET_ENCRYPTION_KEY;
   constructor(
     @InjectModel(Wallet.name) private readonly walletModel: Model<Wallet>,
+    private readonly userService: UsersService
   ) {}
 
   async getWalletBalance(user) {
     const wallet: any = await this.walletModel.findOne({ user_id: user.sub });
+    const userdata = await this.userService.getUserByEmail(user.email)
     if (!wallet) {
       const newWallet: any = await this.walletModel.create({
         user_id: user.sub,
-        currency: 'aed',
+        currency: userdata.currency,
         balance: this.encryptBalance(0),
       });
       newWallet.balance = this.decryptBalance(newWallet.balance);
@@ -28,7 +31,7 @@ export class WalletService {
   async updateUserWalletBalance(userId: string, amount: number) {
     try {
       const wallet = await this.walletModel.findOne({ user_id: userId });
-
+      const userdata = await this.userService.getUserById(userId)
       if (wallet) {
         const decryptedBalance = this.decryptBalance(wallet.balance);
         const newbalance = this.encryptBalance(amount + decryptedBalance);
@@ -42,7 +45,7 @@ export class WalletService {
         await this.walletModel.create({
           user_id: userId,
           balance: newbalance,
-          currency: 'aed',
+          currency: userdata.currency,
         });
         return true;
       }

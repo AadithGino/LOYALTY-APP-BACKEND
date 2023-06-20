@@ -37,10 +37,11 @@ export class UsersService {
     if (user) throw new ConflictException('Email already in use');
     const detiails = {
       ...dto,
-      latitude: 10,
-      longitude: 11,
+      latitude: country.latitude,
+      longitude: country.longitude,
       country_name: country.name,
       mb_code: country.phonePrefix,
+      currency:country.currency,
     };
     return await this.userModel.create(detiails);
   }
@@ -84,6 +85,10 @@ export class UsersService {
 
   async getUserByEmail(email: string): Promise<User> {
     return await this.userModel.findOne({ email: email });
+  }
+
+  async getUserById(id: string): Promise<User> {
+    return await this.userModel.findOne({ _id: id });
   }
 
   async updateOtp(email: string, otp: string) {
