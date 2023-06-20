@@ -41,7 +41,7 @@ export class UsersService {
       longitude: country.longitude,
       country_name: country.name,
       mb_code: country.phonePrefix,
-      currency:country.currency,
+      currency: country.currency,
     };
     return await this.userModel.create(detiails);
   }

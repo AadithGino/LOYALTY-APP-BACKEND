@@ -1,20 +1,25 @@
-import { Injectable, HttpException } from '@nestjs/common';
+import { Injectable, HttpException, forwardRef, Inject } from '@nestjs/common';
 import { Wallet } from './schema/wallet.schema';
 import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import { UsersService } from 'src/users/users.service';
+import { TransactionService } from 'src/transaction/transaction.service';
+import { JwtPayload } from 'src/auth/stragtegies';
+import { validatePaymentDto } from 'src/transaction/dto';
 
 @Injectable()
 export class WalletService {
   private readonly encryptionKey = process.env.WALLET_ENCRYPTION_KEY;
   constructor(
+    @Inject(forwardRef(() => TransactionService))
+    private readonly transactionService: TransactionService,
     @InjectModel(Wallet.name) private readonly walletModel: Model<Wallet>,
-    private readonly userService: UsersService
+    private readonly userService: UsersService,
   ) {}
 
   async getWalletBalance(user) {
     const wallet: any = await this.walletModel.findOne({ user_id: user.sub });
-    const userdata = await this.userService.getUserByEmail(user.email)
+    const userdata = await this.userService.getUserByEmail(user.email);
     if (!wallet) {
       const newWallet: any = await this.walletModel.create({
         user_id: user.sub,
@@ -31,7 +36,7 @@ export class WalletService {
   async updateUserWalletBalance(userId: string, amount: number) {
     try {
       const wallet = await this.walletModel.findOne({ user_id: userId });
-      const userdata = await this.userService.getUserById(userId)
+      const userdata = await this.userService.getUserById(userId);
       if (wallet) {
         const decryptedBalance = this.decryptBalance(wallet.balance);
         const newbalance = this.encryptBalance(amount + decryptedBalance);
@@ -52,6 +57,20 @@ export class WalletService {
     } catch (error) {
       throw new HttpException(error.message, 400);
     }
+  }
+
+  async createWalletRechargeRequest(dto, user: JwtPayload) {
+    const userdata = await this.userService.getUserById(user.sub);
+    return this.transactionService.createTransaction(
+      dto.amount,
+      user.sub,
+      userdata.currency,
+      "Wallet Recharge",
+    );
+  }
+
+  async validateWalletRechargeRequest(dto:validatePaymentDto,user:JwtPayload){
+    return await this.transactionService.validateTransaction(dto,user)
   }
 
   private encryptBalance(balance: number): string {

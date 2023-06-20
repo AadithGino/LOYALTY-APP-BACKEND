@@ -14,9 +14,7 @@ export class TransactionController {
     @Body('amount') amount: number = 500,
     @GetUser() user: JwtPayload,
   ) {
-    return await this.transactionService.createTransaction(
-      amount,
-    );
+    // return await this.transactionService.createTransaction(amount);
   }
 
   @Post('validate-payment')

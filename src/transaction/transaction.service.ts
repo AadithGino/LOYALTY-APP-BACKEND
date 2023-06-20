@@ -5,6 +5,8 @@ import {
   InternalServerErrorException,
   UnauthorizedException,
   ConflictException,
+  Inject,
+  forwardRef,
 } from '@nestjs/common';
 import { WalletService } from 'src/wallet/wallet.service';
 import Stripe from 'stripe';
@@ -22,6 +24,7 @@ export class TransactionService {
   private stripe: Stripe;
 
   constructor(
+    @Inject(forwardRef(() => WalletService))
     private readonly walletService: WalletService,
     @InjectModel(Transaction.name)
     private readonly transactionModel: Model<Transaction>,
@@ -32,16 +35,24 @@ export class TransactionService {
   }
 
   // to create a new transaction and
-  async createTransaction(amount: number): Promise<any> {
+  async createTransaction(
+    amount: number,
+    userId: string,
+    currency: string,
+    txn_reason:string
+  ): Promise<any> {
+    console.log(amount, userId, currency);
+
     const paymentIntent = await this.stripe.paymentIntents.create({
       amount: amount * 100,
       currency: 'inr',
       payment_method_types: ['card'],
     });
+
     const transaction = await this.addTransactionHistory(
       { amount },
-      '648d4c60722311bee7aa2a93',
-      'Wallet Recharge',
+      userId,
+      txn_reason,
       transactionType.Wallet,
     );
     return {
@@ -52,8 +63,6 @@ export class TransactionService {
 
   // validate the transaction with transaction id and paymentIntent
   async validateTransaction(paymentData: validatePaymentDto, user: any) {
-    // try {
-    // Perform payment validation and update wallet balance
     const paymentValidationResult = await this.validatePaymentIntent(
       paymentData,
     );
@@ -86,17 +95,6 @@ export class TransactionService {
         HttpStatus.BAD_REQUEST,
       );
     }
-    // } catch (error) {
-    await this.updateFailureTransactionHistory(
-      user.sub,
-      paymentData.transactionId,
-      paymentData.comment,
-    );
-    throw new HttpException(
-      'Failed to process payment',
-      HttpStatus.INTERNAL_SERVER_ERROR,
-    );
-    // }
   }
 
   // validating the paymentIntent
