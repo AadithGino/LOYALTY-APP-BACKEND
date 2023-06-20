@@ -1,8 +1,8 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { ValidationPipe } from '@nestjs/common';
-import { ErrorInterceptor } from './error/error.interceptor';
-import { ErrorFilter } from './error/error.filter';
+import { ErrorFilter, ErrorInterceptor } from './error';
+
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);

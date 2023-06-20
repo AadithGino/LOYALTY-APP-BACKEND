@@ -84,7 +84,7 @@ export class AuthService {
       user._id.toString(),
       tokens.refresh_token,
     );
-    return tokens;
+    return {tokens,username:user.username};
   }
 
   async userLogout(userId: string) {

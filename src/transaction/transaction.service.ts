@@ -4,13 +4,17 @@ import {
   HttpStatus,
   InternalServerErrorException,
   UnauthorizedException,
-  ConflictException
+  ConflictException,
 } from '@nestjs/common';
 import { WalletService } from 'src/wallet/wallet.service';
 import Stripe from 'stripe';
 import { validatePaymentDto } from './dto';
 import { InjectModel } from '@nestjs/mongoose';
-import { Transaction, TransactionItem,transactionType } from './schema/transaction.schema';
+import {
+  Transaction,
+  TransactionItem,
+  transactionType,
+} from './schema/transaction.schema';
 import { Model } from 'mongoose';
 
 @Injectable()
@@ -38,7 +42,7 @@ export class TransactionService {
       { amount },
       '648d4c60722311bee7aa2a93',
       'Wallet Recharge',
-      transactionType.Wallet
+      transactionType.Wallet,
     );
     return {
       transaction_id: transaction._id,
@@ -49,50 +53,49 @@ export class TransactionService {
   // validate the transaction with transaction id and paymentIntent
   async validateTransaction(paymentData: validatePaymentDto, user: any) {
     // try {
-      // Perform payment validation and update wallet balance
-      const paymentValidationResult = await this.validatePaymentIntent(
-        paymentData,
+    // Perform payment validation and update wallet balance
+    const paymentValidationResult = await this.validatePaymentIntent(
+      paymentData,
+    );
+
+    if (paymentValidationResult.isValid) {
+      const paymentIntentId = paymentData.paymentIntentId;
+      const transactionHistory = await this.updateSuccessTransactionHistory(
+        user.sub,
+        paymentData.transactionId,
+        2,
+        paymentIntentId,
       );
 
-      if (paymentValidationResult.isValid) {
-        const paymentIntentId = paymentData.paymentIntentId;
-       const transactionHistory =  await this.updateSuccessTransactionHistory(
-          user.sub,
-          paymentData.transactionId,
-          2,
-          paymentIntentId,
-        );
-        
-        
-        await this.walletService.updateUserWalletBalance(
-          user.sub,
-          transactionHistory.amount,
-        );
+      await this.walletService.updateUserWalletBalance(
+        user.sub,
+        transactionHistory.amount,
+      );
 
-        return {
-          message: 'Payment Successfull user wallet updated succsfully',
-        };
-      } else {
-        await this.updateFailureTransactionHistory(
-          user.sub,
-          paymentData.transactionId,
-          paymentData.comment,
-        );
-        throw new HttpException(
-          'Payment validation failed',
-          HttpStatus.BAD_REQUEST,
-        );
-      }
-    // } catch (error) {
+      return {
+        message: 'Payment Successfull user wallet updated succsfully',
+      };
+    } else {
       await this.updateFailureTransactionHistory(
         user.sub,
         paymentData.transactionId,
         paymentData.comment,
       );
       throw new HttpException(
-        'Failed to process payment',
-        HttpStatus.INTERNAL_SERVER_ERROR,
+        'Payment validation failed',
+        HttpStatus.BAD_REQUEST,
       );
+    }
+    // } catch (error) {
+    await this.updateFailureTransactionHistory(
+      user.sub,
+      paymentData.transactionId,
+      paymentData.comment,
+    );
+    throw new HttpException(
+      'Failed to process payment',
+      HttpStatus.INTERNAL_SERVER_ERROR,
+    );
     // }
   }
 
@@ -103,7 +106,7 @@ export class TransactionService {
     const { paymentIntentId } = paymentData;
     const transactionExists = await this.validateTransactionId(paymentIntentId);
     if (!transactionExists)
-    throw new ConflictException('This payment already exists');
+      throw new ConflictException('This payment already exists');
     const paymentIntent = await this.retrievePaymentIntent(paymentIntentId);
     const isValid = paymentIntent.status === 'succeeded';
 
@@ -126,16 +129,22 @@ export class TransactionService {
   }
 
   // to add the transaction history in the users transaction document
-  async addTransactionHistory(transaction, userId:string, txn_reason:string,txn_type:transactionType,status?:number){
+  async addTransactionHistory(
+    transaction,
+    userId: string,
+    txn_reason: string,
+    txn_type: transactionType,
+    status?: number,
+  ) {
     try {
       const exists = await this.transactionModel.findOne({ user_id: userId });
       if (exists) {
         const transactiondetails: TransactionItem = {
           sender_id: userId,
           amount: transaction.amount,
-          status: status?status:1,
+          status: status ? status : 1,
           txn_reason,
-          txn_type
+          txn_type,
         };
         const document = await this.transactionModel.findOneAndUpdate(
           { user_id: userId },
@@ -147,8 +156,9 @@ export class TransactionService {
         const transactiondetails: TransactionItem = {
           sender_id: userId,
           amount: transaction.amount,
-          status: 1,
-          txn_reason
+          status: status ? status : 1,
+          txn_reason,
+          txn_type,
         };
         const document = await this.transactionModel.create({
           user_id: userId,
@@ -186,7 +196,8 @@ export class TransactionService {
     status: number,
     paymentId: string,
   ) {
-      const updatedDocument = await this.transactionModel.findOneAndUpdate(
+    const updatedDocument = await this.transactionModel
+      .findOneAndUpdate(
         { user_id: userId, 'transactions._id': transactionId },
         {
           $set: {
@@ -198,9 +209,12 @@ export class TransactionService {
           },
         },
         { new: true },
-      ).lean();
-      if(!updatedDocument?.transactions) throw new UnauthorizedException()
-      return updatedDocument.transactions.find((item)=>item.txn_id===paymentId)
+      )
+      .lean();
+    if (!updatedDocument?.transactions) throw new UnauthorizedException();
+    return updatedDocument.transactions.find(
+      (item) => item.txn_id === paymentId,
+    );
   }
 
   // to update the failed transaction
@@ -209,7 +223,8 @@ export class TransactionService {
     transactionId: string,
     comment: string,
   ) {
-      const updatedDocument = await this.transactionModel.findOneAndUpdate(
+    const updatedDocument = await this.transactionModel
+      .findOneAndUpdate(
         { user_id: userId, 'transactions._id': transactionId },
         {
           $set: {
@@ -220,11 +235,14 @@ export class TransactionService {
           },
         },
         { new: true },
-      ).lean();
-      return updatedDocument.transactions.find((transaction)=>transaction.txn_id===transactionId);
+      )
+      .lean();
+    return updatedDocument.transactions.find(
+      (transaction) => transaction.txn_id === transactionId,
+    );
   }
 
-  async getHistory(userId){
-    return this.transactionModel.findOne({user_id:userId})
+  async getHistory(userId) {
+    return this.transactionModel.findOne({ user_id: userId });
   }
 }

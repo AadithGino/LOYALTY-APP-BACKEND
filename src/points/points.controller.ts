@@ -20,6 +20,6 @@ export class PointsController {
 
     @Post('/add')
     addPoints(@GetUser() user:JwtPayload){
-        return this.pointService.upateUserPoints(user.sub,100)
+        return this.pointService.updateUserPoints(user.sub,100)
     }
 }

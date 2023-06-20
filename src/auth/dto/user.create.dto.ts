@@ -13,4 +13,8 @@ export class userSignUpDto {
 
     @Validate(WeakPasswordValidator)
     password: string; 
+
+    @IsNotEmpty()
+    @IsString()
+    country_code:string;
 }

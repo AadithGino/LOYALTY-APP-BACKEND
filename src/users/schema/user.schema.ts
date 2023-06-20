@@ -71,6 +71,18 @@ export class User {
   @Prop({ default: 0 })
   loyalty_points: number;
 
+  @Prop()
+  country_code:string;
+
+  @Prop()
+  country_name:string
+
+  @Prop()
+  mb_code:string;
+
+  @Prop()
+  currency:string;
+
   @Prop({ default: true })
   is_active: boolean;
 

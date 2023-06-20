@@ -23,7 +23,7 @@ export interface TransactionItem {
   comments?: string;
   ecomments?: string;
   txn_reason?: string;
-  status?: number;
+  status?: number;  // 0 = failed, 1 = pending, 2 = successful
   created_at?: Date;
   updated_at?: Date;
   ip_address?: string;

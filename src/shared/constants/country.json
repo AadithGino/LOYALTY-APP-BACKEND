@@ -1,0 +1,1179 @@
+[
+    {
+      "name": "Afghanistan",
+      "shortCode": "AF",
+      "longCode": "AFG",
+      "phonePrefix": "+93"
+    },
+    {
+      "name": "Albania",
+      "shortCode": "AL",
+      "longCode": "ALB",
+      "phonePrefix": "+355"
+    },
+    {
+      "name": "Algeria",
+      "shortCode": "DZ",
+      "longCode": "DZA",
+      "phonePrefix": "+213"
+    },
+    {
+      "name": "Andorra",
+      "shortCode": "AD",
+      "longCode": "AND",
+      "phonePrefix": "+376"
+    },
+    {
+      "name": "Angola",
+      "shortCode": "AO",
+      "longCode": "AGO",
+      "phonePrefix": "+244"
+    },
+    {
+      "name": "Antigua and Barbuda",
+      "shortCode": "AG",
+      "longCode": "ATG",
+      "phonePrefix": "+1"
+    },
+    {
+      "name": "Argentina",
+      "shortCode": "AR",
+      "longCode": "ARG",
+      "phonePrefix": "+54"
+    },
+    {
+      "name": "Armenia",
+      "shortCode": "AM",
+      "longCode": "ARM",
+      "phonePrefix": "+374"
+    },
+    {
+      "name": "Australia",
+      "shortCode": "AU",
+      "longCode": "AUS",
+      "phonePrefix": "+61"
+    },
+    {
+      "name": "Austria",
+      "shortCode": "AT",
+      "longCode": "AUT",
+      "phonePrefix": "+43"
+    },
+    {
+      "name": "Azerbaijan",
+      "shortCode": "AZ",
+      "longCode": "AZE",
+      "phonePrefix": "+994"
+    },
+    {
+      "name": "Bahamas",
+      "shortCode": "BS",
+      "longCode": "BHS",
+      "phonePrefix": "+1"
+    },
+    {
+      "name": "Bahrain",
+      "shortCode": "BH",
+      "longCode": "BHR",
+      "phonePrefix": "+973"
+    },
+    {
+      "name": "Bangladesh",
+      "shortCode": "BD",
+      "longCode": "BGD",
+      "phonePrefix": "+880"
+    },
+    {
+      "name": "Barbados",
+      "shortCode": "BB",
+      "longCode": "BRB",
+      "phonePrefix": "+1"
+    },
+    {
+      "name": "Belarus",
+      "shortCode": "BY",
+      "longCode": "BLR",
+      "phonePrefix": "+375"
+    },
+    {
+      "name": "Belgium",
+      "shortCode": "BE",
+      "longCode": "BEL",
+      "phonePrefix": "+32"
+    },
+    {
+      "name": "Belize",
+      "shortCode": "BZ",
+      "longCode": "BLZ",
+      "phonePrefix": "+501"
+    },
+    {
+      "name": "Benin",
+      "shortCode": "BJ",
+      "longCode": "BEN",
+      "phonePrefix": "+229"
+    },
+    {
+      "name": "Bhutan",
+      "shortCode": "BT",
+      "longCode": "BTN",
+      "phonePrefix": "+975"
+    },
+    {
+      "name": "Bolivia",
+      "shortCode": "BO",
+      "longCode": "BOL",
+      "phonePrefix": "+591"
+    },
+    {
+      "name": "Bosnia and Herzegovina",
+      "shortCode": "BA",
+      "longCode": "BIH",
+      "phonePrefix": "+387"
+    },
+    {
+      "name": "Botswana",
+      "shortCode": "BW",
+      "longCode": "BWA",
+      "phonePrefix": "+267"
+    },
+    {
+      "name": "Brazil",
+      "shortCode": "BR",
+      "longCode": "BRA",
+      "phonePrefix": "+55"
+    },
+    {
+      "name": "Brunei",
+      "shortCode": "BN",
+      "longCode": "BRN",
+      "phonePrefix": "+673"
+    },
+    {
+      "name": "Bulgaria",
+      "shortCode": "BG",
+      "longCode": "BGR",
+      "phonePrefix": "+359"
+    },
+    {
+      "name": "Burkina Faso",
+      "shortCode": "BF",
+      "longCode": "BFA",
+      "phonePrefix": "+226"
+    },
+    {
+      "name": "Burundi",
+      "shortCode": "BI",
+      "longCode": "BDI",
+      "phonePrefix": "+257"
+    },
+    {
+      "name": "Cambodia",
+      "shortCode": "KH",
+      "longCode": "KHM",
+      "phonePrefix": "+855"
+    },
+    {
+      "name": "Cameroon",
+      "shortCode": "CM",
+      "longCode": "CMR",
+      "phonePrefix": "+237"
+    },
+    {
+      "name": "Canada",
+      "shortCode": "CA",
+      "longCode": "CAN",
+      "phonePrefix": "+1"
+    },
+    {
+      "name": "Cape Verde",
+      "shortCode": "CV",
+      "longCode": "CPV",
+      "phonePrefix": "+238"
+    },
+    {
+      "name": "Central African Republic",
+      "shortCode": "CF",
+      "longCode": "CAF",
+      "phonePrefix": "+236"
+    },
+    {
+      "name": "Chad",
+      "shortCode": "TD",
+      "longCode": "TCD",
+      "phonePrefix": "+235"
+    },
+    {
+      "name": "Chile",
+      "shortCode": "CL",
+      "longCode": "CHL",
+      "phonePrefix": "+56"
+    },
+    {
+      "name": "China",
+      "shortCode": "CN",
+      "longCode": "CHN",
+      "phonePrefix": "+86"
+    },
+    {
+      "name": "Colombia",
+      "shortCode": "CO",
+      "longCode": "COL",
+      "phonePrefix": "+57"
+    },
+    {
+      "name": "Comoros",
+      "shortCode": "KM",
+      "longCode": "COM",
+      "phonePrefix": "+269"
+    },
+    {
+      "name": "Congo",
+      "shortCode": "CG",
+      "longCode": "COG",
+      "phonePrefix": "+242"
+    },
+    {
+      "name": "Cook Islands",
+      "shortCode": "CK",
+      "longCode": "COK",
+      "phonePrefix": "+682"
+    },
+    {
+      "name": "Costa Rica",
+      "shortCode": "CR",
+      "longCode": "CRI",
+      "phonePrefix": "+506"
+    },
+    {
+      "name": "Croatia",
+      "shortCode": "HR",
+      "longCode": "HRV",
+      "phonePrefix": "+385"
+    },
+    {
+      "name": "Cuba",
+      "shortCode": "CU",
+      "longCode": "CUB",
+      "phonePrefix": "+53"
+    },
+    {
+      "name": "Cyprus",
+      "shortCode": "CY",
+      "longCode": "CYP",
+      "phonePrefix": "+357"
+    },
+    {
+      "name": "Czech Republic",
+      "shortCode": "CZ",
+      "longCode": "CZE",
+      "phonePrefix": "+420"
+    },
+    {
+      "name": "Denmark",
+      "shortCode": "DK",
+      "longCode": "DNK",
+      "phonePrefix": "+45"
+    },
+    {
+      "name": "Djibouti",
+      "shortCode": "DJ",
+      "longCode": "DJI",
+      "phonePrefix": "+253"
+    },
+    {
+      "name": "Dominica",
+      "shortCode": "DM",
+      "longCode": "DMA",
+      "phonePrefix": "+1"
+    },
+    {
+      "name": "Dominican Republic",
+      "shortCode": "DO",
+      "longCode": "DOM",
+      "phonePrefix": "+1"
+    },
+    {
+      "name": "Ecuador",
+      "shortCode": "EC",
+      "longCode": "ECU",
+      "phonePrefix": "+593"
+    },
+    {
+      "name": "Egypt",
+      "shortCode": "EG",
+      "longCode": "EGY",
+      "phonePrefix": "+20"
+    },
+    {
+      "name": "El Salvador",
+      "shortCode": "SV",
+      "longCode": "SLV",
+      "phonePrefix": "+503"
+    },
+    {
+      "name": "Equatorial Guinea",
+      "shortCode": "GQ",
+      "longCode": "GNQ",
+      "phonePrefix": "+240"
+    },
+    {
+      "name": "Eritrea",
+      "shortCode": "ER",
+      "longCode": "ERI",
+      "phonePrefix": "+291"
+    },
+    {
+      "name": "Estonia",
+      "shortCode": "EE",
+      "longCode": "EST",
+      "phonePrefix": "+372"
+    },
+    {
+      "name": "Ethiopia",
+      "shortCode": "ET",
+      "longCode": "ETH",
+      "phonePrefix": "+251"
+    },
+    {
+      "name": "Fiji",
+      "shortCode": "FJ",
+      "longCode": "FJI",
+      "phonePrefix": "+679"
+    },
+    {
+      "name": "Finland",
+      "shortCode": "FI",
+      "longCode": "FIN",
+      "phonePrefix": "+358"
+    },
+    {
+      "name": "France",
+      "shortCode": "FR",
+      "longCode": "FRA",
+      "phonePrefix": "+33"
+    },
+    {
+      "name": "Gabon",
+      "shortCode": "GA",
+      "longCode": "GAB",
+      "phonePrefix": "+241"
+    },
+    {
+      "name": "Gambia",
+      "shortCode": "GM",
+      "longCode": "GMB",
+      "phonePrefix": "+220"
+    },
+    {
+      "name": "Georgia",
+      "shortCode": "GE",
+      "longCode": "GEO",
+      "phonePrefix": "+995"
+    },
+    {
+      "name": "Germany",
+      "shortCode": "DE",
+      "longCode": "DEU",
+      "phonePrefix": "+49"
+    },
+    {
+      "name": "Ghana",
+      "shortCode": "GH",
+      "longCode": "GHA",
+      "phonePrefix": "+233"
+    },
+    {
+      "name": "Greece",
+      "shortCode": "GR",
+      "longCode": "GRC",
+      "phonePrefix": "+30"
+    },
+    {
+      "name": "Grenada",
+      "shortCode": "GD",
+      "longCode": "GRD",
+      "phonePrefix": "+1"
+    },
+    {
+      "name": "Guatemala",
+      "shortCode": "GT",
+      "longCode": "GTM",
+      "phonePrefix": "+502"
+    },
+    {
+      "name": "Guinea",
+      "shortCode": "GN",
+      "longCode": "GIN",
+      "phonePrefix": "+224"
+    },
+    {
+      "name": "Guinea-Bissau",
+      "shortCode": "GW",
+      "longCode": "GNB",
+      "phonePrefix": "+245"
+    },
+    {
+      "name": "Guyana",
+      "shortCode": "GY",
+      "longCode": "GUY",
+      "phonePrefix": "+592"
+    },
+    {
+      "name": "Haiti",
+      "shortCode": "HT",
+      "longCode": "HTI",
+      "phonePrefix": "+509"
+    },
+    {
+      "name": "Honduras",
+      "shortCode": "HN",
+      "longCode": "HND",
+      "phonePrefix": "+504"
+    },
+    {
+      "name": "Hungary",
+      "shortCode": "HU",
+      "longCode": "HUN",
+      "phonePrefix": "+36"
+    },
+    {
+      "name": "Iceland",
+      "shortCode": "IS",
+      "longCode": "ISL",
+      "phonePrefix": "+354"
+    },
+    {
+      "name": "India",
+      "shortCode": "IN",
+      "longCode": "IND",
+      "phonePrefix": "+91"
+    },
+    {
+      "name": "Indonesia",
+      "shortCode": "ID",
+      "longCode": "IDN",
+      "phonePrefix": "+62"
+    },
+    {
+      "name": "Iran",
+      "shortCode": "IR",
+      "longCode": "IRN",
+      "phonePrefix": "+98"
+    },
+    {
+      "name": "Iraq",
+      "shortCode": "IQ",
+      "longCode": "IRQ",
+      "phonePrefix": "+964"
+    },
+    {
+      "name": "Ireland",
+      "shortCode": "IE",
+      "longCode": "IRL",
+      "phonePrefix": "+353"
+    },
+    {
+      "name": "Israel",
+      "shortCode": "IL",
+      "longCode": "ISR",
+      "phonePrefix": "+972"
+    },
+    {
+      "name": "Italy",
+      "shortCode": "IT",
+      "longCode": "ITA",
+      "phonePrefix": "+39"
+    },
+    {
+      "name": "Jamaica",
+      "shortCode": "JM",
+      "longCode": "JAM",
+      "phonePrefix": "+1"
+    },
+    {
+      "name": "Japan",
+      "shortCode": "JP",
+      "longCode": "JPN",
+      "phonePrefix": "+81"
+    },
+    {
+      "name": "Jordan",
+      "shortCode": "JO",
+      "longCode": "JOR",
+      "phonePrefix": "+962"
+    },
+    {
+      "name": "Kazakhstan",
+      "shortCode": "KZ",
+      "longCode": "KAZ",
+      "phonePrefix": "+7"
+    },
+    {
+      "name": "Kenya",
+      "shortCode": "KE",
+      "longCode": "KEN",
+      "phonePrefix": "+254"
+    },
+    {
+      "name": "Kiribati",
+      "shortCode": "KI",
+      "longCode": "KIR",
+      "phonePrefix": "+686"
+    },
+    {
+      "name": "Kuwait",
+      "shortCode": "KW",
+      "longCode": "KWT",
+      "phonePrefix": "+965"
+    },
+    {
+      "name": "Kyrgyzstan",
+      "shortCode": "KG",
+      "longCode": "KGZ",
+      "phonePrefix": "+996"
+    },
+    {
+      "name": "Laos",
+      "shortCode": "LA",
+      "longCode": "LAO",
+      "phonePrefix": "+856"
+    },
+    {
+      "name": "Latvia",
+      "shortCode": "LV",
+      "longCode": "LVA",
+      "phonePrefix": "+371"
+    },
+    {
+      "name": "Lebanon",
+      "shortCode": "LB",
+      "longCode": "LBN",
+      "phonePrefix": "+961"
+    },
+    {
+      "name": "Lesotho",
+      "shortCode": "LS",
+      "longCode": "LSO",
+      "phonePrefix": "+266"
+    },
+    {
+      "name": "Liberia",
+      "shortCode": "LR",
+      "longCode": "LBR",
+      "phonePrefix": "+231"
+    },
+    {
+      "name": "Libya",
+      "shortCode": "LY",
+      "longCode": "LBY",
+      "phonePrefix": "+218"
+    },
+    {
+      "name": "Liechtenstein",
+      "shortCode": "LI",
+      "longCode": "LIE",
+      "phonePrefix": "+423"
+    },
+    {
+      "name": "Lithuania",
+      "shortCode": "LT",
+      "longCode": "LTU",
+      "phonePrefix": "+370"
+    },
+    {
+      "name": "Luxembourg",
+      "shortCode": "LU",
+      "longCode": "LUX",
+      "phonePrefix": "+352"
+    },
+    {
+      "name": "Macedonia",
+      "shortCode": "MK",
+      "longCode": "MKD",
+      "phonePrefix": "+389"
+    },
+    {
+      "name": "Madagascar",
+      "shortCode": "MG",
+      "longCode": "MDG",
+      "phonePrefix": "+261"
+    },
+    {
+      "name": "Malawi",
+      "shortCode": "MW",
+      "longCode": "MWI",
+      "phonePrefix": "+265"
+    },
+    {
+      "name": "Malaysia",
+      "shortCode": "MY",
+      "longCode": "MYS",
+      "phonePrefix": "+60"
+    },
+    {
+      "name": "Maldives",
+      "shortCode": "MV",
+      "longCode": "MDV",
+      "phonePrefix": "+960"
+    },
+    {
+      "name": "Mali",
+      "shortCode": "ML",
+      "longCode": "MLI",
+      "phonePrefix": "+223"
+    },
+    {
+      "name": "Malta",
+      "shortCode": "MT",
+      "longCode": "MLT",
+      "phonePrefix": "+356"
+    },
+    {
+      "name": "Marshall Islands",
+      "shortCode": "MH",
+      "longCode": "MHL",
+      "phonePrefix": "+692"
+    },
+    {
+      "name": "Mauritania",
+      "shortCode": "MR",
+      "longCode": "MRT",
+      "phonePrefix": "+222"
+    },
+    {
+      "name": "Mauritius",
+      "shortCode": "MU",
+      "longCode": "MUS",
+      "phonePrefix": "+230"
+    },
+    {
+      "name": "Mexico",
+      "shortCode": "MX",
+      "longCode": "MEX",
+      "phonePrefix": "+52"
+    },
+    {
+      "name": "Micronesia",
+      "shortCode": "FM",
+      "longCode": "FSM",
+      "phonePrefix": "+691"
+    },
+    {
+      "name": "Moldova",
+      "shortCode": "MD",
+      "longCode": "MDA",
+      "phonePrefix": "+373"
+    },
+    {
+      "name": "Monaco",
+      "shortCode": "MC",
+      "longCode": "MCO",
+      "phonePrefix": "+377"
+    },
+    {
+      "name": "Mongolia",
+      "shortCode": "MN",
+      "longCode": "MNG",
+      "phonePrefix": "+976"
+    },
+    {
+      "name": "Montenegro",
+      "shortCode": "ME",
+      "longCode": "MNE",
+      "phonePrefix": "+382"
+    },
+    {
+      "name": "Morocco",
+      "shortCode": "MA",
+      "longCode": "MAR",
+      "phonePrefix": "+212"
+    },
+    {
+      "name": "Mozambique",
+      "shortCode": "MZ",
+      "longCode": "MOZ",
+      "phonePrefix": "+258"
+    },
+    {
+      "name": "Myanmar",
+      "shortCode": "MM",
+      "longCode": "MMR",
+      "phonePrefix": "+95"
+    },
+    {
+      "name": "Namibia",
+      "shortCode": "NA",
+      "longCode": "NAM",
+      "phonePrefix": "+264"
+    },
+    {
+      "name": "Nauru",
+      "shortCode": "NR",
+      "longCode": "NRU",
+      "phonePrefix": "+674"
+    },
+    {
+      "name": "Nepal",
+      "shortCode": "NP",
+      "longCode": "NPL",
+      "phonePrefix": "+977"
+    },
+    {
+      "name": "Netherlands",
+      "shortCode": "NL",
+      "longCode": "NLD",
+      "phonePrefix": "+31"
+    },
+    {
+      "name": "New Zealand",
+      "shortCode": "NZ",
+      "longCode": "NZL",
+      "phonePrefix": "+64"
+    },
+    {
+      "name": "Nicaragua",
+      "shortCode": "NI",
+      "longCode": "NIC",
+      "phonePrefix": "+505"
+    },
+    {
+      "name": "Niger",
+      "shortCode": "NE",
+      "longCode": "NER",
+      "phonePrefix": "+227"
+    },
+    {
+      "name": "Nigeria",
+      "shortCode": "NG",
+      "longCode": "NGA",
+      "phonePrefix": "+234"
+    },
+    {
+      "name": "North Korea",
+      "shortCode": "KP",
+      "longCode": "PRK",
+      "phonePrefix": "+850"
+    },
+    {
+      "name": "Norway",
+      "shortCode": "NO",
+      "longCode": "NOR",
+      "phonePrefix": "+47"
+    },
+    {
+      "name": "Oman",
+      "shortCode": "OM",
+      "longCode": "OMN",
+      "phonePrefix": "+968"
+    },
+    {
+      "name": "Pakistan",
+      "shortCode": "PK",
+      "longCode": "PAK",
+      "phonePrefix": "+92"
+    },
+    {
+      "name": "Palau",
+      "shortCode": "PW",
+      "longCode": "PLW",
+      "phonePrefix": "+680"
+    },
+    {
+      "name": "Palestine",
+      "shortCode": "PS",
+      "longCode": "PSE",
+      "phonePrefix": "+970"
+    },
+    {
+      "name": "Panama",
+      "shortCode": "PA",
+      "longCode": "PAN",
+      "phonePrefix": "+507"
+    },
+    {
+      "name": "Papua New Guinea",
+      "shortCode": "PG",
+      "longCode": "PNG",
+      "phonePrefix": "+675"
+    },
+    {
+      "name": "Paraguay",
+      "shortCode": "PY",
+      "longCode": "PRY",
+      "phonePrefix": "+595"
+    },
+    {
+      "name": "Peru",
+      "shortCode": "PE",
+      "longCode": "PER",
+      "phonePrefix": "+51"
+    },
+    {
+      "name": "Philippines",
+      "shortCode": "PH",
+      "longCode": "PHL",
+      "phonePrefix": "+63"
+    },
+    {
+      "name": "Poland",
+      "shortCode": "PL",
+      "longCode": "POL",
+      "phonePrefix": "+48"
+    },
+    {
+      "name": "Portugal",
+      "shortCode": "PT",
+      "longCode": "PRT",
+      "phonePrefix": "+351"
+    },
+    {
+      "name": "Qatar",
+      "shortCode": "QA",
+      "longCode": "QAT",
+      "phonePrefix": "+974"
+    },
+    {
+      "name": "Republic of the Congo",
+      "shortCode": "CG",
+      "longCode": "COG",
+      "phonePrefix": "+242"
+    },
+    {
+      "name": "Romania",
+      "shortCode": "RO",
+      "longCode": "ROU",
+      "phonePrefix": "+40"
+    },
+    {
+      "name": "Russia",
+      "shortCode": "RU",
+      "longCode": "RUS",
+      "phonePrefix": "+7"
+    },
+    {
+      "name": "Rwanda",
+      "shortCode": "RW",
+      "longCode": "RWA",
+      "phonePrefix": "+250"
+    },
+    {
+      "name": "Saint Kitts and Nevis",
+      "shortCode": "KN",
+      "longCode": "KNA",
+      "phonePrefix": "+1"
+    },
+    {
+      "name": "Saint Lucia",
+      "shortCode": "LC",
+      "longCode": "LCA",
+      "phonePrefix": "+1"
+    },
+    {
+      "name": "Saint Vincent and the Grenadines",
+      "shortCode": "VC",
+      "longCode": "VCT",
+      "phonePrefix": "+1"
+    },
+    {
+      "name": "Samoa",
+      "shortCode": "WS",
+      "longCode": "WSM",
+      "phonePrefix": "+685"
+    },
+    {
+      "name": "San Marino",
+      "shortCode": "SM",
+      "longCode": "SMR",
+      "phonePrefix": "+378"
+    },
+    {
+      "name": "Sao Tome and Principe",
+      "shortCode": "ST",
+      "longCode": "STP",
+      "phonePrefix": "+239"
+    },
+    {
+      "name": "Saudi Arabia",
+      "shortCode": "SA",
+      "longCode": "SAU",
+      "phonePrefix": "+966"
+    },
+    {
+      "name": "Senegal",
+      "shortCode": "SN",
+      "longCode": "SEN",
+      "phonePrefix": "+221"
+    },
+    {
+      "name": "Serbia",
+      "shortCode": "RS",
+      "longCode": "SRB",
+      "phonePrefix": "+381"
+    },
+    {
+      "name": "Seychelles",
+      "shortCode": "SC",
+      "longCode": "SYC",
+      "phonePrefix": "+248"
+    },
+    {
+      "name": "Sierra Leone",
+      "shortCode": "SL",
+      "longCode": "SLE",
+      "phonePrefix": "+232"
+    },
+    {
+      "name": "Singapore",
+      "shortCode": "SG",
+      "longCode": "SGP",
+      "phonePrefix": "+65"
+    },
+    {
+      "name": "Slovakia",
+      "shortCode": "SK",
+      "longCode": "SVK",
+      "phonePrefix": "+421"
+    },
+    {
+      "name": "Slovenia",
+      "shortCode": "SI",
+      "longCode": "SVN",
+      "phonePrefix": "+386"
+    },
+    {
+      "name": "Solomon Islands",
+      "shortCode": "SB",
+      "longCode": "SLB",
+      "phonePrefix": "+677"
+    },
+    {
+      "name": "Somalia",
+      "shortCode": "SO",
+      "longCode": "SOM",
+      "phonePrefix": "+252"
+    },
+    {
+      "name": "South Africa",
+      "shortCode": "ZA",
+      "longCode": "ZAF",
+      "phonePrefix": "+27"
+    },
+    {
+      "name": "South Korea",
+      "shortCode": "KR",
+      "longCode": "KOR",
+      "phonePrefix": "+82"
+    },
+    {
+      "name": "South Sudan",
+      "shortCode": "SS",
+      "longCode": "SSD",
+      "phonePrefix": "+211"
+    },
+    {
+      "name": "Spain",
+      "shortCode": "ES",
+      "longCode": "ESP",
+      "phonePrefix": "+34"
+    },
+    {
+      "name": "Sri Lanka",
+      "shortCode": "LK",
+      "longCode": "LKA",
+      "phonePrefix": "+94"
+    },
+    {
+      "name": "Sudan",
+      "shortCode": "SD",
+      "longCode": "SDN",
+      "phonePrefix": "+249"
+    },
+    {
+      "name": "Suriname",
+      "shortCode": "SR",
+      "longCode": "SUR",
+      "phonePrefix": "+597"
+    },
+    {
+      "name": "Swaziland",
+      "shortCode": "SZ",
+      "longCode": "SWZ",
+      "phonePrefix": "+268"
+    },
+    {
+      "name": "Sweden",
+      "shortCode": "SE",
+      "longCode": "SWE",
+      "phonePrefix": "+46"
+    },
+    {
+      "name": "Switzerland",
+      "shortCode": "CH",
+      "longCode": "CHE",
+      "phonePrefix": "+41"
+    },
+    {
+      "name": "Syria",
+      "shortCode": "SY",
+      "longCode": "SYR",
+      "phonePrefix": "+963"
+    },
+    {
+      "name": "Taiwan",
+      "shortCode": "TW",
+      "longCode": "TWN",
+      "phonePrefix": "+886"
+    },
+    {
+      "name": "Tajikistan",
+      "shortCode": "TJ",
+      "longCode": "TJK",
+      "phonePrefix": "+992"
+    },
+    {
+      "name": "Tanzania",
+      "shortCode": "TZ",
+      "longCode": "TZA",
+      "phonePrefix": "+255"
+    },
+    {
+      "name": "Thailand",
+      "shortCode": "TH",
+      "longCode": "THA",
+      "phonePrefix": "+66"
+    },
+    {
+      "name": "Timor-Leste",
+      "shortCode": "TL",
+      "longCode": "TLS",
+      "phonePrefix": "+670"
+    },
+    {
+      "name": "Togo",
+      "shortCode": "TG",
+      "longCode": "TGO",
+      "phonePrefix": "+228"
+    },
+    {
+      "name": "Tonga",
+      "shortCode": "TO",
+      "longCode": "TON",
+      "phonePrefix": "+676"
+    },
+    {
+      "name": "Trinidad and Tobago",
+      "shortCode": "TT",
+      "longCode": "TTO",
+      "phonePrefix": "+1"
+    },
+    {
+      "name": "Tunisia",
+      "shortCode": "TN",
+      "longCode": "TUN",
+      "phonePrefix": "+216"
+    },
+    {
+      "name": "Turkey",
+      "shortCode": "TR",
+      "longCode": "TUR",
+      "phonePrefix": "+90"
+    },
+    {
+      "name": "Turkmenistan",
+      "shortCode": "TM",
+      "longCode": "TKM",
+      "phonePrefix": "+993"
+    },
+    {
+      "name": "Tuvalu",
+      "shortCode": "TV",
+      "longCode": "TUV",
+      "phonePrefix": "+688"
+    },
+    {
+      "name": "Uganda",
+      "shortCode": "UG",
+      "longCode": "UGA",
+      "phonePrefix": "+256"
+    },
+    {
+      "name": "Ukraine",
+      "shortCode": "UA",
+      "longCode": "UKR",
+      "phonePrefix": "+380"
+    },
+    {
+      "name": "United Arab Emirates",
+      "shortCode": "AE",
+      "longCode": "ARE",
+      "phonePrefix": "+971"
+    },
+    {
+      "name": "United Kingdom",
+      "shortCode": "GB",
+      "longCode": "GBR",
+      "phonePrefix": "+44"
+    },
+    {
+      "name": "United States",
+      "shortCode": "US",
+      "longCode": "USA",
+      "phonePrefix": "+1"
+    },
+    {
+      "name": "Uruguay",
+      "shortCode": "UY",
+      "longCode": "URY",
+      "phonePrefix": "+598"
+    },
+    {
+      "name": "Uzbekistan",
+      "shortCode": "UZ",
+      "longCode": "UZB",
+      "phonePrefix": "+998"
+    },
+    {
+      "name": "Vanuatu",
+      "shortCode": "VU",
+      "longCode": "VUT",
+      "phonePrefix": "+678"
+    },
+    {
+      "name": "Vatican City",
+      "shortCode": "VA",
+      "longCode": "VAT",
+      "phonePrefix": "+39"
+    },
+    {
+      "name": "Venezuela",
+      "shortCode": "VE",
+      "longCode": "VEN",
+      "phonePrefix": "+58"
+    },
+    {
+      "name": "Vietnam",
+      "shortCode": "VN",
+      "longCode": "VNM",
+      "phonePrefix": "+84"
+    },
+    {
+      "name": "Yemen",
+      "shortCode": "YE",
+      "longCode": "YEM",
+      "phonePrefix": "+967"
+    },
+    {
+      "name": "Zambia",
+      "shortCode": "ZM",
+      "longCode": "ZMB",
+      "phonePrefix": "+260"
+    },
+    {
+      "name": "Zimbabwe",
+      "shortCode": "ZW",
+      "longCode": "ZWE",
+      "phonePrefix": "+263"
+    }
+  ]
+  

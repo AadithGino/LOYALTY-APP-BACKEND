@@ -7,6 +7,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import * as bcrypt from 'bcrypt';
 import { User } from './schema/user.schema';
 import { Model, Types } from 'mongoose';
+import * as countries from '../shared/constants/country.json';
 import { userLoginDto, userSignUpDto } from 'src/auth/dto';
 
 @Injectable()
@@ -28,9 +29,20 @@ export class UsersService {
 
   async userSignUp(dto: userSignUpDto) {
     dto.password = await bcrypt.hash(dto.password, 10);
+    const country = countries.find(
+      (country) => country.shortCode === dto.country_code,
+    );
+    if (!country) throw new ConflictException('Invalid Country');
     const user = await this.userModel.findOne({ email: dto.email });
-    if (user) throw new ConflictException('email already in use');
-    return await this.userModel.create(dto);
+    if (user) throw new ConflictException('Email already in use');
+    const detiails = {
+      ...dto,
+      latitude: 10,
+      longitude: 11,
+      country_name: country.name,
+      mb_code: country.phonePrefix,
+    };
+    return await this.userModel.create(detiails);
   }
 
   // updating the refresh token with the new hashed token
