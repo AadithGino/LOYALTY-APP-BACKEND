@@ -1,5 +1,4 @@
-import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
-
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 
 export interface benefits {
   maxDiscount: number;
@@ -8,31 +7,33 @@ export interface benefits {
 }
 
 export interface cretieria {
-  minPointsForTier:number
+  minPointsForTier: number;
 }
 
 @Schema({
-    timestamps: {
-      createdAt: 'created_at',
-      updatedAt: 'updated_at',
-    },
-  })
+  timestamps: {
+    createdAt: 'created_at',
+    updatedAt: 'updated_at',
+  },
+})
+export class Tier {
+  @Prop({ enum: ['Bronze', 'Silver', 'Gold', 'Platinum'], unique: true })
+  name: string;
 
-export class Tier{
-    @Prop({enum:['Bronze', 'Silver', 'Gold', 'Platinum'],unique:true}) 
-    name:string;
+  @Prop({ type: Object })
+  benefits: {};
 
-    @Prop({type:Object})
-    benefits:{};
+  @Prop({ type: Object })
+  cretieria: {};
 
-    @Prop({type:Object})
-    cretieria:{};
+  @Prop()
+  points_accumalated: number;
 
-    @Prop()
-    points_accumalated:number;
+  @Prop()
+  total_spends: number;
 
-    @Prop()
-    total_spends:number;
+  @Prop({ default: true })
+  status: boolean;
 }
 
-export const tierSchema = SchemaFactory.createForClass(Tier)
+export const tierSchema = SchemaFactory.createForClass(Tier);

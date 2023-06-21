@@ -81,16 +81,6 @@ export class WalletService {
     );
   }
 
-  async createFriendWalletRechargeRequest(dto: createFriendPaymnetDto) {
-    const userdata = await this.userService.getUserById(dto.user_id);
-    return this.transactionService.createTransaction(
-      dto.amount,
-      dto.user_id,
-      userdata.currency,
-      'Wallet Recharge',
-    );
-  }
-
   async rechargeFriendWalletFromWallet(
     dto: walletRechargeFromWalletDto,
     user: JwtPayload,
@@ -108,15 +98,17 @@ export class WalletService {
       transactionType.Wallet,
       TransactionMode.WITHDRAWAL,
       2,
+      dto.user_id,
     );
     await this.updateUserWalletBalance(dto.user_id, dto.amount);
-    await this.transactionService.addTransactionHistory(
+    await this.transactionService.addTransactionHistoryForUserToUser(
       { amount: dto.amount },
       dto.user_id,
       'Wallet Recharge',
       transactionType.Wallet,
       TransactionMode.DEPOSIT,
       2,
+      user.sub,
     );
     return { message: 'Wallet Recharge Successfull', amount: dto.amount };
   }
@@ -128,12 +120,6 @@ export class WalletService {
     return await this.transactionService.validateTransaction(dto, user);
   }
 
-  async validateFriendsWalletRechargeRequest(
-    dto: validatePaymentDto,
-    userId: string,
-  ) {
-    return await this.transactionService.validateTransaction(dto, {sub:userId});
-  }
 
   private encryptBalance(balance: number): string {
     const key = Buffer.from(this.encryptionKey, 'utf8');

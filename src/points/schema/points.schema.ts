@@ -1,17 +1,20 @@
-import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 
 @Schema({
-    timestamps: {
-      createdAt: 'created_at',
-      updatedAt: 'updated_at',
-    },
-  })
+  timestamps: {
+    createdAt: 'created_at',
+    updatedAt: 'updated_at',
+  },
+})
 export class Point {
-    @Prop()
-    user_id: string;
+  @Prop()
+  user_id: string;
 
-    @Prop()
-    points:string;
+  @Prop()
+  points: string;
+
+  @Prop({ default: true })
+  status: boolean;
 }
 
-export const pointSchema = SchemaFactory.createForClass(Point)
+export const pointSchema = SchemaFactory.createForClass(Point);

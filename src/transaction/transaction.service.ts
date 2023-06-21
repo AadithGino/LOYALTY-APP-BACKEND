@@ -42,6 +42,7 @@ export class TransactionService {
     userId: string,
     currency: string,
     txn_reason: string,
+    sender_id?: string,
   ): Promise<any> {
     console.log(amount, userId, currency);
 
@@ -56,7 +57,7 @@ export class TransactionService {
       userId,
       txn_reason,
       transactionType.Wallet,
-      TransactionMode.DEPOSIT
+      TransactionMode.DEPOSIT,
     );
     return {
       transaction_id: transaction._id,
@@ -135,8 +136,9 @@ export class TransactionService {
     userId: string,
     txn_reason: string,
     txn_type: transactionType,
-    txn_mode:TransactionMode,
+    txn_mode: TransactionMode,
     status?: number,
+    recieverId?: string,
   ) {
     try {
       const exists = await this.transactionModel.findOne({ user_id: userId });
@@ -148,6 +150,7 @@ export class TransactionService {
           txn_type,
           txn_mode,
           status: status ? status : 1,
+          receiver_id: recieverId,
         };
         const document = await this.transactionModel.findOneAndUpdate(
           { user_id: userId },
@@ -161,7 +164,57 @@ export class TransactionService {
           amount: transaction.amount,
           status: status ? status : 1,
           txn_reason,
-          txn_type
+          txn_type,
+          txn_mode,
+          receiver_id: recieverId,
+        };
+        const document = await this.transactionModel.create({
+          user_id: userId,
+          transactions: transactiondetails,
+        });
+        return document.transactions[document.transactions.length - 1];
+      }
+    } catch (error) {
+      throw new InternalServerErrorException(error.message);
+    }
+  }
+
+  async addTransactionHistoryForUserToUser(
+    transaction,
+    userId: string,
+    txn_reason: string,
+    txn_type: transactionType,
+    txn_mode: TransactionMode,
+    status?: number,
+    sender_id?: string,
+  ) {
+    try {
+      const exists = await this.transactionModel.findOne({ user_id: userId });
+      if (exists) {
+        const transactiondetails: TransactionItem = {
+          sender_id: sender_id,
+          amount: transaction.amount,
+          txn_reason,
+          txn_type,
+          txn_mode,
+          status: status ? status : 1,
+          receiver_id: userId,
+        };
+        const document = await this.transactionModel.findOneAndUpdate(
+          { user_id: userId },
+          { $push: { transactions: transactiondetails } },
+          { new: true },
+        );
+        return document.transactions[document.transactions.length - 1];
+      } else {
+        const transactiondetails: TransactionItem = {
+          sender_id: userId,
+          amount: transaction.amount,
+          status: status ? status : 1,
+          txn_reason,
+          txn_type,
+          txn_mode,
+          receiver_id: userId,
         };
         const document = await this.transactionModel.create({
           user_id: userId,
@@ -252,15 +305,10 @@ export class TransactionService {
   async getPassport(user: JwtPayload) {
     const history = await this.getHistory(user.sub);
     const wallet_balance = await this.walletService.getWalletBalance(user);
-    // console.log(wallet_balance,history);
-
-    // const passport = {
-    // transactions:history.transactions,
-    // wallet_balance,
-    // }
     return {
       history: history.transactions,
       wallet_balance: wallet_balance.balance,
+      currency: wallet_balance.currency,
     };
   }
 }

@@ -83,6 +83,9 @@ export class Transaction {
 
   @Prop({ default: Date.now })
   updated_at: Date;
+
+  @Prop({default:true})
+  status:boolean
 }
 
 export const transactionSchema = SchemaFactory.createForClass(Transaction);

@@ -22,6 +22,9 @@ export class Wallet {
   @Prop({ required: true })
   currency: string;
 
+  @Prop({default:true})
+  status:boolean
+
 }
 
 export const WalletSchema = SchemaFactory.createForClass(Wallet);

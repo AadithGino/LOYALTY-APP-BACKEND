@@ -19,10 +19,12 @@ export class RewardsService {
   }
 
   async updateReward(dto:updateRewardDto){
-    return await this.rewardModel.updateOne({_id:dto._id},{$set:dto})
+     await this.rewardModel.updateOne({_id:dto._id},{$set:dto})
+     return {message:"Successfully updated"}
   }
   
   async deleteReward(dto){
-    return await this.rewardModel.deleteOne({_id:dto.id})
+     await this.rewardModel.deleteOne({_id:dto.id})
+     return {message:"Successfully deleted"}
   }
 }

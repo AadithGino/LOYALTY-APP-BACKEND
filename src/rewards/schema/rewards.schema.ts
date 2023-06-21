@@ -1,17 +1,20 @@
-import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 
 @Schema({
-    timestamps: {
-      createdAt: 'created_at',
-      updatedAt: 'updated_at',
-    },
-  })
+  timestamps: {
+    createdAt: 'created_at',
+    updatedAt: 'updated_at',
+  },
+})
 export class Reward {
-    @Prop()
-    name:string;
+  @Prop()
+  name: string;
 
-    @Prop()
-    points_on_completion:number;
+  @Prop()
+  points_on_completion: number;
+
+  @Prop({ default: true })
+  status: boolean;
 }
 
-export const rewardSchema = SchemaFactory.createForClass(Reward)
+export const rewardSchema = SchemaFactory.createForClass(Reward);

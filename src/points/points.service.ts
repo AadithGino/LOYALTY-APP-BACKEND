@@ -60,7 +60,7 @@ export class PointsService {
         TransactionMode.DEPOSIT,
         2,
       );
-      return point;
+      return {message:"Points added successfully"};
     } else {
       const newbalance = this.encryptBalance(points);
       const point = await this.pointModel.create({
@@ -76,7 +76,7 @@ export class PointsService {
         TransactionMode.DEPOSIT,
         2,
       );
-      return point;
+      return {message:"Points added successfully"};
     }
   }
 
