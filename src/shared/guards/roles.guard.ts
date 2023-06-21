@@ -1,19 +1,18 @@
-import { CanActivate, ExecutionContext } from "@nestjs/common";
-import { Reflector } from "@nestjs/core";
-import { UsersService } from "src/users/users.service";
+import { CanActivate, Injectable, ExecutionContext } from '@nestjs/common';
+import { Reflector } from '@nestjs/core';
+import { Observable } from 'rxjs';
+import { UsersService } from 'src/users/users.service';
 
-export class RoleGuard implements CanActivate{
-    constructor(private reflactor:Reflector,private readonly userService:UsersService){}
-    async canActivate(context: ExecutionContext): Promise<boolean>{
-        const roles = this.reflactor.get('roles',context.getHandler());
-        const request = context.switchToHttp().getRequest();
-        console.log(request);
-        if(request?.user){
-            const {sub,email} = request.user;
-            const user = await this.userService.getUserByEmail(email)
-            console.log(user);
-            if(user) return true;
-        }
-        return false;
-    }
+@Injectable()
+export class RoleGuard implements CanActivate {
+  constructor(private readonly reflector: Reflector,private readonly userService:UsersService) {}
+
+  async canActivate(context: ExecutionContext): Promise<boolean> {
+    const roles = this.reflector.get('roles', context.getHandler());
+    const request:any = context.switchToHttp().getRequest();
+    const user = await this.userService.getUserById(request.user.sub)
+    const role = user.roles;
+    if(roles.includes(role)) return true;
+    return false;
+  }
 }

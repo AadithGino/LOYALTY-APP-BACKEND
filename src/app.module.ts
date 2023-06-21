@@ -14,6 +14,7 @@ import { WalletModule } from './wallet/wallet.module';
 import { TransactionModule } from './transaction/transaction.module';
 import { TierModule } from './tier/tier.module';
 import { PointsModule } from './points/points.module';
+import { RewardsModule } from './rewards/rewards.module';
 
 @Module({
   imports: [
@@ -41,6 +42,7 @@ import { PointsModule } from './points/points.module';
     TransactionModule,
     TierModule,
     PointsModule,
+    RewardsModule,
   ],
   controllers: [AppController],
   providers: [AppService, { provide: APP_GUARD, useClass: AtGuard }],

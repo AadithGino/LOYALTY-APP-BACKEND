@@ -4,7 +4,10 @@ import { Point } from './schema/points.schema';
 import { Model } from 'mongoose';
 import { TierService } from 'src/tier/tier.service';
 import { TransactionService } from 'src/transaction/transaction.service';
-import { transactionType } from 'src/transaction/schema/transaction.schema';
+import {
+  TransactionMode,
+  transactionType,
+} from 'src/transaction/schema/transaction.schema';
 import { JwtPayload } from 'src/auth/stragtegies';
 
 @Injectable()
@@ -54,6 +57,7 @@ export class PointsService {
         userId,
         txn_desc,
         transactionType.Points,
+        TransactionMode.DEPOSIT,
         2,
       );
       return point;
@@ -69,6 +73,7 @@ export class PointsService {
         userId,
         txn_desc,
         transactionType.Points,
+        TransactionMode.DEPOSIT,
         2,
       );
       return point;

@@ -8,11 +8,17 @@ export enum transactionType{
   Points='Points'
 }
 
+export enum TransactionMode{
+  WITHDRAWAL = 'WITHDRAWAL',
+  DEPOSIT = 'DEPOSIT'
+}
+
 export interface TransactionItem {
   _id?: Types.ObjectId; // Add _id property to hold the ObjectId
   txn_id?: string;
   txn_date?: Date;
   txn_type?: string;
+  txn_mode?: string;
   payment_gateway_id?: string;
   currency_id?: string;
   country_id?: string;
@@ -52,6 +58,7 @@ export class Transaction {
         txn_id: { type: String },
         txn_date: { type: Date },
         txn_type: { type: String },
+        txn_mode: { type: String },
         payment_gateway_id: { type: String },
         currency_id: { type: String },
         country_id: { type: String },

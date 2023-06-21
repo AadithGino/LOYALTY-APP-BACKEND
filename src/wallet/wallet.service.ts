@@ -1,4 +1,11 @@
-import { Injectable, HttpException, forwardRef, Inject } from '@nestjs/common';
+import {
+  Injectable,
+  HttpException,
+  forwardRef,
+  Inject,
+  Query,
+  ConflictException,
+} from '@nestjs/common';
 import { Wallet } from './schema/wallet.schema';
 import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
@@ -6,6 +13,11 @@ import { UsersService } from 'src/users/users.service';
 import { TransactionService } from 'src/transaction/transaction.service';
 import { JwtPayload } from 'src/auth/stragtegies';
 import { validatePaymentDto } from 'src/transaction/dto';
+import { createFriendPaymnetDto, walletRechargeFromWalletDto } from './dto';
+import {
+  TransactionMode,
+  transactionType,
+} from 'src/transaction/schema/transaction.schema';
 
 @Injectable()
 export class WalletService {
@@ -65,12 +77,62 @@ export class WalletService {
       dto.amount,
       user.sub,
       userdata.currency,
-      "Wallet Recharge",
+      'Wallet Recharge',
     );
   }
 
-  async validateWalletRechargeRequest(dto:validatePaymentDto,user:JwtPayload){
-    return await this.transactionService.validateTransaction(dto,user)
+  async createFriendWalletRechargeRequest(dto: createFriendPaymnetDto) {
+    const userdata = await this.userService.getUserById(dto.user_id);
+    return this.transactionService.createTransaction(
+      dto.amount,
+      dto.user_id,
+      userdata.currency,
+      'Wallet Recharge',
+    );
+  }
+
+  async rechargeFriendWalletFromWallet(
+    dto: walletRechargeFromWalletDto,
+    user: JwtPayload,
+  ) {
+    const balance = await this.getWalletBalance(user);
+    console.log(balance);
+
+    if (balance.balance < dto.amount)
+      throw new ConflictException('Not enough balance');
+    await this.updateUserWalletBalance(user.sub, 0 - dto.amount);
+    await this.transactionService.addTransactionHistory(
+      { amount: dto.amount },
+      user.sub,
+      'Wallet Recharge',
+      transactionType.Wallet,
+      TransactionMode.WITHDRAWAL,
+      2,
+    );
+    await this.updateUserWalletBalance(dto.user_id, dto.amount);
+    await this.transactionService.addTransactionHistory(
+      { amount: dto.amount },
+      dto.user_id,
+      'Wallet Recharge',
+      transactionType.Wallet,
+      TransactionMode.DEPOSIT,
+      2,
+    );
+    return { message: 'Wallet Recharge Successfull', amount: dto.amount };
+  }
+
+  async validateWalletRechargeRequest(
+    dto: validatePaymentDto,
+    user: JwtPayload,
+  ) {
+    return await this.transactionService.validateTransaction(dto, user);
+  }
+
+  async validateFriendsWalletRechargeRequest(
+    dto: validatePaymentDto,
+    userId: string,
+  ) {
+    return await this.transactionService.validateTransaction(dto, {sub:userId});
   }
 
   private encryptBalance(balance: number): string {

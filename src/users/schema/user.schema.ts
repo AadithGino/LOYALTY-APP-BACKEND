@@ -1,18 +1,23 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Date } from 'mongoose';
 
-
 export enum Gender {
   Male = 'Male',
   Female = 'Female',
-  Other = 'Other'
+  Other = 'Other',
 }
 
-export enum LoginMode{
+export enum LoginMode {
   Google = 'Google',
   Facebook = 'Facebook',
   AppleId = 'AppleId',
   Password = 'Password',
+}
+
+export enum UserRoles {
+  ADMIN = 'Admin',
+  USER = 'User',
+  VENDOR = 'Vendor',
 }
 
 @Schema({
@@ -21,6 +26,7 @@ export enum LoginMode{
     updatedAt: 'updated_at',
   },
 })
+
 export class User {
   @Prop({ required: true })
   username: string;
@@ -59,8 +65,8 @@ export class User {
   @Prop()
   place: string;
 
-  @Prop({default:'Bronze'})
-  tier:string;
+  @Prop({ default: 'Bronze' })
+  tier: string;
 
   @Prop()
   latitude: number;
@@ -72,16 +78,16 @@ export class User {
   loyalty_points: number;
 
   @Prop()
-  country_code:string;
+  country_code: string;
 
   @Prop()
-  country_name:string
+  country_name: string;
 
   @Prop()
-  mb_code:string;
+  mb_code: string;
 
   @Prop()
-  currency:string;
+  currency: string;
 
   @Prop({ default: true })
   is_active: boolean;
@@ -89,14 +95,17 @@ export class User {
   @Prop({ default: false })
   is_deleted: boolean;
 
-  @Prop({default:LoginMode.Password})
-  login_mode:LoginMode
+  @Prop({ default: LoginMode.Password })
+  login_mode: LoginMode;
 
   @Prop()
-  profile_img_thumb :string;
+  profile_img_thumb: string;
 
-  @Prop({default:null,expires:0})
-  otp:string
+  @Prop({ default: null, expires: 0 })
+  otp: string;
+
+  @Prop({default:UserRoles.USER})
+  roles:string;
 
   @Prop()
   rt_token: string;

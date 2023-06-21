@@ -15,9 +15,11 @@ import { InjectModel } from '@nestjs/mongoose';
 import {
   Transaction,
   TransactionItem,
+  TransactionMode,
   transactionType,
 } from './schema/transaction.schema';
 import { Model } from 'mongoose';
+import { JwtPayload } from 'src/auth/stragtegies';
 
 @Injectable()
 export class TransactionService {
@@ -39,7 +41,7 @@ export class TransactionService {
     amount: number,
     userId: string,
     currency: string,
-    txn_reason:string
+    txn_reason: string,
   ): Promise<any> {
     console.log(amount, userId, currency);
 
@@ -54,6 +56,7 @@ export class TransactionService {
       userId,
       txn_reason,
       transactionType.Wallet,
+      TransactionMode.DEPOSIT
     );
     return {
       transaction_id: transaction._id,
@@ -132,6 +135,7 @@ export class TransactionService {
     userId: string,
     txn_reason: string,
     txn_type: transactionType,
+    txn_mode:TransactionMode,
     status?: number,
   ) {
     try {
@@ -140,9 +144,10 @@ export class TransactionService {
         const transactiondetails: TransactionItem = {
           sender_id: userId,
           amount: transaction.amount,
-          status: status ? status : 1,
           txn_reason,
           txn_type,
+          txn_mode,
+          status: status ? status : 1,
         };
         const document = await this.transactionModel.findOneAndUpdate(
           { user_id: userId },
@@ -156,7 +161,7 @@ export class TransactionService {
           amount: transaction.amount,
           status: status ? status : 1,
           txn_reason,
-          txn_type,
+          txn_type
         };
         const document = await this.transactionModel.create({
           user_id: userId,
@@ -165,7 +170,7 @@ export class TransactionService {
         return document.transactions[document.transactions.length - 1];
       }
     } catch (error) {
-      throw new InternalServerErrorException();
+      throw new InternalServerErrorException(error.message);
     }
   }
 
@@ -241,6 +246,21 @@ export class TransactionService {
   }
 
   async getHistory(userId) {
-    return this.transactionModel.findOne({ user_id: userId });
+    return await this.transactionModel.findOne({ user_id: userId });
+  }
+
+  async getPassport(user: JwtPayload) {
+    const history = await this.getHistory(user.sub);
+    const wallet_balance = await this.walletService.getWalletBalance(user);
+    // console.log(wallet_balance,history);
+
+    // const passport = {
+    // transactions:history.transactions,
+    // wallet_balance,
+    // }
+    return {
+      history: history.transactions,
+      wallet_balance: wallet_balance.balance,
+    };
   }
 }
