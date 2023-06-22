@@ -104,7 +104,7 @@ export class WalletService {
     await this.transactionService.addTransactionHistoryForUserToUser(
       { amount: dto.amount },
       dto.user_id,
-      'Wallet Recharge',
+      'Wallet To Wallet Transfer',
       transactionType.Wallet,
       TransactionMode.DEPOSIT,
       2,

@@ -10,7 +10,8 @@ async function bootstrap() {
   app.useGlobalInterceptors(new ErrorInterceptor());
   app.useGlobalFilters(new ErrorFilter());
   app.enableCors({
-    origin: ['http://localhost:3001', 'http://example2.com']
+    // origin: ['http://localhost:3001', 'http://example2.com']
+     origin: '*',
   })
   await app.listen(process.env.PORT);
 }

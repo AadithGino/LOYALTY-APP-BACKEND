@@ -28,6 +28,7 @@ export interface TransactionItem {
   payment_gateway_id?: string;
   currency_id?: string;
   country_id?: string;
+  reward_id?: string;
   sender_id: string;
   receiver_id?: string;
   amount: number;
@@ -65,6 +66,7 @@ export class Transaction {
         txn_date: { type: Date },
         txn_type: { type: String },
         txn_mode: { type: String },
+        reward_id: {type:String},
         payment_gateway_id: { type: String },
         currency_id: { type: String },
         country_id: { type: String },

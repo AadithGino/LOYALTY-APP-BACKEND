@@ -82,7 +82,8 @@ export class PointsService {
 
   async getPointsHistory(user: JwtPayload) {
     const history = await this.transactionService.getHistory(user.sub);
-    return history.transactions;
+    if(history?.transactions) return history.transactions;
+    return [];``
   }
 
   private encryptBalance(balance: number): string {
