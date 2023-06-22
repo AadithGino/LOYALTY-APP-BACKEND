@@ -215,6 +215,7 @@ export class TransactionService {
           txn_type,
           txn_mode,
           receiver_id: userId,
+          txn_date:new Date()
         };
         const document = await this.transactionModel.create({
           user_id: userId,

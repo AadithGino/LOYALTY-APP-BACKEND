@@ -13,6 +13,12 @@ export enum TransactionMode{
   DEPOSIT = 'DEPOSIT'
 }
 
+export enum TransactionStatus{
+  FAILED=0,
+  PENDING=1,
+  SUCCESSFUL=2
+}
+
 export interface TransactionItem {
   _id?: Types.ObjectId; // Add _id property to hold the ObjectId
   txn_id?: string;

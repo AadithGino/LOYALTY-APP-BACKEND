@@ -4,6 +4,7 @@ import { TierController } from './tier.controller';
 import { MongooseModule } from '@nestjs/mongoose';
 import { tierSchema } from './schema/tire.schema';
 import { userSchema } from 'src/users/schema/user.schema';
+import { UsersModule } from 'src/users/users.module';
 
 @Module({
   imports: [
@@ -11,6 +12,7 @@ import { userSchema } from 'src/users/schema/user.schema';
       { name: 'Tier', schema: tierSchema },
       { name: 'User', schema: userSchema },
     ]),
+    UsersModule
   ],
   providers: [TierService],
   controllers: [TierController],

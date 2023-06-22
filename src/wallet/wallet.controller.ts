@@ -3,7 +3,6 @@ import { WalletService } from './wallet.service';
 import { GetUser } from 'src/shared/decorators';
 import { JwtPayload } from 'src/auth/stragtegies';
 import {
-  createFriendPaymnetDto,
   createPaymnetDto,
   walletRechargeFromWalletDto,
 } from './dto';

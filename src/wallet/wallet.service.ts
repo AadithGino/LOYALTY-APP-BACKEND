@@ -13,7 +13,7 @@ import { UsersService } from 'src/users/users.service';
 import { TransactionService } from 'src/transaction/transaction.service';
 import { JwtPayload } from 'src/auth/stragtegies';
 import { validatePaymentDto } from 'src/transaction/dto';
-import { createFriendPaymnetDto, walletRechargeFromWalletDto } from './dto';
+import { walletRechargeFromWalletDto } from './dto';
 import {
   TransactionMode,
   transactionType,
@@ -94,7 +94,7 @@ export class WalletService {
     await this.transactionService.addTransactionHistory(
       { amount: dto.amount },
       user.sub,
-      'Wallet Recharge',
+      'Wallet To Wallet Transfer',
       transactionType.Wallet,
       TransactionMode.WITHDRAWAL,
       2,
