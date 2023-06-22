@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsNumber, IsString } from "class-validator";
+import { IsNotEmpty, IsNumber, IsOptional, IsString } from "class-validator";
 
 export class updateRewardDto {
 
@@ -6,11 +6,11 @@ export class updateRewardDto {
     @IsString()
     _id: string;
 
-    @IsNotEmpty()
+    @IsOptional()
     @IsString()
     name: string;
 
-    @IsNotEmpty()
+    @IsOptional()
     @IsNumber()
-    points_on_completion:number
+    points_required:number
 }

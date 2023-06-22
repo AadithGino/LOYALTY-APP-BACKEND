@@ -11,10 +11,16 @@ export class Reward {
   name: string;
 
   @Prop()
-  points_on_completion: number;
+  points_required: number;
 
   @Prop({ default: true })
   status: boolean;
+
+  @Prop({ default: false })
+  isDeleted:boolean
+
+  @Prop()
+  description: string
 }
 
 export const rewardSchema = SchemaFactory.createForClass(Reward);

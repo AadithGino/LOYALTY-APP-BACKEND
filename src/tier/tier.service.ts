@@ -33,7 +33,7 @@ export class TierService {
     return await this.tierModel.findOne({ _id: id });
   }
 
-  async updateTier(userId: string, points: number) {
+  async updateUserTier(userId: string, points: number) {
     const tiers: any = await this.getTiers();
     let newTier = 'Bronze';
     tiers.forEach((tier) => {

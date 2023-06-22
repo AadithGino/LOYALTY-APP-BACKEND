@@ -7,5 +7,9 @@ export class createRewardDto {
 
     @IsNotEmpty()
     @IsNumber()
-    points_on_completion:number
+    points_required:number
+
+    @IsNotEmpty()
+    @IsString()
+    description:string
 }

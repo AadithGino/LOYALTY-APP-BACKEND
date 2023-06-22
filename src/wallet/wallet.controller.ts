@@ -31,23 +31,7 @@ export class WalletController {
   ) {
     return await this.walletService.validateWalletRechargeRequest(dto, user);
   }
-
-  // @Post('/create-friend-wallet-recharge-request')
-  // async createFriendWalletRechargeRequest(@Body() dto: createFriendPaymnetDto) {
-  //   return await this.walletService.createFriendWalletRechargeRequest(dto);
-  // }
-
-  // @Post('/validate-friend-wallet-recharge')
-  // async validateFriendWalletRechargeRequest(
-  //   @Body() dto,
-  //   @GetUser() user: JwtPayload,
-  // ) {
-  //   return await this.walletService.validateFriendsWalletRechargeRequest(
-  //     dto,
-  //     dto.user_id,
-  //   );
-  // }
-
+  
   @Post('/friend-wallet-recharge')
   async friendWalletRecharge(
     @Body() dto: walletRechargeFromWalletDto,

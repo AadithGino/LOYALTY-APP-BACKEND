@@ -36,7 +36,7 @@ export class RewardsService {
 
   async claimReward(dto, user) {
     const reward = await this.rewardModel.findOne({ _id: dto.id });
-    const points = reward.points_on_completion;
+    const points = reward.points_required;
     await this.transactionService.addRewardTransactionHistory(
       { amount: points },
       user.sub,

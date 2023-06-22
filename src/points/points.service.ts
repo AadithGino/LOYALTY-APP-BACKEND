@@ -51,7 +51,7 @@ export class PointsService {
         { $set: { points: newbalance } },
         { new: true },
       );
-      await this.tierService.updateTier(userId, decryptedBalabce + points);
+      await this.tierService.updateUserTier(userId, decryptedBalabce + points);
       await this.transactionService.addTransactionHistory(
         { amount: points },
         userId,
@@ -67,7 +67,7 @@ export class PointsService {
         user_id: userId,
         points: newbalance,
       });
-      await this.tierService.updateTier(userId, points);
+      await this.tierService.updateUserTier(userId, points);
       await this.transactionService.addTransactionHistory(
         { amount: points },
         userId,
@@ -83,7 +83,7 @@ export class PointsService {
   async getPointsHistory(user: JwtPayload) {
     const history = await this.transactionService.getHistory(user.sub);
     if(history?.transactions) return history.transactions;
-    return [];``
+    return [];
   }
 
   private encryptBalance(balance: number): string {

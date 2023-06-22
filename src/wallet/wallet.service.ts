@@ -86,8 +86,7 @@ export class WalletService {
     user: JwtPayload,
   ) {
     const balance = await this.getWalletBalance(user);
-    console.log(balance);
-
+    
     if (balance.balance < dto.amount)
       throw new ConflictException('Not enough balance');
     await this.updateUserWalletBalance(user.sub, 0 - dto.amount);

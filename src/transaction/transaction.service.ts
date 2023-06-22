@@ -42,10 +42,7 @@ export class TransactionService {
     userId: string,
     currency: string,
     txn_reason: string,
-    sender_id?: string,
   ): Promise<any> {
-    console.log(amount, userId, currency);
-
     const paymentIntent = await this.stripe.paymentIntents.create({
       amount: amount * 100,
       currency: 'inr',
@@ -66,7 +63,7 @@ export class TransactionService {
   }
 
   // validate the transaction with transaction id and paymentIntent
-  async validateTransaction(paymentData: validatePaymentDto, user: any) {
+  async validateTransaction(paymentData: validatePaymentDto, user: JwtPayload) {
     const paymentValidationResult = await this.validatePaymentIntent(
       paymentData,
     );
