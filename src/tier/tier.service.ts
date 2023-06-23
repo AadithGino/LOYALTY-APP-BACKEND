@@ -4,7 +4,7 @@ import { Tier } from './schema/tire.schema';
 import { Model } from 'mongoose';
 import { User } from 'src/users/schema/user.schema';
 import { createTierDto } from './dto/createTier.dto';
-import { updateTierDto } from './dto/update.dot';
+import { updateTierDto } from './dto/update.dto';
 
 @Injectable()
 export class TierService {

@@ -3,7 +3,7 @@ import { TierService } from './tier.service';
 import { UserRoles } from 'src/users/schema/user.schema';
 import { RoleGuard } from 'src/shared/guards';
 import { Roles } from 'src/shared/decorators/roles.decorator';
-import { updateTierDto } from './dto/update.dot';
+import { updateTierDto } from './dto/update.dto';
 
 @Controller('tier')
 export class TierController {
