@@ -1,9 +1,9 @@
-import { Body, Controller, Post, Get, Param, UseGuards } from '@nestjs/common';
+import { Body, Controller, Post, Get, Param, UseGuards,Put } from '@nestjs/common';
 import { TierService } from './tier.service';
-import { Public } from 'src/shared/decorators';
 import { UserRoles } from 'src/users/schema/user.schema';
 import { RoleGuard } from 'src/shared/guards';
 import { Roles } from 'src/shared/decorators/roles.decorator';
+import { updateTierDto } from './dto/update.dot';
 
 @Controller('tier')
 export class TierController {
@@ -24,5 +24,12 @@ export class TierController {
     @Get(':tier')
     getSingleTier(@Param('tier') tier: string) {
         return this.tierService.getSingleTier(tier)
+    }
+
+    @Roles(UserRoles.ADMIN)
+    @UseGuards(RoleGuard)
+    @Put('/update')
+    updateTierDetails(@Body() dto:updateTierDto){
+        return this.tierService.updatTierDetails(dto)
     }
 }

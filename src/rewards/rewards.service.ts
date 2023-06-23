@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable,Inject,forwardRef } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Reward } from './schema/rewards.schema';
 import { Model } from 'mongoose';
@@ -8,12 +8,14 @@ import {
   TransactionMode,
   transactionType,
 } from 'src/transaction/schema/transaction.schema';
+import { TransactionHistoryService } from 'src/transaction/transactionHistory.service';
 
 @Injectable()
 export class RewardsService {
   constructor(
     @InjectModel(Reward.name) private readonly rewardModel: Model<Reward>,
-    private readonly transactionService: TransactionService,
+    @Inject(forwardRef(() => TransactionService))
+    private readonly transactionHistoryService: TransactionHistoryService,
   ) {}
 
   async getRewards() {
@@ -37,7 +39,7 @@ export class RewardsService {
   async claimReward(dto, user) {
     const reward = await this.rewardModel.findOne({ _id: dto.id });
     const points = reward.points_required;
-    await this.transactionService.addRewardTransactionHistory(
+    await this.transactionHistoryService.addRewardTransactionHistory(
       { amount: points },
       user.sub,
       'Claimed Points from rewards',

@@ -3,7 +3,6 @@ import {
   HttpException,
   forwardRef,
   Inject,
-  Query,
   ConflictException,
 } from '@nestjs/common';
 import { Wallet } from './schema/wallet.schema';
@@ -18,6 +17,7 @@ import {
   TransactionMode,
   transactionType,
 } from 'src/transaction/schema/transaction.schema';
+import { TransactionHistoryService } from 'src/transaction/transactionHistory.service';
 
 @Injectable()
 export class WalletService {
@@ -25,6 +25,7 @@ export class WalletService {
   constructor(
     @Inject(forwardRef(() => TransactionService))
     private readonly transactionService: TransactionService,
+    private readonly transactionHistoryService: TransactionHistoryService,
     @InjectModel(Wallet.name) private readonly walletModel: Model<Wallet>,
     private readonly userService: UsersService,
   ) {}
@@ -86,11 +87,11 @@ export class WalletService {
     user: JwtPayload,
   ) {
     const balance = await this.getWalletBalance(user);
-    
+
     if (balance.balance < dto.amount)
       throw new ConflictException('Not enough balance');
     await this.updateUserWalletBalance(user.sub, 0 - dto.amount);
-    await this.transactionService.addTransactionHistory(
+    await this.transactionHistoryService.addTransactionHistory(
       { amount: dto.amount },
       user.sub,
       'Wallet To Wallet Transfer',
@@ -100,7 +101,7 @@ export class WalletService {
       dto.user_id,
     );
     await this.updateUserWalletBalance(dto.user_id, dto.amount);
-    await this.transactionService.addTransactionHistoryForUserToUser(
+    await this.transactionHistoryService.addTransactionHistoryForUserToUser(
       { amount: dto.amount },
       dto.user_id,
       'Wallet To Wallet Transfer',
@@ -118,7 +119,6 @@ export class WalletService {
   ) {
     return await this.transactionService.validateTransaction(dto, user);
   }
-
 
   private encryptBalance(balance: number): string {
     const key = Buffer.from(this.encryptionKey, 'utf8');

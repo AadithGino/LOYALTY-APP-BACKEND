@@ -3,7 +3,8 @@ import { TransactionService } from './transaction.service';
 import { TransactionController } from './transaction.controller';
 import { WalletModule } from 'src/wallet/wallet.module';
 import { MongooseModule } from '@nestjs/mongoose';
-import { Transaction, transactionSchema } from './schema/transaction.schema';
+import { transactionSchema } from './schema/transaction.schema';
+import { TransactionHistoryService } from './transactionHistory.service';
 
 @Module({
   imports: [
@@ -12,8 +13,8 @@ import { Transaction, transactionSchema } from './schema/transaction.schema';
       { name: 'Transaction', schema: transactionSchema },
     ]),
   ],
-  providers: [TransactionService],
+  providers: [TransactionService, TransactionHistoryService],
   controllers: [TransactionController],
-  exports:[TransactionService]
+  exports: [TransactionService, TransactionHistoryService],
 })
 export class TransactionModule {}

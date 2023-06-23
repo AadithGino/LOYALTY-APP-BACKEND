@@ -1,4 +1,4 @@
-import { Injectable, InternalServerErrorException } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Point } from './schema/points.schema';
 import { Model } from 'mongoose';
@@ -9,6 +9,7 @@ import {
   transactionType,
 } from 'src/transaction/schema/transaction.schema';
 import { JwtPayload } from 'src/auth/stragtegies';
+import { TransactionHistoryService } from 'src/transaction/transactionHistory.service';
 
 @Injectable()
 export class PointsService {
@@ -17,6 +18,7 @@ export class PointsService {
     @InjectModel(Point.name) private readonly pointModel: Model<Point>,
     private readonly tierService: TierService,
     private readonly transactionService: TransactionService,
+    private readonly transactionHistoryService: TransactionHistoryService,
   ) {}
 
   async getUserPoints(user) {
@@ -52,7 +54,7 @@ export class PointsService {
         { new: true },
       );
       await this.tierService.updateUserTier(userId, decryptedBalabce + points);
-      await this.transactionService.addTransactionHistory(
+      await this.transactionHistoryService.addTransactionHistory(
         { amount: points },
         userId,
         txn_desc,
@@ -68,7 +70,7 @@ export class PointsService {
         points: newbalance,
       });
       await this.tierService.updateUserTier(userId, points);
-      await this.transactionService.addTransactionHistory(
+      await this.transactionHistoryService.addTransactionHistory(
         { amount: points },
         userId,
         txn_desc,

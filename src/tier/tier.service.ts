@@ -4,6 +4,7 @@ import { Tier } from './schema/tire.schema';
 import { Model } from 'mongoose';
 import { User } from 'src/users/schema/user.schema';
 import { createTierDto } from './dto/createTier.dto';
+import { updateTierDto } from './dto/update.dot';
 
 @Injectable()
 export class TierService {
@@ -29,8 +30,8 @@ export class TierService {
     return await this.tierModel.find();
   }
 
-  async getSingleTier(tier:string) {
-    return await this.tierModel.findOne({name: tier });
+  async getSingleTier(tier: string) {
+    return await this.tierModel.findOne({ name: tier });
   }
 
   async updateUserTier(userId: string, points: number) {
@@ -48,13 +49,17 @@ export class TierService {
     );
   }
 
-  async updatTierDetails(id, dto) {
+  async updatTierDetails(dto: updateTierDto) {
     const details = {
       name: dto.name,
-      benefits: { maxDiscount: 10 },
-      cretieria: { points: 300 },
+      benefits: {
+        maxDiscount: dto.maxDiscount,
+        moneyToBeSpend: dto.moneyToBeSpend,
+        pointValue: dto.pointValue,
+      },
+      cretieria: { minPointsForTier: dto.minimumPointsForTier },
     };
-
     await this.tierModel.updateOne({ _id: dto.tierId }, { $set: details });
+    return { message: 'updated successfully' };
   }
 }
