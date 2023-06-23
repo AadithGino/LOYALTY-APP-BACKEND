@@ -29,8 +29,8 @@ export class TierService {
     return await this.tierModel.find();
   }
 
-  async getSingleTier(id) {
-    return await this.tierModel.findOne({ _id: id });
+  async getSingleTier(tier:string) {
+    return await this.tierModel.findOne({name: tier });
   }
 
   async updateUserTier(userId: string, points: number) {

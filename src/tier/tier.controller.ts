@@ -21,8 +21,8 @@ export class TierController {
         return this.tierService.getTiers()
     }
 
-    @Get(':id')
-    getSingleTier(@Param('id') id: string) {
-        return this.tierService.getSingleTier(id)
+    @Get(':tier')
+    getSingleTier(@Param('tier') tier: string) {
+        return this.tierService.getSingleTier(tier)
     }
 }
