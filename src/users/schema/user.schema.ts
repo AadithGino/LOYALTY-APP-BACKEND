@@ -48,10 +48,10 @@ export class User {
   password: string;
 
   @Prop()
-  firstName: string;
+  first_name: string;
 
   @Prop()
-  lastName: string;
+  last_name: string;
 
   @Prop({ type: Date })
   dob: Date;
@@ -60,7 +60,7 @@ export class User {
   gender: Gender;
 
   @Prop()
-  phoneNumber: string;
+  phone_number: string;
 
   @Prop()
   place: string;

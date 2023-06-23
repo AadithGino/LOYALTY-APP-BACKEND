@@ -9,6 +9,8 @@ import { User } from './schema/user.schema';
 import { Model, Types } from 'mongoose';
 import * as countries from '../shared/constants/country.json';
 import { userLoginDto, userSignUpDto } from 'src/auth/dto';
+import { updateUserProfileDto } from './dto';
+import { JwtPayload } from 'src/auth/stragtegies';
 
 @Injectable()
 export class UsersService {
@@ -88,7 +90,8 @@ export class UsersService {
   }
 
   async getUserById(id: string): Promise<User> {
-    return await this.userModel.findOne({ _id: id });
+    const user = await this.userModel.findOne({ _id: id });
+    return user;
   }
 
   async updateOtp(email: string, otp: string) {
@@ -121,5 +124,13 @@ export class UsersService {
 
   async setOtpNull(email: string) {
     await this.userModel.updateOne({ email: email }, { $set: { otp: null } });
+  }
+
+  async updateProfile(dto: updateUserProfileDto, user: JwtPayload) {
+    const updatedUser = await this.userModel.updateOne(
+      { _id: user.sub },
+      { $set: dto },
+    );
+    return {message:"User profile updated successfully"}
   }
 }
