@@ -56,15 +56,15 @@ export class OffersController {
   @Post()
   @UseInterceptors(uploadInterceptor())
   addOffer(@Body() dto: createOfferDto,@UploadedFile() image) {
-    console.log(image);
     return this.offerService.addOffer(dto,image);
   }
 
   @Roles(UserRoles.ADMIN)
   @UseGuards(RoleGuard)
   @Put()
-  updateOffer(@Body() dto: updateOfferDto) {
-    return this.offerService.updateOffer(dto);
+  @UseInterceptors(uploadInterceptor())
+  updateOffer(@Body() dto: updateOfferDto,@UploadedFile() image) {
+    return this.offerService.updateOffer(dto,image);
   }
 
   @Roles(UserRoles.ADMIN)

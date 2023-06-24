@@ -52,18 +52,22 @@ export class OffersService {
     return await this.categoryModel.findOne({ _id: categoryId });
   }
 
-  async addOffer(dto: createOfferDto,image) {
+  async addOffer(dto: createOfferDto, image) {
     const category = await this.getSingleCategory(dto.categoryId);
 
     if (!category) throw new NotFoundException('Category not found');
-    const details = {...dto,image}
+    const details = { ...dto, image: image.filename };
     const offer = await this.offerModel.create(details);
     return offer;
   }
 
-  async updateOffer(dto: updateOfferDto) {
+  async updateOffer(dto: updateOfferDto, image) {
     const category = await this.getSingleCategory(dto.categoryId);
     if (!category) throw new NotFoundException('Category not found');
+    if (image) {
+      const details = { ...dto, image: image.filename };
+      return this.offerModel.updateOne({ _id: dto._id }, { $set: details });
+    }
     return this.offerModel.updateOne({ _id: dto._id }, { $set: dto });
   }
 
