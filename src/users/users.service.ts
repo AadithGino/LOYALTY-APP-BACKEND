@@ -133,4 +133,8 @@ export class UsersService {
     );
     return {message:"User profile updated successfully"}
   }
+  
+  async getAllUsers(){
+    return await this.userModel.find()
+  }
 }

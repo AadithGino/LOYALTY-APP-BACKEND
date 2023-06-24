@@ -74,9 +74,6 @@ export class User {
   @Prop()
   longitude: number;
 
-  @Prop({ default: 0 })
-  loyalty_points: number;
-
   @Prop()
   country_code: string;
 

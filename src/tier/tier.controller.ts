@@ -3,7 +3,8 @@ import { TierService } from './tier.service';
 import { UserRoles } from 'src/users/schema/user.schema';
 import { RoleGuard } from 'src/shared/guards';
 import { Roles } from 'src/shared/decorators/roles.decorator';
-import { updateTierDto } from './dto/update.dto';
+import { createTierDto, updateTierDto } from './dto';
+
 
 @Controller('tier')
 export class TierController {
@@ -12,7 +13,7 @@ export class TierController {
     @Roles(UserRoles.ADMIN)
     @UseGuards(RoleGuard)
     @Post('/add')
-    addTier(@Body() dto) {
+    addTier(@Body() dto:createTierDto) {
         return this.tierService.addTier(dto)
     }
 

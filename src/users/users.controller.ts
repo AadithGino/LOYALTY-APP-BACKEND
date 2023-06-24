@@ -23,4 +23,9 @@ export class UsersController {
   ) {
     return this.userService.updateProfile(dto, user);
   }
+
+  @Get('/all')
+  getAllUsers(){
+    return this.userService.getAllUsers();
+  }
 }
