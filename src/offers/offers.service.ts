@@ -38,7 +38,7 @@ export class OffersService {
       name: { $regex: new RegExp(dto.name, 'i') },
     });
 
-    if (exists) throw new ConflictException('Category name already exists');
+    if (exists && exists._id.toString()!==dto._id) throw new ConflictException('Category name already exists');
 
     await this.categoryModel.updateOne({ _id: dto._id }, { $set: dto });
     return { message: 'Category updated successfully' };
@@ -81,8 +81,6 @@ export class OffersService {
 
   async getActiveOffers() {
     const today = new Date().toISOString();
-    console.log(today);
-
     const activeOffers = await this.offerModel.find({
       expiry: { $gte: today },
       is_deleted: false,
