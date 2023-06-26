@@ -42,6 +42,7 @@ export class PointsService {
     userId: string,
     points: number,
     txn_desc: string = 'Add Points',
+    reward_id?:string
   ) {
     const pointExists = await this.pointModel.findOne({ user_id: userId });
 
@@ -61,6 +62,8 @@ export class PointsService {
         transactionType.Points,
         TransactionMode.DEPOSIT,
         2,
+        '',
+        reward_id
       );
       return {message:"Points added successfully"};
     } else {
@@ -77,6 +80,8 @@ export class PointsService {
         transactionType.Points,
         TransactionMode.DEPOSIT,
         2,
+        '',
+        reward_id
       );
       return {message:"Points added successfully"};
     }

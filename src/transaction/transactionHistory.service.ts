@@ -25,7 +25,8 @@ export class TransactionHistoryService {
     txn_type: transactionType,
     txn_mode: TransactionMode,
     status?: number,
-    recieverId?: string,
+    receiver_id?:string,
+    reward_id?: string,
   ) {
     try {
       const exists = await this.transactionModel.findOne({ user_id: userId });
@@ -35,9 +36,10 @@ export class TransactionHistoryService {
           amount: transaction.amount,
           txn_reason,
           txn_type,
+          receiver_id,
           txn_mode,
           status: status ? status : 1,
-          receiver_id: recieverId,
+          reward_id:reward_id,
           txn_date: new Date(),
         };
         const document = await this.transactionModel.findOneAndUpdate(
@@ -53,8 +55,9 @@ export class TransactionHistoryService {
           status: status ? status : 1,
           txn_reason,
           txn_type,
+          receiver_id,
           txn_mode,
-          receiver_id: recieverId,
+          reward_id:reward_id,
           txn_date: new Date(),
         };
         const document = await this.transactionModel.create({
