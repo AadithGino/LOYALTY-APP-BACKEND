@@ -1,15 +1,21 @@
-import { IsNotEmpty, IsEmail, IsString, MinLength, Validate } from "class-validator";
-import { WeakPasswordValidator } from "src/shared/validator/weak-password.validator";
+import {
+  IsNotEmpty,
+  IsEmail,
+  IsString,
+  MinLength,
+  Validate,
+} from 'class-validator';
+import { WeakPasswordValidator } from 'src/shared/validator/weak-password.validator';
 
 export class validateOtpDto {
-    @IsEmail()
-    email: string;
+  @IsEmail()
+  email: string;
 
-    @IsNotEmpty()
-    @IsString()
-    otp:string
+  @IsNotEmpty()
+  @IsString()
+  otp: string;
 
-    @Validate(WeakPasswordValidator)
-    @IsNotEmpty()
-    password:string
+  @Validate(WeakPasswordValidator)
+  @IsNotEmpty()
+  password: string;
 }

@@ -8,35 +8,45 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { RewardsService } from './rewards.service';
-import { GetUser } from 'src/shared/decorators';
-import { JwtPayload } from 'src/auth/stragtegies';
 import { RoleGuard } from 'src/shared/guards';
 import { Roles } from 'src/shared/decorators/roles.decorator';
 import { UserRoles } from 'src/users/schema/user.schema';
 import { createRewardDto, updateRewardDto } from './dto';
+import { GetUser } from 'src/shared/decorators';
 
 @Controller('rewards')
 export class RewardsController {
   constructor(private readonly rewardService: RewardsService) {}
 
-  @Roles(UserRoles.ADMIN, UserRoles.USER)
-  @UseGuards(RoleGuard)
+
   @Get()
   getRewards() {
     return this.rewardService.getRewards();
   }
 
+  @Post('/claim-reward')
+  claimReward(@Body() dto,@GetUser() user){
+    return this.rewardService.claimReward(dto,user)
+  }
+
+  @Roles(UserRoles.ADMIN)
+  @UseGuards(RoleGuard)
+  @Get('/all-rewards')
+  getAllRewards() {
+    return this.rewardService.getAllRewards()
+  }
+
   @Roles(UserRoles.ADMIN)
   @UseGuards(RoleGuard)
   @Post()
-  addReward(@Body() dto:createRewardDto) {
+  addReward(@Body() dto: createRewardDto) {
     return this.rewardService.addReward(dto);
   }
 
   @Roles(UserRoles.ADMIN)
   @UseGuards(RoleGuard)
   @Put()
-  updateReward(@Body() dto:updateRewardDto) {
+  updateReward(@Body() dto: updateRewardDto) {
     return this.rewardService.updateReward(dto);
   }
 

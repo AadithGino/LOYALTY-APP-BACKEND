@@ -25,7 +25,7 @@ export class UsersController {
   }
 
   @Get('/all')
-  getAllUsers(){
+  getAllUsers() {
     return this.userService.getAllUsers();
   }
 }

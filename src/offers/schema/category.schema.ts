@@ -1,20 +1,20 @@
-import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 
 @Schema({
-    timestamps: {
-      createdAt: 'created_at',
-      updatedAt: 'updated_at',
-    },
-  })
-export class OfferCategory{
-    @Prop({required: true})
-    name:string;
+  timestamps: {
+    createdAt: 'created_at',
+    updatedAt: 'updated_at',
+  },
+})
+export class OfferCategory {
+  @Prop({ required: true })
+  name: string;
 
-    @Prop({required: true})
-    description:string;
+  @Prop({ required: true })
+  description: string;
 
-    @Prop({default:true})
-    is_active:boolean;
+  @Prop({ default: true })
+  is_active: boolean;
 }
 
-export const offerCategorySchema = SchemaFactory.createForClass(OfferCategory)
+export const offerCategorySchema = SchemaFactory.createForClass(OfferCategory);

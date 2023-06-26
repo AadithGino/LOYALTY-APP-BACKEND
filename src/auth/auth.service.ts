@@ -84,7 +84,7 @@ export class AuthService {
       user._id.toString(),
       tokens.refresh_token,
     );
-    return {tokens,username:user.username};
+    return { tokens, username: user.username };
   }
 
   async userLogout(userId: string) {
@@ -101,7 +101,8 @@ export class AuthService {
   async passWordReset(email: string) {
     const user = await this.userService.getUserByEmail(email);
 
-    if (!user || !user.is_active || user.is_deleted) throw new UnauthorizedException('Email does not exist');
+    if (!user || !user.is_active || user.is_deleted)
+      throw new UnauthorizedException('Email does not exist');
     const otp = this.generateOTP();
     const setOtp = await this.userService.updateOtp(email, otp);
     this.resetJob = schedule.scheduleJob(

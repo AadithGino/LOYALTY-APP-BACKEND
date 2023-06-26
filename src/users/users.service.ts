@@ -131,10 +131,10 @@ export class UsersService {
       { _id: user.sub },
       { $set: dto },
     );
-    return {message:"User profile updated successfully"}
+    return { message: 'User profile updated successfully' };
   }
-  
-  async getAllUsers(){
-    return await this.userModel.find()
+
+  async getAllUsers() {
+    return await this.userModel.find();
   }
 }

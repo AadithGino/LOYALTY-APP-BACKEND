@@ -6,17 +6,15 @@ import { offerCategorySchema } from './schema/category.schema';
 import { offerSchema } from './schema/offer.schema';
 import { UsersModule } from 'src/users/users.module';
 
-
 @Module({
   imports: [
     MongooseModule.forFeature([
       { name: 'OfferCategory', schema: offerCategorySchema },
       { name: 'Offer', schema: offerSchema },
     ]),
-    UsersModule
+    UsersModule,
   ],
   providers: [OffersService],
   controllers: [OffersController],
 })
 export class OffersModule {}
-

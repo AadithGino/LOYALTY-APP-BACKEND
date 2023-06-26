@@ -6,12 +6,14 @@ import { RewardsService } from './rewards.service';
 import { Reward, rewardSchema } from './schema/rewards.schema';
 import { UsersModule } from 'src/users/users.module';
 import { TransactionModule } from 'src/transaction/transaction.module';
+import { PointsModule } from 'src/points/points.module';
 
 @Module({
   imports: [
     MongooseModule.forFeature([{ name: Reward.name, schema: rewardSchema }]),
     UsersModule,
-    TransactionModule
+    TransactionModule,
+    PointsModule,
   ],
   controllers: [RewardsController],
   providers: [RewardsService],

@@ -1,7 +1,7 @@
-import { IsNotEmpty, IsNumber } from "class-validator";
+import { IsNotEmpty, IsNumber } from 'class-validator';
 
-export class createPaymnetDto{
-    @IsNotEmpty()
-    @IsNumber()
-    amount:number
+export class createPaymnetDto {
+  @IsNotEmpty()
+  @IsNumber()
+  amount: number;
 }

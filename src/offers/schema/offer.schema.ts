@@ -18,7 +18,7 @@ export class Offer {
   expiry: Date;
 
   @Prop({ required: true, ref: 'OfferCategory' })
-  categoryId: Types.ObjectId;
+  category_id: Types.ObjectId;
 
   @Prop()
   image: string;

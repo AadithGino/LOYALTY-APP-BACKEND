@@ -12,5 +12,5 @@ export class updateRewardDto {
 
     @IsOptional()
     @IsNumber()
-    points_required:number
+    points_on_completetion:number
 }

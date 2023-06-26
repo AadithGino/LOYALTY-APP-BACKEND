@@ -55,16 +55,22 @@ export class OffersController {
   @UseGuards(RoleGuard)
   @Post()
   @UseInterceptors(uploadInterceptor())
-  addOffer(@Body() dto: createOfferDto,@UploadedFile() image) {
-    return this.offerService.addOffer(dto,image);
+  addOffer(
+    @Body() dto: createOfferDto,
+    @UploadedFile() image: Express.Multer.File,
+  ) {
+    return this.offerService.addOffer(dto, image);
   }
 
   @Roles(UserRoles.ADMIN)
   @UseGuards(RoleGuard)
   @Put()
   @UseInterceptors(uploadInterceptor())
-  updateOffer(@Body() dto: updateOfferDto,@UploadedFile() image) {
-    return this.offerService.updateOffer(dto,image);
+  updateOffer(
+    @Body() dto: updateOfferDto,
+    @UploadedFile() image: Express.Multer.File,
+  ) {
+    return this.offerService.updateOffer(dto, image);
   }
 
   @Roles(UserRoles.ADMIN)
@@ -77,12 +83,17 @@ export class OffersController {
   @Roles(UserRoles.ADMIN)
   @UseGuards(RoleGuard)
   @Get('/all')
-  getAllOffers(){
+  getAllOffers() {
     return this.offerService.getAllOffers();
   }
 
   @Get()
-  getActiveOffers(){
+  getActiveOffers() {
     return this.offerService.getActiveOffers();
+  }
+
+  @Get('/single-offer')
+  getSingleOffer(@Query('id') id: string) {
+    return this.offerService.getSingleOffer(id);
   }
 }

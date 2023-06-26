@@ -1,20 +1,25 @@
-import { IsNotEmpty, IsEmail, IsString, MinLength, Validate } from "class-validator";
-import { WeakPasswordValidator } from "src/shared/validator/weak-password.validator";
+import {
+  IsNotEmpty,
+  IsEmail,
+  IsString,
+  MinLength,
+  Validate,
+} from 'class-validator';
+import { WeakPasswordValidator } from 'src/shared/validator/weak-password.validator';
 
 export class userSignUpDto {
+  @IsNotEmpty({ message: 'Enter Username' })
+  @IsString({ message: 'Enter a valid Username' })
+  @MinLength(3, { message: 'Enter a valid username' })
+  username: string;
 
-    @IsNotEmpty({message:"Enter Username"})
-    @IsString({message:"Enter a valid Username"})
-    @MinLength(3,{message:"Enter a valid username"})
-    username:string;
+  @IsEmail()
+  email: string;
 
-    @IsEmail()
-    email: string;
+  @Validate(WeakPasswordValidator)
+  password: string;
 
-    @Validate(WeakPasswordValidator)
-    password: string; 
-
-    @IsNotEmpty()
-    @IsString()
-    country_code:string;
+  @IsNotEmpty()
+  @IsString()
+  country_code: string;
 }

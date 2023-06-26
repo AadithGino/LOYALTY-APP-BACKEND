@@ -10,11 +10,8 @@ export type WalletDocument = Wallet & Document;
   },
 })
 export class Wallet {
-  @Prop({ required: true,ref:'User'})
+  @Prop({ required: true, ref: 'User' })
   user_id: string;
-
-  @Prop()
-  walletId: string;
 
   @Prop({ required: true })
   balance: string;
@@ -22,10 +19,8 @@ export class Wallet {
   @Prop({ required: true })
   currency: string;
 
-  @Prop({default:true})
-  status:boolean
-
+  @Prop({ default: true })
+  status: boolean;
 }
 
 export const WalletSchema = SchemaFactory.createForClass(Wallet);
-

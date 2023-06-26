@@ -1,27 +1,26 @@
-import {IsDateString, IsNotEmpty, IsString } from "class-validator";
+import { IsDateString, IsNotEmpty, IsString } from 'class-validator';
+import { IsPhoneNumber } from 'src/shared/validator/phone-number-validator';
 
-export class updateUserProfileDto{
+export class updateUserProfileDto {
+  @IsNotEmpty()
+  @IsString()
+  first_name: string;
 
-    @IsNotEmpty()
-    @IsString()
-    first_name:string;
+  @IsNotEmpty()
+  @IsString()
+  last_name: string;
 
-    @IsNotEmpty()
-    @IsString()
-    last_name:string;
+  @IsDateString()
+  @IsNotEmpty()
+  dob: Date;
 
-    @IsDateString()
-    @IsNotEmpty()
-    dob:Date;
+  @IsNotEmpty()
+  gender: string;
 
-    
-    @IsNotEmpty()
-    gender:string;
+  @IsPhoneNumber()
+  phone_number: string;
 
-    @IsNotEmpty()
-    phone_number:string;
-
-    @IsNotEmpty()
-    @IsString()
-    place:string;
+  @IsNotEmpty()
+  @IsString()
+  place: string;
 }

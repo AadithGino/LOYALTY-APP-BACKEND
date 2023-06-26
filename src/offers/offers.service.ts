@@ -38,7 +38,8 @@ export class OffersService {
       name: { $regex: new RegExp(dto.name, 'i') },
     });
 
-    if (exists && exists._id.toString()!==dto._id) throw new ConflictException('Category name already exists');
+    if (exists && exists._id.toString() !== dto._id)
+      throw new ConflictException('Category name already exists');
 
     await this.categoryModel.updateOne({ _id: dto._id }, { $set: dto });
     return { message: 'Category updated successfully' };
@@ -52,8 +53,8 @@ export class OffersService {
     return await this.categoryModel.findOne({ _id: categoryId });
   }
 
-  async addOffer(dto: createOfferDto, image) {
-    const category = await this.getSingleCategory(dto.categoryId);
+  async addOffer(dto: createOfferDto, image: Express.Multer.File) {
+    const category = await this.getSingleCategory(dto.category_id);
 
     if (!category) throw new NotFoundException('Category not found');
     const details = { ...dto, image: image.filename };
@@ -61,8 +62,8 @@ export class OffersService {
     return offer;
   }
 
-  async updateOffer(dto: updateOfferDto, image) {
-    const category = await this.getSingleCategory(dto.categoryId);
+  async updateOffer(dto: updateOfferDto, image: Express.Multer.File) {
+    const category = await this.getSingleCategory(dto.category_id);
     if (!category) throw new NotFoundException('Category not found');
     if (image) {
       const details = { ...dto, image: image.filename };
@@ -90,5 +91,9 @@ export class OffersService {
 
   async getAllOffers() {
     return this.offerModel.find();
+  }
+
+  async getSingleOffer(id: string) {
+    return await this.offerModel.findOne({ _id: id }).populate('category_id');
   }
 }

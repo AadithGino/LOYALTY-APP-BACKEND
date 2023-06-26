@@ -26,7 +26,6 @@ export enum UserRoles {
     updatedAt: 'updated_at',
   },
 })
-
 export class User {
   @Prop({ required: true })
   username: string;
@@ -101,8 +100,8 @@ export class User {
   @Prop({ default: null, expires: 0 })
   otp: string;
 
-  @Prop({default:UserRoles.USER})
-  roles:string;
+  @Prop({ default: UserRoles.USER })
+  roles: string;
 
   @Prop()
   rt_token: string;

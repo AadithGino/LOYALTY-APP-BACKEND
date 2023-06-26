@@ -3,20 +3,20 @@ import { Document, Types } from 'mongoose';
 
 export type TransactionDocument = Transaction & Document;
 
-export enum transactionType{
-  Wallet='Wallet',
-  Points='Points'
+export enum transactionType {
+  Wallet = 'Wallet',
+  Points = 'Points',
 }
 
-export enum TransactionMode{
+export enum TransactionMode {
   WITHDRAWAL = 'WITHDRAWAL',
-  DEPOSIT = 'DEPOSIT'
+  DEPOSIT = 'DEPOSIT',
 }
 
-export enum TransactionStatus{
-  FAILED=0,
-  PENDING=1,
-  SUCCESSFUL=2
+export enum TransactionStatus {
+  FAILED = 0,
+  PENDING = 1,
+  SUCCESSFUL = 2,
 }
 
 export interface TransactionItem {
@@ -36,7 +36,7 @@ export interface TransactionItem {
   comments?: string;
   ecomments?: string;
   txn_reason?: string;
-  status?: number;  // 0 = failed, 1 = pending, 2 = successful
+  status?: number; // 0 = failed, 1 = pending, 2 = successful
   created_at?: Date;
   updated_at?: Date;
   ip_address?: string;
@@ -66,7 +66,7 @@ export class Transaction {
         txn_date: { type: Date },
         txn_type: { type: String },
         txn_mode: { type: String },
-        reward_id: {type:String},
+        reward_id: { type: String },
         payment_gateway_id: { type: String },
         currency_id: { type: String },
         country_id: { type: String },
@@ -92,8 +92,8 @@ export class Transaction {
   @Prop({ default: Date.now })
   updated_at: Date;
 
-  @Prop({default:true})
-  status:boolean
+  @Prop({ default: true })
+  status: boolean;
 }
 
 export const transactionSchema = SchemaFactory.createForClass(Transaction);

@@ -12,7 +12,7 @@ import { UsersModule } from 'src/users/users.module';
       { name: 'Tier', schema: tierSchema },
       { name: 'User', schema: userSchema },
     ]),
-    UsersModule
+    UsersModule,
   ],
   providers: [TierService],
   controllers: [TierController],

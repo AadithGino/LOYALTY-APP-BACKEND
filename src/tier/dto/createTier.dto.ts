@@ -1,23 +1,22 @@
-import { IsNotEmpty, IsNumber, IsString } from "class-validator";
+import { IsNotEmpty, IsNumber, IsString } from 'class-validator';
 
-export class createTierDto{
-    @IsNotEmpty()
-    @IsString()
-    name:string;
+export class createTierDto {
+  @IsNotEmpty()
+  @IsString()
+  name: string;
 
-    @IsNotEmpty()
-    @IsNumber()
-    maxDiscount:number;
+  @IsNotEmpty()
+  @IsNumber()
+  maxDiscount: number;
 
-    @IsNotEmpty()
-    @IsNumber()
-    minimumPointsForTier:number;
+  @IsNotEmpty()
+  @IsNumber()
+  minimumPointsForTier: number;
 
-    @IsNotEmpty()
-    @IsNumber()
-    moneyToBeSpend:number;
+  @IsNotEmpty()
+  @IsNumber()
+  moneyToBeSpend: number;
 
-    @IsNotEmpty()
-    pointValue:number;
-    
+  @IsNotEmpty()
+  pointValue: number;
 }

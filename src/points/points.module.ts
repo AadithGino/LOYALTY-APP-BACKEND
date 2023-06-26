@@ -14,5 +14,6 @@ import { TransactionModule } from 'src/transaction/transaction.module';
   ],
   providers: [PointsService],
   controllers: [PointsController],
+  exports:[PointsService]
 })
 export class PointsModule {}

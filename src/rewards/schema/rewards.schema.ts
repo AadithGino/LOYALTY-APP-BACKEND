@@ -11,13 +11,13 @@ export class Reward {
   name: string;
 
   @Prop()
-  points_required: number;
+  points_on_completetion: number;
 
   @Prop({ default: true })
   status: boolean;
 
   @Prop({ default: false })
-  isDeleted:boolean
+  is_deleted:boolean
 
   @Prop()
   description: string

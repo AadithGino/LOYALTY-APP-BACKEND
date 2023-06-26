@@ -19,7 +19,11 @@ export class RewardsService {
   ) {}
 
   async getRewards() {
-    return await this.rewardModel.find();
+    return await this.rewardModel.find({is_deleted:false});
+  }
+
+  async getAllRewards() {
+    return this.rewardModel.find()
   }
 
   async addReward(dto: createRewardDto) {
@@ -38,7 +42,7 @@ export class RewardsService {
 
   async claimReward(dto, user) {
     const reward = await this.rewardModel.findOne({ _id: dto.id });
-    const points = reward.points_required;
+    const points = reward.points_on_completetion;
     await this.transactionHistoryService.addRewardTransactionHistory(
       { amount: points },
       user.sub,

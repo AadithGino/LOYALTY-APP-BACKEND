@@ -40,7 +40,7 @@ export class AuthController {
   @Public()
   @Post('refresh')
   @UseGuards(RtGuard)
-  refreshTokens(@GetUser() user: any):Promise<Tokens> {
+  refreshTokens(@GetUser() user: any): Promise<Tokens> {
     return this.authService.refreshToken(user.sub, user.refreshToken);
   }
 
@@ -58,7 +58,7 @@ export class AuthController {
 
   @Public()
   @Post('/validatep-otp')
-  validateOtp(@Body() dto: validateOtpDto):Promise<Tokens> {
+  validateOtp(@Body() dto: validateOtpDto): Promise<Tokens> {
     return this.authService.validateOtp(dto.email, dto.otp, dto.password);
   }
 }
