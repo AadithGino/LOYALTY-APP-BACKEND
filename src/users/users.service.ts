@@ -114,7 +114,7 @@ export class UsersService {
     return false;
   }
 
-  async updatePassword(email: string, password: string) {
+   async updatePassword(email: string, password: string) {
     const newPassword = await bcrypt.hash(password, 10);
     return await this.userModel.updateOne(
       { email: email },
@@ -136,5 +136,13 @@ export class UsersService {
 
   async getAllUsers() {
     return await this.userModel.find();
+  }
+
+  async updateUserPassword(dto,user: JwtPayload) {
+    const userData = await this.userModel.findOne({_id:user.sub})
+    const validPassword = await bcrypt.compare(dto.oldPassword,userData.password)
+    if(!validPassword) throw new UnauthorizedException("Invalid Password");
+    await this.updatePassword(userData.email,dto.newPassword)
+    return {message:"password updated successfully"}
   }
 }

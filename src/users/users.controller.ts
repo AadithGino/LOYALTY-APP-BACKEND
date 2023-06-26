@@ -1,4 +1,4 @@
-import { Controller, Get, UseGuards, Put, Body } from '@nestjs/common';
+import { Controller, Get, Post, Put, Body } from '@nestjs/common';
 import { Roles } from 'src/shared/decorators/roles.decorator';
 import { RoleGuard } from 'src/shared/guards';
 import { UserRoles } from './schema/user.schema';
@@ -27,5 +27,10 @@ export class UsersController {
   @Get('/all')
   getAllUsers() {
     return this.userService.getAllUsers();
+  }
+
+  @Post('/update-password')
+  updatePassword(@Body() dto,@GetUser() user: JwtPayload) {
+    return this.userService.updateUserPassword(dto,user)
   }
 }
