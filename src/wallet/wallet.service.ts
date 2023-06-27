@@ -79,6 +79,7 @@ export class WalletService {
       user.sub,
       userdata.currency,
       'Wallet Recharge',
+      user.email
     );
   }
 

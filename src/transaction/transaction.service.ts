@@ -43,13 +43,34 @@ export class TransactionService {
     userId: string,
     currency: string,
     txn_reason: string,
+    email: string,
   ): Promise<any> {
+    // Check if the user's email exists in Stripe
+    let customer;
+    const existingCustomers = await this.stripe.customers.list({
+      email: email,
+      limit: 1,
+    });
+    if (existingCustomers.data.length > 0) {
+      // Retrieve the existing customer
+      customer = existingCustomers.data[0];
+    } else {
+      // Create a new customer in Stripe
+      customer = await this.stripe.customers.create({
+        email: email,
+        // Add any additional customer information as required
+      });
+    }
+
+    // Create a payment intent
     const paymentIntent = await this.stripe.paymentIntents.create({
       amount: amount * 100,
       currency: 'inr',
+      customer: customer.id,
       payment_method_types: ['card'],
     });
 
+    // Create a transaction history
     const transaction =
       await this.transactionHistoryService.addTransactionHistory(
         { amount },
@@ -58,6 +79,7 @@ export class TransactionService {
         transactionType.Wallet,
         TransactionMode.DEPOSIT,
       );
+
     return {
       transaction_id: transaction._id,
       clientSecret: paymentIntent.client_secret,
