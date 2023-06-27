@@ -23,7 +23,7 @@ export class OffersService {
     private categoryModel: Model<OfferCategory>,
     @InjectModel(Offer.name)
     private offerModel: Model<Offer>,
-    private readonly userService: UsersService
+    private readonly userService: UsersService,
   ) {}
 
   async addOfferCategory(dto: createOfferCategoryDto) {
@@ -100,12 +100,14 @@ export class OffersService {
     return await this.offerModel.findOne({ _id: id }).populate('category_id');
   }
 
-  async getPreferenceOffers(user:JwtPayload){
-    const userData = await this.userService.getUserById(user.sub)
+  async getPreferenceOffers(user: JwtPayload) {
+    const userData = await this.userService.getUserById(user.sub);
     console.log(userData.interests);
-    
-    const offers = await this.offerModel.find({ category_id: { $in: userData.interests } }).exec();
-    if(offers.length > 0) return offers
+
+    const offers = await this.offerModel
+      .find({ category_id: { $in: userData.interests } })
+      .exec();
+    if (offers.length > 0) return offers;
     return await this.offerModel.find();
   }
 }

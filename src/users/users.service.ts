@@ -154,19 +154,25 @@ export class UsersService {
       { _id: user.sub },
       { $set: { interests: dto.interests } },
     );
+
+    return {message:"Interests updated successfully"}
   }
 
   async addUserInterests(dto, user: JwtPayload) {
-    return await this.userModel.updateOne(
+     await this.userModel.updateOne(
       { _id: user.sub },
       { $push: { interests: dto.id } },
     );
+
+    return {message:"Interests updated successfully"}
   }
 
   async removeUserInterests(dto, user: JwtPayload) {
-    return await this.userModel.updateOne(
+     await this.userModel.updateOne(
       { _id: user.sub },
       { $pull: { interests: dto.id } },
     );
+
+    return {message:"Interests updated successfully"}
   }
 }
