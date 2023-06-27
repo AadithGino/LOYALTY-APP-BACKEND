@@ -114,7 +114,7 @@ export class UsersService {
     return false;
   }
 
-   async updatePassword(email: string, password: string) {
+  async updatePassword(email: string, password: string) {
     const newPassword = await bcrypt.hash(password, 10);
     return await this.userModel.updateOne(
       { email: email },
@@ -138,11 +138,35 @@ export class UsersService {
     return await this.userModel.find();
   }
 
-  async updateUserPassword(dto,user: JwtPayload) {
-    const userData = await this.userModel.findOne({_id:user.sub})
-    const validPassword = await bcrypt.compare(dto.oldPassword,userData.password)
-    if(!validPassword) throw new UnauthorizedException("Invalid Password");
-    await this.updatePassword(userData.email,dto.newPassword)
-    return {message:"password updated successfully"}
+  async updateUserPassword(dto, user: JwtPayload) {
+    const userData = await this.userModel.findOne({ _id: user.sub });
+    const validPassword = await bcrypt.compare(
+      dto.oldPassword,
+      userData.password,
+    );
+    if (!validPassword) throw new UnauthorizedException('Invalid Password');
+    await this.updatePassword(userData.email, dto.newPassword);
+    return { message: 'password updated successfully' };
+  }
+
+  async updateUserIntererst(dto, user: JwtPayload) {
+    await this.userModel.updateOne(
+      { _id: user.sub },
+      { $set: { interests: dto.interests } },
+    );
+  }
+
+  async addUserInterests(dto, user: JwtPayload) {
+    return await this.userModel.updateOne(
+      { _id: user.sub },
+      { $push: { interests: dto.id } },
+    );
+  }
+
+  async removeUserInterests(dto, user: JwtPayload) {
+    return await this.userModel.updateOne(
+      { _id: user.sub },
+      { $pull: { interests: dto.id } },
+    );
   }
 }

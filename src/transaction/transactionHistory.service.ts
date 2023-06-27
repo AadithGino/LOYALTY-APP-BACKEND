@@ -16,7 +16,6 @@ export class TransactionHistoryService {
     private readonly transactionModel: Model<Transaction>,
   ) {}
 
-
   // add transaction history
   async addTransactionHistory(
     transaction,
@@ -25,7 +24,7 @@ export class TransactionHistoryService {
     txn_type: transactionType,
     txn_mode: TransactionMode,
     status?: number,
-    receiver_id?:string,
+    receiver_id?: string,
     reward_id?: string,
   ) {
     try {
@@ -39,7 +38,7 @@ export class TransactionHistoryService {
           receiver_id,
           txn_mode,
           status: status ? status : 1,
-          reward_id:reward_id,
+          reward_id: reward_id,
           txn_date: new Date(),
         };
         const document = await this.transactionModel.findOneAndUpdate(
@@ -57,7 +56,7 @@ export class TransactionHistoryService {
           txn_type,
           receiver_id,
           txn_mode,
-          reward_id:reward_id,
+          reward_id: reward_id,
           txn_date: new Date(),
         };
         const document = await this.transactionModel.create({

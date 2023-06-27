@@ -17,7 +17,7 @@ export class Offer {
   @Prop({ required: true })
   expiry: Date;
 
-  @Prop({ required: true, ref: 'OfferCategory' })
+  @Prop({ required: true, ref: 'OfferCategory',type:Types.ObjectId})
   category_id: Types.ObjectId;
 
   @Prop()

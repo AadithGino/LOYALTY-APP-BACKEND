@@ -33,4 +33,19 @@ export class UsersController {
   updatePassword(@Body() dto,@GetUser() user: JwtPayload) {
     return this.userService.updateUserPassword(dto,user)
   }
+
+  @Post('/update-interests')
+  updateUserInterests(@Body() dto,@GetUser() user: JwtPayload){
+    return this.userService.updateUserIntererst(dto,user)
+  }
+
+  @Post('/add-interests')
+  addUserInterests(@Body() dto,@GetUser() user: JwtPayload){
+    return this.userService.addUserInterests(dto,user)
+  }
+
+  @Post('/remove-interests')
+  removeUserInterests(@Body() dto,@GetUser() user: JwtPayload){
+    return this.userService.removeUserInterests(dto,user)
+  }
 }

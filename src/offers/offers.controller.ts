@@ -22,6 +22,8 @@ import {
 } from './dto';
 import { updateOfferDto } from './dto/updateOffer.dto';
 import { uploadInterceptor } from 'src/shared/imageUpload/multer';
+import { GetUser } from 'src/shared/decorators';
+import { JwtPayload } from 'src/auth/stragtegies';
 
 @Controller('offers')
 export class OffersController {
@@ -95,5 +97,10 @@ export class OffersController {
   @Get('/single-offer')
   getSingleOffer(@Query('id') id: string) {
     return this.offerService.getSingleOffer(id);
+  }
+
+  @Get('/get-preference')
+  getPrefrerenceOffer(@GetUser() user:JwtPayload){
+    return this.offerService.getPreferenceOffers(user)
   }
 }

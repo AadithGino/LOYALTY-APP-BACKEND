@@ -1,5 +1,5 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Date } from 'mongoose';
+import { Date, Types } from 'mongoose';
 
 export enum Gender {
   Male = 'Male',
@@ -99,6 +99,9 @@ export class User {
 
   @Prop({ default: null, expires: 0 })
   otp: string;
+
+  @Prop()
+  interests: [];
 
   @Prop({ default: UserRoles.USER })
   roles: string;

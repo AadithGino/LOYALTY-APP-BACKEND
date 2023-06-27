@@ -161,7 +161,7 @@ export class TransactionService {
           $set: {
             'transactions.$.txn_id': paymentId,
             'transactions.$.status': status,
-            'transactions.$.txn_type': 'card',
+            'transactions.$.txn_type': transactionType.Wallet,
             'transactions.$.comments': 'Payment SuccessFull',
             'transactions.$.txn_date': new Date(),
           },
@@ -188,7 +188,7 @@ export class TransactionService {
           $set: {
             'transactions.$.status': 0,
             'transactions.$.comments': comment,
-            'transactions.$.txn_type': 'card',
+            'transactions.$.txn_type': transactionType.Wallet,
             'transactions.$.txn_date': new Date(),
           },
         },
