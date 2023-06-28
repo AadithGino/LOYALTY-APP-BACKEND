@@ -94,6 +94,15 @@ export class User {
   @Prop({ default: LoginMode.Password })
   login_mode: LoginMode;
 
+  @Prop({})
+  referral_code:string;
+
+  @Prop({ref:"USER"})
+  refered_by : Types.ObjectId
+
+  @Prop()
+  refered_users:[]
+
   @Prop()
   profile_img_thumb: string;
 

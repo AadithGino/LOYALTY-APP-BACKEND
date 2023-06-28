@@ -6,6 +6,7 @@ import { userLoginDto, userSignUpDto } from './dto';
 import * as bcrypt from 'bcrypt';
 import * as schedule from 'node-schedule';
 import { MailerService } from '@nestjs-modules/mailer/dist';
+import { PointsService } from 'src/points/points.service';
 
 @Injectable()
 export class AuthService {
@@ -14,6 +15,7 @@ export class AuthService {
     private readonly userService: UsersService,
     private readonly jwtService: JwtService,
     private readonly mailService: MailerService,
+    private readonly pointService: PointsService,
   ) {}
 
   async getTokens(userId: string, email: string): Promise<Tokens> {
@@ -121,6 +123,29 @@ export class AuthService {
     await this.userService.updatePassword(email, password);
     const tokens = await this.getTokens(user._id, user.email);
     await this.userService.updateRefreshToken(user._id, tokens.refresh_token);
+    return tokens;
+  }
+
+  async userSignUpReferal(dto: userSignUpDto, referalCode: string) {
+    const user = await this.userService.referalSignUp(dto, referalCode);
+    const tokens = await this.getTokens(
+      user.userData._id.toString(),
+      user.userData.email,
+    );
+    await this.userService.updateRefreshToken(
+      user.userData._id.toString(),
+      tokens.refresh_token,
+    );
+    await this.pointService.updateUserPoints(
+      user.userData._id.toString(),
+      25,
+      'Referal Points',
+    );
+    await this.pointService.updateUserPoints(
+      user.referedUser._id.toString(),
+      25,
+      'Referal Points',
+    );
     return tokens;
   }
 }

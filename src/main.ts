@@ -9,6 +9,7 @@ async function bootstrap() {
   app.useGlobalPipes(new ValidationPipe())
   app.useGlobalInterceptors(new ErrorInterceptor());
   app.useGlobalFilters(new ErrorFilter());
+  app.setGlobalPrefix('api');
   app.enableCors({
     // origin: ['http://localhost:3001', 'http://example2.com']
      origin: '*',

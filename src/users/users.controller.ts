@@ -48,4 +48,9 @@ export class UsersController {
   removeUserInterests(@Body() dto,@GetUser() user: JwtPayload){
     return this.userService.removeUserInterests(dto,user)
   }
+
+  @Get('/refered-users')
+  getReferedUsers(@GetUser() user:JwtPayload){
+    return this.userService.getReferedUsers(user)
+  }
 }

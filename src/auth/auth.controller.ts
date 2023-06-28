@@ -6,6 +6,7 @@ import {
   Post,
   Get,
   UseGuards,
+  Param,
 } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { GetUser } from 'src/shared/decorators/get-user.decorator';
@@ -28,6 +29,15 @@ export class AuthController {
   @Post('/signup')
   userSignUp(@Body() dto: userSignUpDto): Promise<Tokens> {
     return this.authService.userSignUp(dto);
+  }
+
+  @Public()
+  @Post('/signup/:referal')
+  userSignUpReferal(
+    @Body() dto: userSignUpDto,
+    @Param('referal') referalCode,
+  ): Promise<Tokens> {
+    return this.authService.userSignUpReferal(dto, referalCode);
   }
 
   @Public()
@@ -57,7 +67,7 @@ export class AuthController {
   }
 
   @Public()
-  @Post('/validatep-otp')
+  @Post('/validate-otp')
   validateOtp(@Body() dto: validateOtpDto): Promise<Tokens> {
     return this.authService.validateOtp(dto.email, dto.otp, dto.password);
   }

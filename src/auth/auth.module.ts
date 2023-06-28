@@ -5,9 +5,10 @@ import { UsersModule } from 'src/users/users.module';
 import { AtStrategy } from './stragtegies/at.strategy';
 import { RtStrategy } from './stragtegies/rt.strategy';
 import { JwtModule } from '@nestjs/jwt';
+import { PointsModule } from 'src/points/points.module';
 
 @Module({
-  imports: [UsersModule, JwtModule.register({})],
+  imports: [UsersModule, JwtModule.register({}), PointsModule],
   providers: [AuthService, AtStrategy, RtStrategy],
   controllers: [AuthController],
 })

@@ -11,11 +11,13 @@ import * as countries from '../shared/constants/country.json';
 import { userLoginDto, userSignUpDto } from 'src/auth/dto';
 import { updateUserProfileDto } from './dto';
 import { JwtPayload } from 'src/auth/stragtegies';
+import { Point } from 'src/points/schema/points.schema';
 
 @Injectable()
 export class UsersService {
   constructor(
     @InjectModel(User.name) private readonly userModel: Model<User>,
+    @InjectModel(Point.name) private readonly pointModel: Model<Point>,
   ) {}
 
   async userLogin(dto: userLoginDto) {
@@ -29,7 +31,7 @@ export class UsersService {
     return result;
   }
 
-  async userSignUp(dto: userSignUpDto) {
+  async userSignUp(dto: userSignUpDto, referedById?: string) {
     dto.password = await bcrypt.hash(dto.password, 10);
     const country = countries.find(
       (country) => country.shortCode === dto.country_code,
@@ -37,6 +39,9 @@ export class UsersService {
     if (!country) throw new ConflictException('Invalid Country');
     const user = await this.userModel.findOne({ email: dto.email });
     if (user) throw new ConflictException('Email already in use');
+    const referralCode = await this.generateUniqueReferralCode(dto.username);
+    console.log(referralCode);
+
     const detiails = {
       ...dto,
       latitude: country.latitude,
@@ -44,6 +49,8 @@ export class UsersService {
       country_name: country.name,
       mb_code: country.phonePrefix,
       currency: country.currency,
+      referral_code: referralCode,
+      refered_by: referedById ? referedById : '',
     };
     return await this.userModel.create(detiails);
   }
@@ -155,24 +162,71 @@ export class UsersService {
       { $set: { interests: dto.interests } },
     );
 
-    return {message:"Interests updated successfully"}
+    return { message: 'Interests updated successfully' };
   }
 
   async addUserInterests(dto, user: JwtPayload) {
-     await this.userModel.updateOne(
+    await this.userModel.updateOne(
       { _id: user.sub },
       { $push: { interests: dto.id } },
     );
 
-    return {message:"Interests updated successfully"}
+    return { message: 'Interests updated successfully' };
   }
 
   async removeUserInterests(dto, user: JwtPayload) {
-     await this.userModel.updateOne(
+    await this.userModel.updateOne(
       { _id: user.sub },
       { $pull: { interests: dto.id } },
     );
 
-    return {message:"Interests updated successfully"}
+    return { message: 'Interests updated successfully' };
+  }
+
+  async generateUniqueReferralCode(username: string) {
+    let referralCode;
+    let isUnique = false;
+
+    while (!isUnique) {
+      // referralCode = await this.generateReferralCode(username);
+      referralCode = await this.generateReferralCode(username);
+
+      const existingUser = await this.userModel.findOne({
+        referral_code: referralCode,
+      });
+
+      if (!existingUser) {
+        isUnique = true;
+      }
+    }
+
+    return referralCode;
+  }
+
+  async generateReferralCode(username: string) {
+    const cleanUsername = username.toLowerCase().replace(/\s/g, '');
+    const randomString = Math.random().toString(36).substring(2, 8);
+    // Combine the clean username and random string to create the referral code
+    const referralCode = `${cleanUsername}${randomString}`;
+    return referralCode;
+  }
+
+  async referalSignUp(dto: userSignUpDto, referalCode: string) {
+    const validReferalCode = await this.userModel.findOne({
+      referral_code: referalCode,
+    });
+    if (!validReferalCode)
+      throw new UnauthorizedException('Invalid referal code');
+    const user = await this.userSignUp(dto, validReferalCode._id.toString());
+    await this.userModel.updateOne(
+      { _id: validReferalCode._id },
+      { $push: { refered_users: user._id } },
+    );
+    return { userData: user, referedUser: validReferalCode };
+  }
+
+  async getReferedUsers(user: JwtPayload) {
+    const userData = await this.userModel.findOne({ _id: user.sub });
+    return await this.userModel.find({ _id: { $in: userData.refered_users } });
   }
 }
