@@ -84,7 +84,8 @@ export class OffersService {
   }
 
   async getActiveOffers() {
-    const today = new Date().toISOString();
+    const today = new Date();
+    today.setHours(0, 0, 0, 0).toString();
     const activeOffers = await this.offerModel.find({
       expiry: { $gte: today },
       is_deleted: false,

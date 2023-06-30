@@ -39,7 +39,6 @@ export class TierService {
     let newTier = 'Bronze';
     tiers.forEach((tier) => {
       if (points >= tier.cretieria.minPointsForTier) {
-        console.log('Update to' + tier.name);
         newTier = tier.name;
       }
     });

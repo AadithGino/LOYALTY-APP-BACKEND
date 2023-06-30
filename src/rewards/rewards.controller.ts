@@ -13,6 +13,7 @@ import { Roles } from 'src/shared/decorators/roles.decorator';
 import { UserRoles } from 'src/users/schema/user.schema';
 import { createRewardDto, updateRewardDto } from './dto';
 import { GetUser } from 'src/shared/decorators';
+import { JwtPayload } from 'src/auth/stragtegies';
 
 @Controller('rewards')
 export class RewardsController {
@@ -25,7 +26,7 @@ export class RewardsController {
   }
 
   @Post('/claim-reward')
-  claimReward(@Body() dto,@GetUser() user){
+  claimReward(@Body() dto,@GetUser() user:JwtPayload){
     return this.rewardService.claimReward(dto,user)
   }
 

@@ -40,7 +40,6 @@ export class UsersService {
     const user = await this.userModel.findOne({ email: dto.email });
     if (user) throw new ConflictException('Email already in use');
     const referralCode = await this.generateUniqueReferralCode(dto.username);
-    console.log(referralCode);
 
     const detiails = {
       ...dto,
@@ -188,7 +187,6 @@ export class UsersService {
     let isUnique = false;
 
     while (!isUnique) {
-      // referralCode = await this.generateReferralCode(username);
       referralCode = await this.generateReferralCode(username);
 
       const existingUser = await this.userModel.findOne({
@@ -228,5 +226,14 @@ export class UsersService {
   async getReferedUsers(user: JwtPayload) {
     const userData = await this.userModel.findOne({ _id: user.sub });
     return await this.userModel.find({ _id: { $in: userData.refered_users } });
+  }
+
+  async updateProfilePhoto(image: Express.Multer.File, user: JwtPayload) {
+     await this.userModel.updateOne(
+      { _id: user.sub },
+      { $set: { profile_img_thumb: image.filename } },
+    );
+
+    return {message:"Photo updated successfully"}
   }
 }

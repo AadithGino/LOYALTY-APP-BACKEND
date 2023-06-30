@@ -19,10 +19,15 @@ export enum TransactionStatus {
   SUCCESSFUL = 2,
 }
 
+export enum Transaction_APP{
+  LOYALTY_APP = 'LOYALTY_APP'
+}
+
 export interface TransactionItem {
   _id?: Types.ObjectId; // Add _id property to hold the ObjectId
   txn_id?: string;
   txn_date?: Date;
+  txn_app?: string;
   txn_type?: string;
   txn_mode?: string;
   payment_gateway_id?: string;
@@ -64,6 +69,7 @@ export class Transaction {
         }, // Generate new ObjectId by default
         txn_id: { type: String },
         txn_date: { type: Date },
+        txn_app:{ type: String},
         txn_type: { type: String },
         txn_mode: { type: String },
         reward_id: { type: String },

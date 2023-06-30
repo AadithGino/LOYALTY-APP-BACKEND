@@ -227,13 +227,40 @@ export class TransactionService {
     return await this.transactionModel.findOne({ user_id: userId });
   }
 
-  async getPassport(user: JwtPayload) {
-    const history = await this.getHistory(user.sub);
-    const wallet_balance = await this.walletService.getWalletBalance(user);
-    return {
-      history: history?.transactions ? history.transactions : [],
-      wallet_balance: wallet_balance.balance,
-      currency: wallet_balance.currency,
-    };
+  async getPassport(user: JwtPayload, start: string, end: string, app: string) {
+    try {
+      const startDate = new Date(start);
+      const endDate = new Date(end);
+      const transaction = await this.transactionModel.aggregate([
+        { $match: { user_id: user.sub } },
+        {
+          $project: {
+            transactions: {
+              $filter: {
+                input: '$transactions',
+                as: 'transaction',
+                cond: {
+                  $and: [
+                    { $gte: ['$$transaction.created_at', startDate] },
+                    { $lte: ['$$transaction.created_at', endDate] },
+                    app ? { $eq: ['$$transaction.txn_app', app] } : '',
+                  ],
+                },
+              },
+            },
+          },
+        },
+      ]);
+
+      if (transaction.length === 0) {
+        return { history: [] };
+      }
+
+      const filteredTransactions = transaction[0].transactions;
+
+      return { history: filteredTransactions };
+    } catch (error) {
+      console.log(error);
+    }
   }
 }

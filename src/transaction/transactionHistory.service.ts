@@ -5,6 +5,7 @@ import {
   Transaction,
   TransactionItem,
   TransactionMode,
+  Transaction_APP,
   transactionType,
 } from './schema/transaction.schema';
 import { InjectModel } from '@nestjs/mongoose';
@@ -40,6 +41,7 @@ export class TransactionHistoryService {
           status: status ? status : 1,
           reward_id: reward_id,
           txn_date: new Date(),
+          txn_app: Transaction_APP.LOYALTY_APP,
         };
         const document = await this.transactionModel.findOneAndUpdate(
           { user_id: userId },
@@ -58,6 +60,7 @@ export class TransactionHistoryService {
           txn_mode,
           reward_id: reward_id,
           txn_date: new Date(),
+          txn_app: Transaction_APP.LOYALTY_APP,
         };
         const document = await this.transactionModel.create({
           user_id: userId,
@@ -92,6 +95,7 @@ export class TransactionHistoryService {
           status: status ? status : 1,
           receiver_id: userId,
           txn_date: new Date(),
+          txn_app: Transaction_APP.LOYALTY_APP,
         };
         const document = await this.transactionModel.findOneAndUpdate(
           { user_id: userId },
@@ -109,6 +113,7 @@ export class TransactionHistoryService {
           txn_mode,
           receiver_id: userId,
           txn_date: new Date(),
+          txn_app: Transaction_APP.LOYALTY_APP,
         };
         const document = await this.transactionModel.create({
           user_id: userId,
@@ -143,6 +148,7 @@ export class TransactionHistoryService {
           status: status ? status : 1,
           reward_id: rewardId,
           txn_date: new Date(),
+          txn_app: Transaction_APP.LOYALTY_APP,
         };
         const document = await this.transactionModel.findOneAndUpdate(
           { user_id: userId },
@@ -160,6 +166,7 @@ export class TransactionHistoryService {
           txn_mode,
           reward_id: rewardId,
           txn_date: new Date(),
+          txn_app: Transaction_APP.LOYALTY_APP,
         };
         const document = await this.transactionModel.create({
           user_id: userId,

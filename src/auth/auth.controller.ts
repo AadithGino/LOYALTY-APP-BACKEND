@@ -35,7 +35,7 @@ export class AuthController {
   @Post('/signup/:referal')
   userSignUpReferal(
     @Body() dto: userSignUpDto,
-    @Param('referal') referalCode,
+    @Param('referal') referalCode:string,
   ): Promise<Tokens> {
     return this.authService.userSignUpReferal(dto, referalCode);
   }

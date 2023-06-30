@@ -49,7 +49,7 @@ export class OffersController {
   }
 
   @Get('/category/:categoryId')
-  getSingleCategory(@Param('categoryId') categoryId) {
+  getSingleCategory(@Param('categoryId') categoryId:string) {
     return this.offerService.getSingleCategory(categoryId);
   }
 

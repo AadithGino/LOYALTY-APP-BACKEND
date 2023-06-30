@@ -3,6 +3,7 @@ import { WalletService } from './wallet.service';
 import { GetUser } from 'src/shared/decorators';
 import { JwtPayload } from 'src/auth/stragtegies';
 import { createPaymnetDto, walletRechargeFromWalletDto } from './dto';
+import { validatePaymentDto } from 'src/transaction/dto';
 
 @Controller('wallet')
 export class WalletController {
@@ -23,7 +24,7 @@ export class WalletController {
 
   @Post('/validate-wallet-recharge')
   async validateWalletRechargeRequest(
-    @Body() dto,
+    @Body() dto:validatePaymentDto,
     @GetUser() user: JwtPayload,
   ) {
     return await this.walletService.validateWalletRechargeRequest(dto, user);
