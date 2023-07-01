@@ -34,7 +34,7 @@ export class UsersService {
   async userSignUp(dto: userSignUpDto, referedById?: string) {
     dto.password = await bcrypt.hash(dto.password, 10);
     const country = countries.find(
-      (country) => country.shortCode === dto.country_code,
+      (country) => country.countryShortCode === dto.country_code,
     );
     if (!country) throw new ConflictException('Invalid Country');
     const user = await this.userModel.findOne({ email: dto.email });
@@ -45,7 +45,7 @@ export class UsersService {
       ...dto,
       latitude: country.latitude,
       longitude: country.longitude,
-      country_name: country.name,
+      country_name: country.countryName,
       mb_code: country.phonePrefix,
       currency: country.currency,
       referral_code: referralCode,

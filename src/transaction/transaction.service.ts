@@ -21,6 +21,7 @@ import {
 import { Model } from 'mongoose';
 import { JwtPayload } from 'src/auth/stragtegies';
 import { TransactionHistoryService } from './transactionHistory.service';
+import { UsersService } from 'src/users/users.service';
 
 @Injectable()
 export class TransactionService {
@@ -32,6 +33,7 @@ export class TransactionService {
     @InjectModel(Transaction.name)
     private readonly transactionModel: Model<Transaction>,
     private readonly transactionHistoryService: TransactionHistoryService,
+    private readonly userService: UsersService,
   ) {
     this.stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
       apiVersion: '2022-11-15',
@@ -45,28 +47,27 @@ export class TransactionService {
     currency: string,
     txn_reason: string,
     email: string,
+    transactionType: transactionType,
+    TransactionMode: TransactionMode,
+    txn_app: string,
   ): Promise<any> {
-    // Check if the user's email exists in Stripe
-    let customer;
+    let customer: any;
     const existingCustomers = await this.stripe.customers.list({
       email: email,
       limit: 1,
     });
     if (existingCustomers.data.length > 0) {
-      // Retrieve the existing customer
       customer = existingCustomers.data[0];
     } else {
-      // Create a new customer in Stripe
       customer = await this.stripe.customers.create({
         email: email,
-        // Add any additional customer information as required
       });
     }
 
     // Create a payment intent
     const paymentIntent = await this.stripe.paymentIntents.create({
       amount: amount * 100,
-      currency: 'inr',
+      currency: currency,
       customer: customer.id,
       payment_method_types: ['card'],
     });
@@ -77,8 +78,9 @@ export class TransactionService {
         { amount },
         userId,
         txn_reason,
-        transactionType.Wallet,
-        TransactionMode.DEPOSIT,
+        transactionType,
+        TransactionMode,
+        txn_app,
       );
 
     return {
@@ -88,7 +90,11 @@ export class TransactionService {
   }
 
   // validate the transaction with transaction id and paymentIntent
-  async validateTransaction(paymentData: validatePaymentDto, user: JwtPayload) {
+  async validateTransaction(
+    paymentData: validatePaymentDto,
+    user: JwtPayload,
+    isWallet: boolean,
+  ) {
     const paymentValidationResult = await this.validatePaymentIntent(
       paymentData,
     );
@@ -102,13 +108,17 @@ export class TransactionService {
         paymentIntentId,
       );
 
-      await this.walletService.updateUserWalletBalance(
-        user.sub,
-        transactionHistory.amount,
-      );
+      if (isWallet) {
+        await this.walletService.updateUserWalletBalance(
+          user.sub,
+          transactionHistory.amount,
+        );
+
+        return {message:"Payment successful, amount added to wallet"}
+      }
 
       return {
-        message: 'Payment Successfull user wallet updated succsfully',
+        message: 'Payment Successfull',
       };
     } else {
       await this.updateFailureTransactionHistory(
@@ -141,6 +151,7 @@ export class TransactionService {
   async retrievePaymentIntent(
     paymentIntentId: string,
   ): Promise<Stripe.PaymentIntent> {
+    
     try {
       const paymentIntent = await this.stripe.paymentIntents.retrieve(
         paymentIntentId,
@@ -184,7 +195,7 @@ export class TransactionService {
           $set: {
             'transactions.$.txn_id': paymentId,
             'transactions.$.status': status,
-            'transactions.$.txn_type': transactionType.Wallet,
+            // 'transactions.$.txn_type': transactionType.Wallet,
             'transactions.$.comments': 'Payment SuccessFull',
             'transactions.$.txn_date': new Date(),
           },
@@ -211,7 +222,7 @@ export class TransactionService {
           $set: {
             'transactions.$.status': 0,
             'transactions.$.comments': comment,
-            'transactions.$.txn_type': transactionType.Wallet,
+            // 'transactions.$.txn_type': transactionType.Wallet,
             'transactions.$.txn_date': new Date(),
           },
         },
@@ -227,81 +238,17 @@ export class TransactionService {
     return await this.transactionModel.findOne({ user_id: userId });
   }
 
-  async getPassport(
-    user: JwtPayload,
-    start: string,
-    end: string,
-    app: string,
-    page: number,
-    limit:string,
-  ) {
-    try {
-      
-      let pageSize = parseInt(limit)
-
-      const startDate = new Date(start);
-      const endDate = new Date(end);
-      endDate.setHours(23, 59, 59, 999);
-      const transaction = await this.transactionModel.aggregate([
-        { $match: { user_id: user.sub } },
-        {
-          $project: {
-            transactions: {
-              $filter: {
-                input: '$transactions',
-                as: 'transaction',
-                cond: {
-                  $and: [
-                    { $gte: ['$$transaction.created_at', startDate] },
-                    { $lte: ['$$transaction.created_at', endDate] },
-                    app ? { $eq: ['$$transaction.txn_app', app] } : '',
-                  ],
-                },
-              },
-            },
-          },
-        },
-        {
-          $group: {
-            _id: null,
-            totalCount: { $sum: { $size: '$transactions' } },
-            paginatedTransactions: { $push: '$transactions' },
-          },
-        },
-        {
-          $project: {
-            _id: 0,
-            totalCount: 1,
-            paginatedTransactions: {
-              $reduce: {
-                input: '$paginatedTransactions',
-                initialValue: [],
-                in: { $concatArrays: ['$$value', '$$this'] },
-              },
-            },
-          },
-        },
-        {
-          $project: {
-            totalCount: 1,
-            paginatedTransactions: {
-              $slice: [
-                '$paginatedTransactions',
-                (page - 1) * pageSize,
-                pageSize,
-              ],
-            },
-          },
-        },
-      ]);
-
-      console.log(transaction);
-      return {
-        history: transaction[0].paginatedTransactions,
-        totalCount: transaction[0].totalCount,
-      };
-    } catch (error) {
-      console.log(error);
-    }
+  async createPaymentRequest(dto, user: JwtPayload) {
+    const userData = await this.userService.getUserById(user.sub);
+    return await this.createTransaction(
+      dto.amount,
+      user.sub.toString(),
+      userData.currency,
+      dto.reason,
+      user.email,
+      transactionType.SPEND,
+      TransactionMode.WITHDRAWAL,
+      dto.transaction_app,
+    );
   }
 }

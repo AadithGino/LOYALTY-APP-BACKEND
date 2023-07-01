@@ -1,13 +1,17 @@
-import { Controller, Get, Body, Post,Query } from '@nestjs/common';
+import { Controller, Get, Body, Post, Query } from '@nestjs/common';
 import { TransactionService } from './transaction.service';
 import { GetUser, Public } from 'src/shared/decorators';
 import { JwtPayload } from 'src/auth/stragtegies';
 import { Transaction_APP } from './schema/transaction.schema';
-
+import { TransactionHistoryService } from './transactionHistory.service';
+import { createPaymentDto, validatePaymentDto } from './dto';
 
 @Controller('transaction')
 export class TransactionController {
-  constructor(private readonly transactionService: TransactionService) {}
+  constructor(
+    private readonly transactionService: TransactionService,
+    private readonly transactionHistoryService: TransactionHistoryService,
+  ) {}
 
   @Get('/passbook')
   getPassport(
@@ -18,12 +22,23 @@ export class TransactionController {
     @Query('limit') limit,
     @Query('app') app: string,
   ) {
-    return this.transactionService.getPassport(user,start,end,Transaction_APP.LOYALTY_APP,page,limit);
+    return this.transactionHistoryService.getPassport(
+      user,
+      start,
+      end,
+      app,
+      page,
+      limit,
+    );
   }
 
-  // @Public()
-  // @Post('/create-emi')
-  // createemi(@Body() body){
-  //   return this.transactionService.createMonthlyEMISubscription()
-  // }
+  @Post('/create-payment-request')
+  createPaymentRequest(@Body() dto:createPaymentDto, @GetUser() user:JwtPayload) {
+    return this.transactionService.createPaymentRequest(dto, user);
+  }
+
+  @Post('/validate-payment-request')
+  validatePaymentRequest(@Body() dto:validatePaymentDto, @GetUser() user:JwtPayload) {
+    return this.transactionService.validateTransaction(dto, user,false);
+  }
 }

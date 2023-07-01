@@ -4,10 +4,6 @@ import { Reward } from './schema/rewards.schema';
 import { Model } from 'mongoose';
 import { createRewardDto, updateRewardDto } from './dto';
 import { TransactionService } from 'src/transaction/transaction.service';
-import {
-  TransactionMode,
-  transactionType,
-} from 'src/transaction/schema/transaction.schema';
 import { TransactionHistoryService } from 'src/transaction/transactionHistory.service';
 import { PointsService } from 'src/points/points.service';
 

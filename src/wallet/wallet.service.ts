@@ -15,6 +15,7 @@ import { validatePaymentDto } from 'src/transaction/dto';
 import { walletRechargeFromWalletDto } from './dto';
 import {
   TransactionMode,
+  Transaction_APP,
   transactionType,
 } from 'src/transaction/schema/transaction.schema';
 import { TransactionHistoryService } from 'src/transaction/transactionHistory.service';
@@ -79,7 +80,10 @@ export class WalletService {
       user.sub,
       userdata.currency,
       'Wallet Recharge',
-      user.email
+      user.email,
+      transactionType.Wallet,
+      TransactionMode.DEPOSIT,
+      Transaction_APP.LOYALTY_APP,
     );
   }
 
@@ -98,6 +102,7 @@ export class WalletService {
       'Wallet To Wallet Transfer',
       transactionType.Wallet,
       TransactionMode.WITHDRAWAL,
+      Transaction_APP.LOYALTY_APP,
       2,
       dto.user_id,
     );
@@ -108,6 +113,7 @@ export class WalletService {
       'Wallet To Wallet Transfer',
       transactionType.Wallet,
       TransactionMode.DEPOSIT,
+      Transaction_APP.LOYALTY_APP,
       2,
       user.sub,
     );
@@ -118,7 +124,7 @@ export class WalletService {
     dto: validatePaymentDto,
     user: JwtPayload,
   ) {
-    return await this.transactionService.validateTransaction(dto, user);
+    return await this.transactionService.validateTransaction(dto, user, true);
   }
 
   private encryptBalance(balance: number): string {

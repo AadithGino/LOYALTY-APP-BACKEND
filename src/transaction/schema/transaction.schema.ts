@@ -6,6 +6,7 @@ export type TransactionDocument = Transaction & Document;
 export enum transactionType {
   Wallet = 'Wallet',
   Points = 'Points',
+  SPEND = 'SPEND',
 }
 
 export enum TransactionMode {

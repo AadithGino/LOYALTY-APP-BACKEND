@@ -1,1757 +1,1974 @@
 [
   {
-    "name": "Afghanistan",
-    "shortCode": "AF",
-    "longCode": "AFG",
+    "countryName": "Afghanistan",
+    "countryShortCode": "AF",
+    "countryLongCode": "AFG",
     "phonePrefix": "+93",
     "latitude": 33.93911,
     "longitude": 67.709953,
-    "currency": "Afghan afghani"
+    "currency": "AFN"
   },
   {
-    "name": "Albania",
-    "shortCode": "AL",
-    "longCode": "ALB",
+    "countryName": "Albania",
+    "countryShortCode": "AL",
+    "countryLongCode": "ALB",
     "phonePrefix": "+355",
     "latitude": 41.153332,
     "longitude": 20.168331,
-    "currency": "Albanian lek"
+    "currency": "ALL"
   },
   {
-    "name": "Algeria",
-    "shortCode": "DZ",
-    "longCode": "DZA",
+    "countryName": "Algeria",
+    "countryShortCode": "DZ",
+    "countryLongCode": "DZA",
     "phonePrefix": "+213",
     "latitude": 28.033886,
     "longitude": 1.659626,
-    "currency": "Algerian dinar"
+    "currency": "DZD"
   },
   {
-    "name": "Andorra",
-    "shortCode": "AD",
-    "longCode": "AND",
+    "countryName": "Andorra",
+    "countryShortCode": "AD",
+    "countryLongCode": "AND",
     "phonePrefix": "+376",
     "latitude": 42.546245,
     "longitude": 1.601554,
-    "currency": "Euro"
+    "currency": "EUR"
   },
   {
-    "name": "Angola",
-    "shortCode": "AO",
-    "longCode": "AGO",
+    "countryName": "Angola",
+    "countryShortCode": "AO",
+    "countryLongCode": "AGO",
     "phonePrefix": "+244",
     "latitude": -11.202692,
     "longitude": 17.873887,
-    "currency": "Angolan kwanza"
+    "currency": "AOA"
   },
   {
-    "name": "Antigua and Barbuda",
-    "shortCode": "AG",
-    "longCode": "ATG",
-    "phonePrefix": "+1-268",
-    "latitude": 17.060816,
-    "longitude": -61.796428,
-    "currency": "East Caribbean dollar"
-  },
-  {
-    "name": "Argentina",
-    "shortCode": "AR",
-    "longCode": "ARG",
+    "countryName": "Argentina",
+    "countryShortCode": "AR",
+    "countryLongCode": "ARG",
     "phonePrefix": "+54",
     "latitude": -38.416097,
     "longitude": -63.616672,
-    "currency": "Argentine peso"
+    "currency": "ARS"
   },
   {
-    "name": "Armenia",
-    "shortCode": "AM",
-    "longCode": "ARM",
+    "countryName": "Armenia",
+    "countryShortCode": "AM",
+    "countryLongCode": "ARM",
     "phonePrefix": "+374",
     "latitude": 40.069099,
     "longitude": 45.038189,
-    "currency": "Armenian dram"
+    "currency": "AMD"
   },
   {
-    "name": "Australia",
-    "shortCode": "AU",
-    "longCode": "AUS",
+    "countryName": "Australia",
+    "countryShortCode": "AU",
+    "countryLongCode": "AUS",
     "phonePrefix": "+61",
     "latitude": -25.274398,
     "longitude": 133.775136,
-    "currency": "Australian dollar"
+    "currency": "AUD"
   },
   {
-    "name": "Austria",
-    "shortCode": "AT",
-    "longCode": "AUT",
+    "countryName": "Austria",
+    "countryShortCode": "AT",
+    "countryLongCode": "AUT",
     "phonePrefix": "+43",
     "latitude": 47.516231,
     "longitude": 14.550072,
-    "currency": "Euro"
+    "currency": "EUR"
   },
   {
-    "name": "Azerbaijan",
-    "shortCode": "AZ",
-    "longCode": "AZE",
+    "countryName": "Azerbaijan",
+    "countryShortCode": "AZ",
+    "countryLongCode": "AZE",
     "phonePrefix": "+994",
     "latitude": 40.143105,
     "longitude": 47.576927,
-    "currency": "Azerbaijani manat"
+    "currency": "AZN"
   },
   {
-    "name": "Bahamas",
-    "shortCode": "BS",
-    "longCode": "BHS",
-    "phonePrefix": "+1-242",
+    "countryName": "Bahamas",
+    "countryShortCode": "BS",
+    "countryLongCode": "BHS",
+    "phonePrefix": "+1",
     "latitude": 25.03428,
     "longitude": -77.39628,
-    "currency": "Bahamian dollar"
+    "currency": "BSD"
   },
   {
-    "name": "Bahrain",
-    "shortCode": "BH",
-    "longCode": "BHR",
+    "countryName": "Bahrain",
+    "countryShortCode": "BH",
+    "countryLongCode": "BHR",
     "phonePrefix": "+973",
-    "latitude": 26.0667,
-    "longitude": 50.5577,
-    "currency": "Bahraini dinar"
+    "latitude": 25.930414,
+    "longitude": 50.637772,
+    "currency": "BHD"
   },
   {
-    "name": "Bangladesh",
-    "shortCode": "BD",
-    "longCode": "BGD",
+    "countryName": "Bangladesh",
+    "countryShortCode": "BD",
+    "countryLongCode": "BGD",
     "phonePrefix": "+880",
     "latitude": 23.684994,
     "longitude": 90.356331,
-    "currency": "Bangladeshi taka"
+    "currency": "BDT"
   },
   {
-    "name": "Barbados",
-    "shortCode": "BB",
-    "longCode": "BRB",
-    "phonePrefix": "+1-246",
+    "countryName": "Barbados",
+    "countryShortCode": "BB",
+    "countryLongCode": "BRB",
+    "phonePrefix": "+1",
     "latitude": 13.193887,
     "longitude": -59.543198,
-    "currency": "Barbadian dollar"
+    "currency": "BBD"
   },
   {
-    "name": "Belarus",
-    "shortCode": "BY",
-    "longCode": "BLR",
+    "countryName": "Belarus",
+    "countryShortCode": "BY",
+    "countryLongCode": "BLR",
     "phonePrefix": "+375",
     "latitude": 53.709807,
     "longitude": 27.953389,
-    "currency": "Belarusian ruble"
+    "currency": "BYN"
   },
   {
-    "name": "Belgium",
-    "shortCode": "BE",
-    "longCode": "BEL",
+    "countryName": "Belgium",
+    "countryShortCode": "BE",
+    "countryLongCode": "BEL",
     "phonePrefix": "+32",
     "latitude": 50.503887,
     "longitude": 4.469936,
-    "currency": "Euro"
+    "currency": "EUR"
   },
   {
-    "name": "Belize",
-    "shortCode": "BZ",
-    "longCode": "BLZ",
+    "countryName": "Belize",
+    "countryShortCode": "BZ",
+    "countryLongCode": "BLZ",
     "phonePrefix": "+501",
     "latitude": 17.189877,
     "longitude": -88.49765,
-    "currency": "Belize dollar"
+    "currency": "BZD"
   },
   {
-    "name": "Benin",
-    "shortCode": "BJ",
-    "longCode": "BEN",
+    "countryName": "Benin",
+    "countryShortCode": "BJ",
+    "countryLongCode": "BEN",
     "phonePrefix": "+229",
     "latitude": 9.30769,
     "longitude": 2.315834,
-    "currency": "West African CFA franc"
+    "currency": "XOF"
   },
   {
-    "name": "Bhutan",
-    "shortCode": "BT",
-    "longCode": "BTN",
+    "countryName": "Bermuda",
+    "countryShortCode": "BM",
+    "countryLongCode": "BMU",
+    "phonePrefix": "+1",
+    "latitude": 32.321384,
+    "longitude": -64.75737,
+    "currency": "BMD"
+  },
+  {
+    "countryName": "Bhutan",
+    "countryShortCode": "BT",
+    "countryLongCode": "BTN",
     "phonePrefix": "+975",
     "latitude": 27.514162,
     "longitude": 90.433601,
-    "currency": "Bhutanese ngultrum"
+    "currency": "BTN"
   },
   {
-    "name": "Bolivia",
-    "shortCode": "BO",
-    "longCode": "BOL",
+    "countryName": "Bolivia",
+    "countryShortCode": "BO",
+    "countryLongCode": "BOL",
     "phonePrefix": "+591",
     "latitude": -16.290154,
     "longitude": -63.588653,
-    "currency": "Bolivian boliviano"
+    "currency": "BOB"
   },
   {
-    "name": "Bosnia and Herzegovina",
-    "shortCode": "BA",
-    "longCode": "BIH",
+    "countryName": "Bosnia and Herzegovina",
+    "countryShortCode": "BA",
+    "countryLongCode": "BIH",
     "phonePrefix": "+387",
     "latitude": 43.915886,
     "longitude": 17.679076,
-    "currency": "Bosnia and Herzegovina convertible mark"
+    "currency": "BAM"
   },
   {
-    "name": "Botswana",
-    "shortCode": "BW",
-    "longCode": "BWA",
+    "countryName": "Botswana",
+    "countryShortCode": "BW",
+    "countryLongCode": "BWA",
     "phonePrefix": "+267",
     "latitude": -22.328474,
     "longitude": 24.684866,
-    "currency": "Botswana pula"
+    "currency": "BWP"
   },
   {
-    "name": "Brazil",
-    "shortCode": "BR",
-    "longCode": "BRA",
+    "countryName": "Brazil",
+    "countryShortCode": "BR",
+    "countryLongCode": "BRA",
     "phonePrefix": "+55",
     "latitude": -14.235004,
     "longitude": -51.92528,
-    "currency": "Brazilian real"
+    "currency": "BRL"
   },
   {
-    "name": "Brunei",
-    "shortCode": "BN",
-    "longCode": "BRN",
+    "countryName": "British Virgin Islands",
+    "countryShortCode": "VG",
+    "countryLongCode": "VGB",
+    "phonePrefix": "+1",
+    "latitude": 18.420695,
+    "longitude": -64.639968,
+    "currency": "USD"
+  },
+  {
+    "countryName": "Brunei Darussalam",
+    "countryShortCode": "BN",
+    "countryLongCode": "BRN",
     "phonePrefix": "+673",
     "latitude": 4.535277,
     "longitude": 114.727669,
-    "currency": "Brunei dollar"
+    "currency": "BND"
   },
   {
-    "name": "Bulgaria",
-    "shortCode": "BG",
-    "longCode": "BGR",
+    "countryName": "Bulgaria",
+    "countryShortCode": "BG",
+    "countryLongCode": "BGR",
     "phonePrefix": "+359",
     "latitude": 42.733883,
     "longitude": 25.48583,
-    "currency": "Bulgarian lev"
+    "currency": "BGN"
   },
   {
-    "name": "Burkina Faso",
-    "shortCode": "BF",
-    "longCode": "BFA",
+    "countryName": "Burkina Faso",
+    "countryShortCode": "BF",
+    "countryLongCode": "BFA",
     "phonePrefix": "+226",
     "latitude": 12.238333,
     "longitude": -1.561593,
-    "currency": "West African CFA franc"
+    "currency": "XOF"
   },
   {
-    "name": "Burundi",
-    "shortCode": "BI",
-    "longCode": "BDI",
+    "countryName": "Burundi",
+    "countryShortCode": "BI",
+    "countryLongCode": "BDI",
     "phonePrefix": "+257",
     "latitude": -3.373056,
     "longitude": 29.918886,
-    "currency": "Burundian franc"
+    "currency": "BIF"
   },
   {
-    "name": "Cabo Verde",
-    "shortCode": "CV",
-    "longCode": "CPV",
-    "phonePrefix": "+238",
-    "latitude": 16.002082,
-    "longitude": -24.013197,
-    "currency": "Cape Verdean escudo"
-  },
-  {
-    "name": "Cambodia",
-    "shortCode": "KH",
-    "longCode": "KHM",
+    "countryName": "Cambodia",
+    "countryShortCode": "KH",
+    "countryLongCode": "KHM",
     "phonePrefix": "+855",
     "latitude": 12.565679,
     "longitude": 104.990963,
-    "currency": "Cambodian riel"
+    "currency": "KHR"
   },
   {
-    "name": "Cameroon",
-    "shortCode": "CM",
-    "longCode": "CMR",
+    "countryName": "Cameroon",
+    "countryShortCode": "CM",
+    "countryLongCode": "CMR",
     "phonePrefix": "+237",
     "latitude": 7.369722,
     "longitude": 12.354722,
-    "currency": "Central African CFA franc"
+    "currency": "XAF"
   },
   {
-    "name": "Canada",
-    "shortCode": "CA",
-    "longCode": "CAN",
+    "countryName": "Canada",
+    "countryShortCode": "CA",
+    "countryLongCode": "CAN",
     "phonePrefix": "+1",
     "latitude": 56.130366,
     "longitude": -106.346771,
-    "currency": "Canadian dollar"
+    "currency": "CAD"
   },
   {
-    "name": "Central African Republic",
-    "shortCode": "CF",
-    "longCode": "CAF",
+    "countryName": "Cape Verde",
+    "countryShortCode": "CV",
+    "countryLongCode": "CPV",
+    "phonePrefix": "+238",
+    "latitude": 16.002082,
+    "longitude": -24.013197,
+    "currency": "CVE"
+  },
+  {
+    "countryName": "Cayman Islands",
+    "countryShortCode": "KY",
+    "countryLongCode": "CYM",
+    "phonePrefix": "+1",
+    "latitude": 19.513469,
+    "longitude": -80.566956,
+    "currency": "KYD"
+  },
+  {
+    "countryName": "Central African Republic",
+    "countryShortCode": "CF",
+    "countryLongCode": "CAF",
     "phonePrefix": "+236",
     "latitude": 6.611111,
     "longitude": 20.939444,
-    "currency": "Central African CFA franc"
+    "currency": "XAF"
   },
   {
-    "name": "Chad",
-    "shortCode": "TD",
-    "longCode": "TCD",
+    "countryName": "Chad",
+    "countryShortCode": "TD",
+    "countryLongCode": "TCD",
     "phonePrefix": "+235",
     "latitude": 15.454166,
     "longitude": 18.732207,
-    "currency": "Central African CFA franc"
+    "currency": "XAF"
   },
   {
-    "name": "Chile",
-    "shortCode": "CL",
-    "longCode": "CHL",
+    "countryName": "Chile",
+    "countryShortCode": "CL",
+    "countryLongCode": "CHL",
     "phonePrefix": "+56",
     "latitude": -35.675147,
     "longitude": -71.542969,
-    "currency": "Chilean peso"
+    "currency": "CLP"
   },
   {
-    "name": "China",
-    "shortCode": "CN",
-    "longCode": "CHN",
+    "countryName": "China",
+    "countryShortCode": "CN",
+    "countryLongCode": "CHN",
     "phonePrefix": "+86",
     "latitude": 35.86166,
     "longitude": 104.195397,
-    "currency": "Chinese yuan"
+    "currency": "CNY"
   },
   {
-    "name": "Colombia",
-    "shortCode": "CO",
-    "longCode": "COL",
+    "countryName": "Colombia",
+    "countryShortCode": "CO",
+    "countryLongCode": "COL",
     "phonePrefix": "+57",
     "latitude": 4.570868,
     "longitude": -74.297333,
-    "currency": "Colombian peso"
+    "currency": "COP"
   },
   {
-    "name": "Comoros",
-    "shortCode": "KM",
-    "longCode": "COM",
+    "countryName": "Comoros",
+    "countryShortCode": "KM",
+    "countryLongCode": "COM",
     "phonePrefix": "+269",
     "latitude": -11.875001,
     "longitude": 43.872219,
-    "currency": "Comorian franc"
+    "currency": "KMF"
   },
   {
-    "name": "Congo (Brazzaville)",
-    "shortCode": "CG",
-    "longCode": "COG",
+    "countryName": "Congo",
+    "countryShortCode": "CG",
+    "countryLongCode": "COG",
     "phonePrefix": "+242",
     "latitude": -0.228021,
     "longitude": 15.827659,
-    "currency": "Central African CFA franc"
+    "currency": "XAF"
   },
   {
-    "name": "Congo (Kinshasa)",
-    "shortCode": "CD",
-    "longCode": "COD",
-    "phonePrefix": "+243",
-    "latitude": -4.038333,
-    "longitude": 21.758664,
-    "currency": "Congolese franc"
+    "countryName": "Cook Islands",
+    "countryShortCode": "CK",
+    "countryLongCode": "COK",
+    "phonePrefix": "+682",
+    "latitude": -21.236736,
+    "longitude": -159.777671,
+    "currency": "NZD"
   },
   {
-    "name": "Costa Rica",
-    "shortCode": "CR",
-    "longCode": "CRI",
+    "countryName": "Costa Rica",
+    "countryShortCode": "CR",
+    "countryLongCode": "CRI",
     "phonePrefix": "+506",
     "latitude": 9.748917,
     "longitude": -83.753428,
-    "currency": "Costa Rican colon"
+    "currency": "CRC"
   },
   {
-    "name": "Croatia",
-    "shortCode": "HR",
-    "longCode": "HRV",
-    "phonePrefix": "+385",
-    "latitude": 45.1,
-    "longitude": 15.2,
-    "currency": "Croatian kuna"
-  },
-  {
-    "name": "Cuba",
-    "shortCode": "CU",
-    "longCode": "CUB",
-    "phonePrefix": "+53",
-    "latitude": 21.521757,
-    "longitude": -77.781167,
-    "currency": "Cuban peso"
-  },
-  {
-    "name": "Cyprus",
-    "shortCode": "CY",
-    "longCode": "CYP",
-    "phonePrefix": "+357",
-    "latitude": 35.126413,
-    "longitude": 33.429859,
-    "currency": "Euro"
-  },
-  {
-    "name": "Czech Republic",
-    "shortCode": "CZ",
-    "longCode": "CZE",
-    "phonePrefix": "+420",
-    "latitude": 49.817492,
-    "longitude": 15.472962,
-    "currency": "Czech koruna"
-  },
-  {
-    "name": "Côte d'Ivoire",
-    "shortCode": "CI",
-    "longCode": "CIV",
+    "countryName": "Côte d'Ivoire",
+    "countryShortCode": "CI",
+    "countryLongCode": "CIV",
     "phonePrefix": "+225",
     "latitude": 7.539989,
     "longitude": -5.54708,
-    "currency": "West African CFA franc"
+    "currency": "XOF"
   },
   {
-    "name": "Denmark",
-    "shortCode": "DK",
-    "longCode": "DNK",
+    "countryName": "Croatia",
+    "countryShortCode": "HR",
+    "countryLongCode": "HRV",
+    "phonePrefix": "+385",
+    "latitude": 45.1,
+    "longitude": 15.2,
+    "currency": "HRK"
+  },
+  {
+    "countryName": "Cuba",
+    "countryShortCode": "CU",
+    "countryLongCode": "CUB",
+    "phonePrefix": "+53",
+    "latitude": 21.521757,
+    "longitude": -77.781167,
+    "currency": "CUP"
+  },
+  {
+    "countryName": "Cyprus",
+    "countryShortCode": "CY",
+    "countryLongCode": "CYP",
+    "phonePrefix": "+357",
+    "latitude": 35.126413,
+    "longitude": 33.429859,
+    "currency": "EUR"
+  },
+  {
+    "countryName": "Czech Republic",
+    "countryShortCode": "CZ",
+    "countryLongCode": "CZE",
+    "phonePrefix": "+420",
+    "latitude": 49.817492,
+    "longitude": 15.472962,
+    "currency": "CZK"
+  },
+  {
+    "countryName": "Denmark",
+    "countryShortCode": "DK",
+    "countryLongCode": "DNK",
     "phonePrefix": "+45",
     "latitude": 56.26392,
     "longitude": 9.501785,
-    "currency": "Danish krone"
+    "currency": "DKK"
   },
   {
-    "name": "Djibouti",
-    "shortCode": "DJ",
-    "longCode": "DJI",
+    "countryName": "Djibouti",
+    "countryShortCode": "DJ",
+    "countryLongCode": "DJI",
     "phonePrefix": "+253",
     "latitude": 11.825138,
     "longitude": 42.590275,
-    "currency": "Djiboutian franc"
+    "currency": "DJF"
   },
   {
-    "name": "Dominica",
-    "shortCode": "DM",
-    "longCode": "DMA",
-    "phonePrefix": "+1-767",
+    "countryName": "Dominica",
+    "countryShortCode": "DM",
+    "countryLongCode": "DMA",
+    "phonePrefix": "+1",
     "latitude": 15.414999,
     "longitude": -61.370976,
-    "currency": "East Caribbean dollar"
+    "currency": "XCD"
   },
   {
-    "name": "Dominican Republic",
-    "shortCode": "DO",
-    "longCode": "DOM",
-    "phonePrefix": "+1-809, +1-829, +1-849",
+    "countryName": "Dominican Republic",
+    "countryShortCode": "DO",
+    "countryLongCode": "DOM",
+    "phonePrefix": "+1",
     "latitude": 18.735693,
     "longitude": -70.162651,
-    "currency": "Dominican peso"
+    "currency": "DOP"
   },
   {
-    "name": "Ecuador",
-    "shortCode": "EC",
-    "longCode": "ECU",
+    "countryName": "Ecuador",
+    "countryShortCode": "EC",
+    "countryLongCode": "ECU",
     "phonePrefix": "+593",
     "latitude": -1.831239,
     "longitude": -78.183406,
-    "currency": "United States dollar"
+    "currency": "USD"
   },
   {
-    "name": "Egypt",
-    "shortCode": "EG",
-    "longCode": "EGY",
+    "countryName": "Egypt",
+    "countryShortCode": "EG",
+    "countryLongCode": "EGY",
     "phonePrefix": "+20",
     "latitude": 26.820553,
     "longitude": 30.802498,
-    "currency": "Egyptian pound"
+    "currency": "EGP"
   },
   {
-    "name": "El Salvador",
-    "shortCode": "SV",
-    "longCode": "SLV",
+    "countryName": "El Salvador",
+    "countryShortCode": "SV",
+    "countryLongCode": "SLV",
     "phonePrefix": "+503",
     "latitude": 13.794185,
     "longitude": -88.89653,
-    "currency": "United States dollar"
+    "currency": "USD"
   },
   {
-    "name": "Equatorial Guinea",
-    "shortCode": "GQ",
-    "longCode": "GNQ",
+    "countryName": "Equatorial Guinea",
+    "countryShortCode": "GQ",
+    "countryLongCode": "GNQ",
     "phonePrefix": "+240",
     "latitude": 1.650801,
     "longitude": 10.267895,
-    "currency": "Central African CFA franc"
+    "currency": "XAF"
   },
   {
-    "name": "Eritrea",
-    "shortCode": "ER",
-    "longCode": "ERI",
+    "countryName": "Eritrea",
+    "countryShortCode": "ER",
+    "countryLongCode": "ERI",
     "phonePrefix": "+291",
     "latitude": 15.179384,
     "longitude": 39.782334,
-    "currency": "Eritrean nakfa"
+    "currency": "ERN"
   },
   {
-    "name": "Estonia",
-    "shortCode": "EE",
-    "longCode": "EST",
+    "countryName": "Estonia",
+    "countryShortCode": "EE",
+    "countryLongCode": "EST",
     "phonePrefix": "+372",
     "latitude": 58.595272,
     "longitude": 25.013607,
-    "currency": "Euro"
+    "currency": "EUR"
   },
   {
-    "name": "Ethiopia",
-    "shortCode": "ET",
-    "longCode": "ETH",
+    "countryName": "Ethiopia",
+    "countryShortCode": "ET",
+    "countryLongCode": "ETH",
     "phonePrefix": "+251",
     "latitude": 9.145,
     "longitude": 40.489673,
-    "currency": "Ethiopian birr"
+    "currency": "ETB"
   },
   {
-    "name": "Fiji",
-    "shortCode": "FJ",
-    "longCode": "FJI",
+    "countryName": "Falkland Islands (Malvinas)",
+    "countryShortCode": "FK",
+    "countryLongCode": "FLK",
+    "phonePrefix": "+500",
+    "latitude": -51.796253,
+    "longitude": -59.523613,
+    "currency": "FKP"
+  },
+  {
+    "countryName": "Faroe Islands",
+    "countryShortCode": "FO",
+    "countryLongCode": "FRO",
+    "phonePrefix": "+298",
+    "latitude": 61.892635,
+    "longitude": -6.911806,
+    "currency": "DKK"
+  },
+  {
+    "countryName": "Fiji",
+    "countryShortCode": "FJ",
+    "countryLongCode": "FJI",
     "phonePrefix": "+679",
     "latitude": -16.578193,
     "longitude": 179.414413,
-    "currency": "Fijian dollar"
+    "currency": "FJD"
   },
   {
-    "name": "Finland",
-    "shortCode": "FI",
-    "longCode": "FIN",
+    "countryName": "Finland",
+    "countryShortCode": "FI",
+    "countryLongCode": "FIN",
     "phonePrefix": "+358",
     "latitude": 61.92411,
     "longitude": 25.748151,
-    "currency": "Euro"
+    "currency": "EUR"
   },
   {
-    "name": "France",
-    "shortCode": "FR",
-    "longCode": "FRA",
+    "countryName": "France",
+    "countryShortCode": "FR",
+    "countryLongCode": "FRA",
     "phonePrefix": "+33",
-    "latitude": 46.603354,
-    "longitude": 1.888334,
-    "currency": "Euro"
+    "latitude": 46.227638,
+    "longitude": 2.213749,
+    "currency": "EUR"
   },
   {
-    "name": "Gabon",
-    "shortCode": "GA",
-    "longCode": "GAB",
+    "countryName": "French Guiana",
+    "countryShortCode": "GF",
+    "countryLongCode": "GUF",
+    "phonePrefix": "+594",
+    "latitude": 3.933889,
+    "longitude": -53.125782,
+    "currency": "EUR"
+  },
+  {
+    "countryName": "French Polynesia",
+    "countryShortCode": "PF",
+    "countryLongCode": "PYF",
+    "phonePrefix": "+689",
+    "latitude": -17.679742,
+    "longitude": -149.406843,
+    "currency": "XPF"
+  },
+  {
+    "countryName": "Gabon",
+    "countryShortCode": "GA",
+    "countryLongCode": "GAB",
     "phonePrefix": "+241",
     "latitude": -0.803689,
     "longitude": 11.609444,
-    "currency": "Central African CFA franc"
+    "currency": "XAF"
   },
   {
-    "name": "Gambia",
-    "shortCode": "GM",
-    "longCode": "GMB",
+    "countryName": "Gambia",
+    "countryShortCode": "GM",
+    "countryLongCode": "GMB",
     "phonePrefix": "+220",
     "latitude": 13.443182,
     "longitude": -15.310139,
-    "currency": "Gambian dalasi"
+    "currency": "GMD"
   },
   {
-    "name": "Georgia",
-    "shortCode": "GE",
-    "longCode": "GEO",
+    "countryName": "Georgia",
+    "countryShortCode": "GE",
+    "countryLongCode": "GEO",
     "phonePrefix": "+995",
     "latitude": 42.315407,
     "longitude": 43.356892,
-    "currency": "Georgian lari"
+    "currency": "GEL"
   },
   {
-    "name": "Germany",
-    "shortCode": "DE",
-    "longCode": "DEU",
+    "countryName": "Germany",
+    "countryShortCode": "DE",
+    "countryLongCode": "DEU",
     "phonePrefix": "+49",
     "latitude": 51.165691,
     "longitude": 10.451526,
-    "currency": "Euro"
+    "currency": "EUR"
   },
   {
-    "name": "Ghana",
-    "shortCode": "GH",
-    "longCode": "GHA",
+    "countryName": "Ghana",
+    "countryShortCode": "GH",
+    "countryLongCode": "GHA",
     "phonePrefix": "+233",
     "latitude": 7.946527,
     "longitude": -1.023194,
-    "currency": "Ghanaian cedi"
+    "currency": "GHS"
   },
   {
-    "name": "Greece",
-    "shortCode": "GR",
-    "longCode": "GRC",
+    "countryName": "Gibraltar",
+    "countryShortCode": "GI",
+    "countryLongCode": "GIB",
+    "phonePrefix": "+350",
+    "latitude": 36.137741,
+    "longitude": -5.345374,
+    "currency": "GIP"
+  },
+  {
+    "countryName": "Greece",
+    "countryShortCode": "GR",
+    "countryLongCode": "GRC",
     "phonePrefix": "+30",
     "latitude": 39.074208,
     "longitude": 21.824312,
-    "currency": "Euro"
+    "currency": "EUR"
   },
   {
-    "name": "Grenada",
-    "shortCode": "GD",
-    "longCode": "GRD",
-    "phonePrefix": "+1-473",
+    "countryName": "Greenland",
+    "countryShortCode": "GL",
+    "countryLongCode": "GRL",
+    "phonePrefix": "+299",
+    "latitude": 71.706936,
+    "longitude": -42.604303,
+    "currency": "DKK"
+  },
+  {
+    "countryName": "Grenada",
+    "countryShortCode": "GD",
+    "countryLongCode": "GRD",
+    "phonePrefix": "+1",
     "latitude": 12.262776,
     "longitude": -61.604171,
-    "currency": "East Caribbean dollar"
+    "currency": "XCD"
   },
   {
-    "name": "Guatemala",
-    "shortCode": "GT",
-    "longCode": "GTM",
+    "countryName": "Guadeloupe",
+    "countryShortCode": "GP",
+    "countryLongCode": "GLP",
+    "phonePrefix": "+590",
+    "latitude": 16.995971,
+    "longitude": -62.067641,
+    "currency": "EUR"
+  },
+  {
+    "countryName": "Guam",
+    "countryShortCode": "GU",
+    "countryLongCode": "GUM",
+    "phonePrefix": "+1",
+    "latitude": 13.444304,
+    "longitude": 144.793731,
+    "currency": "USD"
+  },
+  {
+    "countryName": "Guatemala",
+    "countryShortCode": "GT",
+    "countryLongCode": "GTM",
     "phonePrefix": "+502",
     "latitude": 15.783471,
     "longitude": -90.230759,
-    "currency": "Guatemalan quetzal"
+    "currency": "GTQ"
   },
   {
-    "name": "Guinea",
-    "shortCode": "GN",
-    "longCode": "GIN",
+    "countryName": "Guernsey",
+    "countryShortCode": "GG",
+    "countryLongCode": "GGY",
+    "phonePrefix": "+44",
+    "latitude": 49.465691,
+    "longitude": -2.585278,
+    "currency": "GBP"
+  },
+  {
+    "countryName": "Guinea",
+    "countryShortCode": "GN",
+    "countryLongCode": "GIN",
     "phonePrefix": "+224",
     "latitude": 9.945587,
     "longitude": -9.696645,
-    "currency": "Guinean franc"
+    "currency": "GNF"
   },
   {
-    "name": "Guinea-Bissau",
-    "shortCode": "GW",
-    "longCode": "GNB",
+    "countryName": "Guinea-Bissau",
+    "countryShortCode": "GW",
+    "countryLongCode": "GNB",
     "phonePrefix": "+245",
     "latitude": 11.803749,
     "longitude": -15.180413,
-    "currency": "West African CFA franc"
+    "currency": "XOF"
   },
   {
-    "name": "Guyana",
-    "shortCode": "GY",
-    "longCode": "GUY",
-    "phonePrefix": "+592",
-    "latitude": 4.860416,
-    "longitude": -58.93018,
-    "currency": "Guyanese dollar"
-  },
-  {
-    "name": "Haiti",
-    "shortCode": "HT",
-    "longCode": "HTI",
+    "countryName": "Haiti",
+    "countryShortCode": "HT",
+    "countryLongCode": "HTI",
     "phonePrefix": "+509",
     "latitude": 18.971187,
     "longitude": -72.285215,
-    "currency": "Haitian gourde"
-  },
-  {
-    "name": "Honduras",
-    "shortCode": "HN",
-    "longCode": "HND",
+    "currency": "HTG"
+    },
+    {
+    "countryName": "Honduras",
+    "countryShortCode": "HN",
+    "countryLongCode": "HND",
     "phonePrefix": "+504",
     "latitude": 15.199999,
     "longitude": -86.241905,
-    "currency": "Honduran lempira"
-  },
-  {
-    "name": "Hungary",
-    "shortCode": "HU",
-    "longCode": "HUN",
+    "currency": "HNL"
+    },
+    {
+    "countryName": "Hong Kong",
+    "countryShortCode": "HK",
+    "countryLongCode": "HKG",
+    "phonePrefix": "+852",
+    "latitude": 22.396428,
+    "longitude": 114.109497,
+    "currency": "HKD"
+    },
+    {
+    "countryName": "Hungary",
+    "countryShortCode": "HU",
+    "countryLongCode": "HUN",
     "phonePrefix": "+36",
     "latitude": 47.162494,
     "longitude": 19.503304,
-    "currency": "Hungarian forint"
-  },
-  {
-    "name": "Iceland",
-    "shortCode": "IS",
-    "longCode": "ISL",
+    "currency": "HUF"
+    },
+    {
+    "countryName": "Iceland",
+    "countryShortCode": "IS",
+    "countryLongCode": "ISL",
     "phonePrefix": "+354",
     "latitude": 64.963051,
     "longitude": -19.020835,
-    "currency": "Icelandic króna"
-  },
-  {
-    "name": "India",
-    "shortCode": "IN",
-    "longCode": "IND",
+    "currency": "ISK"
+    },
+    {
+    "countryName": "India",
+    "countryShortCode": "IN",
+    "countryLongCode": "IND",
     "phonePrefix": "+91",
     "latitude": 20.593684,
     "longitude": 78.96288,
-    "currency": "Indian rupee"
-  },
-  {
-    "name": "Indonesia",
-    "shortCode": "ID",
-    "longCode": "IDN",
+    "currency": "INR"
+    },
+    {
+    "countryName": "Indonesia",
+    "countryShortCode": "ID",
+    "countryLongCode": "IDN",
     "phonePrefix": "+62",
     "latitude": -0.789275,
     "longitude": 113.921327,
-    "currency": "Indonesian rupiah"
-  },
-  {
-    "name": "Iran",
-    "shortCode": "IR",
-    "longCode": "IRN",
+    "currency": "IDR"
+    },
+    {
+    "countryName": "Iran (Islamic Republic of)",
+    "countryShortCode": "IR",
+    "countryLongCode": "IRN",
     "phonePrefix": "+98",
     "latitude": 32.427908,
     "longitude": 53.688046,
-    "currency": "Iranian rial"
-  },
-  {
-    "name": "Iraq",
-    "shortCode": "IQ",
-    "longCode": "IRQ",
+    "currency": "IRR"
+    },
+    {
+    "countryName": "Iraq",
+    "countryShortCode": "IQ",
+    "countryLongCode": "IRQ",
     "phonePrefix": "+964",
     "latitude": 33.223191,
     "longitude": 43.679291,
-    "currency": "Iraqi dinar"
-  },
-  {
-    "name": "Ireland",
-    "shortCode": "IE",
-    "longCode": "IRL",
+    "currency": "IQD"
+    },
+    {
+    "countryName": "Ireland",
+    "countryShortCode": "IE",
+    "countryLongCode": "IRL",
     "phonePrefix": "+353",
     "latitude": 53.41291,
     "longitude": -8.24389,
-    "currency": "Euro"
-  },
-  {
-    "name": "Israel",
-    "shortCode": "IL",
-    "longCode": "ISR",
+    "currency": "EUR"
+    },
+    {
+    "countryName": "Isle of Man",
+    "countryShortCode": "IM",
+    "countryLongCode": "IMN",
+    "phonePrefix": "+44",
+    "latitude": 54.236107,
+    "longitude": -4.548056,
+    "currency": "GBP"
+    },
+    {
+    "countryName": "Israel",
+    "countryShortCode": "IL",
+    "countryLongCode": "ISR",
     "phonePrefix": "+972",
     "latitude": 31.046051,
     "longitude": 34.851612,
-    "currency": "Israeli new shekel"
-  },
-  {
-    "name": "Italy",
-    "shortCode": "IT",
-    "longCode": "ITA",
+    "currency": "ILS"
+    },
+    {
+    "countryName": "Italy",
+    "countryShortCode": "IT",
+    "countryLongCode": "ITA",
     "phonePrefix": "+39",
     "latitude": 41.87194,
     "longitude": 12.56738,
-    "currency": "Euro"
-  },
-  {
-    "name": "Jamaica",
-    "shortCode": "JM",
-    "longCode": "JAM",
-    "phonePrefix": "+1-876",
+    "currency": "EUR"
+    },
+    {
+    "countryName": "Jamaica",
+    "countryShortCode": "JM",
+    "countryLongCode": "JAM",
+    "phonePrefix": "+1 876",
     "latitude": 18.109581,
     "longitude": -77.297508,
-    "currency": "Jamaican dollar"
-  },
-  {
-    "name": "Japan",
-    "shortCode": "JP",
-    "longCode": "JPN",
+    "currency": "JMD"
+    },
+    {
+    "countryName": "Japan",
+    "countryShortCode": "JP",
+    "countryLongCode": "JPN",
     "phonePrefix": "+81",
     "latitude": 36.204824,
     "longitude": 138.252924,
-    "currency": "Japanese yen"
-  },
-  {
-    "name": "Jordan",
-    "shortCode": "JO",
-    "longCode": "JOR",
+    "currency": "JPY"
+    },
+    {
+    "countryName": "Jersey",
+    "countryShortCode": "JE",
+    "countryLongCode": "JEY",
+    "phonePrefix": "+44",
+    "latitude": 49.214439,
+    "longitude": -2.13125,
+    "currency": "GBP"
+    },
+    {
+    "countryName": "Jordan",
+    "countryShortCode": "JO",
+    "countryLongCode": "JOR",
     "phonePrefix": "+962",
     "latitude": 30.585164,
     "longitude": 36.238414,
-    "currency": "Jordanian dinar"
-  },
-  {
-    "name": "Kazakhstan",
-    "shortCode": "KZ",
-    "longCode": "KAZ",
+    "currency": "JOD"
+    },
+    {
+    "countryName": "Kazakhstan",
+    "countryShortCode": "KZ",
+    "countryLongCode": "KAZ",
     "phonePrefix": "+7",
     "latitude": 48.019573,
     "longitude": 66.923684,
-    "currency": "Kazakhstani tenge"
-  },
-  {
-    "name": "Kenya",
-    "shortCode": "KE",
-    "longCode": "KEN",
+    "currency": "KZT"
+    },
+    {
+    "countryName": "Kenya",
+    "countryShortCode": "KE",
+    "countryLongCode": "KEN",
     "phonePrefix": "+254",
     "latitude": -0.023559,
     "longitude": 37.906193,
-    "currency": "Kenyan shilling"
-  },
-  {
-    "name": "Kiribati",
-    "shortCode": "KI",
-    "longCode": "KIR",
+    "currency": "KES"
+    },
+    {
+    "countryName": "Kiribati",
+    "countryShortCode": "KI",
+    "countryLongCode": "KIR",
     "phonePrefix": "+686",
     "latitude": -3.370417,
     "longitude": -168.734039,
-    "currency": "Australian dollar"
-  },
-  {
-    "name": "Kuwait",
-    "shortCode": "KW",
-    "longCode": "KWT",
-    "phonePrefix": "+965",
-    "latitude": 29.31166,
-    "longitude": 47.481766,
-    "currency": "Kuwaiti dinar"
-  },
-  {
-    "name": "Kyrgyzstan",
-    "shortCode": "KG",
-    "longCode": "KGZ",
-    "phonePrefix": "+996",
-    "latitude": 41.20438,
-    "longitude": 74.766098,
-    "currency": "Kyrgyzstani som"
-  },
-  {
-    "name": "Laos",
-    "shortCode": "LA",
-    "longCode": "LAO",
-    "phonePrefix": "+856",
-    "latitude": 19.85627,
-    "longitude": 102.495496,
-    "currency": "Lao kip"
-  },
-  {
-    "name": "Latvia",
-    "shortCode": "LV",
-    "longCode": "LVA",
-    "phonePrefix": "+371",
-    "latitude": 56.879635,
-    "longitude": 24.603189,
-    "currency": "Euro"
-  },
-  {
-    "name": "Lebanon",
-    "shortCode": "LB",
-    "longCode": "LBN",
-    "phonePrefix": "+961",
-    "latitude": 33.854721,
-    "longitude": 35.862285,
-    "currency": "Lebanese pound"
-  },
-  {
-    "name": "Lesotho",
-    "shortCode": "LS",
-    "longCode": "LSO",
-    "phonePrefix": "+266",
-    "latitude": -29.609988,
-    "longitude": 28.233608,
-    "currency": "Lesotho loti"
-  },
-  {
-    "name": "Liberia",
-    "shortCode": "LR",
-    "longCode": "LBR",
-    "phonePrefix": "+231",
-    "latitude": 6.428055,
-    "longitude": -9.429499,
-    "currency": "Liberian dollar"
-  },
-  {
-    "name": "Libya",
-    "shortCode": "LY",
-    "longCode": "LBY",
-    "phonePrefix": "+218",
-    "latitude": 26.3351,
-    "longitude": 17.228331,
-    "currency": "Libyan dinar"
-  },
-  {
-    "name": "Liechtenstein",
-    "shortCode": "LI",
-    "longCode": "LIE",
-    "phonePrefix": "+423",
-    "latitude": 47.166,
-    "longitude": 9.555373,
-    "currency": "Swiss franc"
-  },
-  {
-    "name": "Lithuania",
-    "shortCode": "LT",
-    "longCode": "LTU",
-    "phonePrefix": "+370",
-    "latitude": 55.169438,
-    "longitude": 23.881275,
-    "currency": "Euro"
-  },
-  {
-    "name": "Luxembourg",
-    "shortCode": "LU",
-    "longCode": "LUX",
-    "phonePrefix": "+352",
-    "latitude": 49.815273,
-    "longitude": 6.129583,
-    "currency": "Euro"
-  },
-  {
-    "name": "Madagascar",
-    "shortCode": "MG",
-    "longCode": "MDG",
-    "phonePrefix": "+261",
-    "latitude": -18.766947,
-    "longitude": 46.869107,
-    "currency": "Malagasy ariary"
-  },
-  {
-    "name": "Malawi",
-    "shortCode": "MW",
-    "longCode": "MWI",
-    "phonePrefix": "+265",
-    "latitude": -13.254308,
-    "longitude": 34.301525,
-    "currency": "Malawian kwacha"
-  },
-  {
-    "name": "Malaysia",
-    "shortCode": "MY",
-    "longCode": "MYS",
-    "phonePrefix": "+60",
-    "latitude": 4.210484,
-    "longitude": 101.975766,
-    "currency": "Malaysian ringgit"
-  },
-  {
-    "name": "Maldives",
-    "shortCode": "MV",
-    "longCode": "MDV",
-    "phonePrefix": "+960",
-    "latitude": 3.202778,
-    "longitude": 73.22068,
-    "currency": "Maldivian rufiyaa"
-  },
-  {
-    "name": "Mali",
-    "shortCode": "ML",
-    "longCode": "MLI",
-    "phonePrefix": "+223",
-    "latitude": 17.570692,
-    "longitude": -3.996166,
-    "currency": "West African CFA franc"
-  },
-  {
-    "name": "Malta",
-    "shortCode": "MT",
-    "longCode": "MLT",
-    "phonePrefix": "+356",
-    "latitude": 35.937496,
-    "longitude": 14.375416,
-    "currency": "Euro"
-  },
-  {
-    "name": "Marshall Islands",
-    "shortCode": "MH",
-    "longCode": "MHL",
-    "phonePrefix": "+692",
-    "latitude": 7.131474,
-    "longitude": 171.184478,
-    "currency": "United States dollar"
-  },
-  {
-    "name": "Mauritania",
-    "shortCode": "MR",
-    "longCode": "MRT",
-    "phonePrefix": "+222",
-    "latitude": 21.00789,
-    "longitude": -10.940835,
-    "currency": "Mauritanian ouguiya"
-  },
-  {
-    "name": "Mauritius",
-    "shortCode": "MU",
-    "longCode": "MUS",
-    "phonePrefix": "+230",
-    "latitude": -20.348404,
-    "longitude": 57.552152,
-    "currency": "Mauritian rupee"
-  },
-  {
-    "name": "Mexico",
-    "shortCode": "MX",
-    "longCode": "MEX",
-    "phonePrefix": "+52",
-    "latitude": 23.634501,
-    "longitude": -102.552784,
-    "currency": "Mexican peso"
-  },
-  {
-    "name": "Micronesia",
-    "shortCode": "FM",
-    "longCode": "FSM",
-    "phonePrefix": "+691",
-    "latitude": 7.425554,
-    "longitude": 150.550812,
-    "currency": "United States dollar"
-  },
-  {
-    "name": "Moldova",
-    "shortCode": "MD",
-    "longCode": "MDA",
-    "phonePrefix": "+373",
-    "latitude": 47.411631,
-    "longitude": 28.369885,
-    "currency": "Moldovan leu"
-  },
-  {
-    "name": "Monaco",
-    "shortCode": "MC",
-    "longCode": "MCO",
-    "phonePrefix": "+377",
-    "latitude": 43.750298,
-    "longitude": 7.412841,
-    "currency": "Euro"
-  },
-  {
-    "name": "Mongolia",
-    "shortCode": "MN",
-    "longCode": "MNG",
-    "phonePrefix": "+976",
-    "latitude": 46.862496,
-    "longitude": 103.846656,
-    "currency": "Mongolian tögrög"
-  },
-  {
-    "name": "Montenegro",
-    "shortCode": "ME",
-    "longCode": "MNE",
-    "phonePrefix": "+382",
-    "latitude": 42.708678,
-    "longitude": 19.37439,
-    "currency": "Euro"
-  },
-  {
-    "name": "Morocco",
-    "shortCode": "MA",
-    "longCode": "MAR",
-    "phonePrefix": "+212",
-    "latitude": 31.791702,
-    "longitude": -7.09262,
-    "currency": "Moroccan dirham"
-  },
-  {
-    "name": "Mozambique",
-    "shortCode": "MZ",
-    "longCode": "MOZ",
-    "phonePrefix": "+258",
-    "latitude": -18.665695,
-    "longitude": 35.529562,
-    "currency": "Mozambican metical"
-  },
-  {
-    "name": "Myanmar",
-    "shortCode": "MM",
-    "longCode": "MMR",
-    "phonePrefix": "+95",
-    "latitude": 21.913965,
-    "longitude": 95.956223,
-    "currency": "Burmese kyat"
-  },
-  {
-    "name": "Namibia",
-    "shortCode": "NA",
-    "longCode": "NAM",
-    "phonePrefix": "+264",
-    "latitude": -22.95764,
-    "longitude": 18.49041,
-    "currency": "Namibian dollar"
-  },
-  {
-    "name": "Nauru",
-    "shortCode": "NR",
-    "longCode": "NRU",
-    "phonePrefix": "+674",
-    "latitude": -0.522778,
-    "longitude": 166.931503,
-    "currency": "Australian dollar"
-  },
-  {
-    "name": "Nepal",
-    "shortCode": "NP",
-    "longCode": "NPL",
-    "phonePrefix": "+977",
-    "latitude": 28.394857,
-    "longitude": 84.124008,
-    "currency": "Nepalese rupee"
-  },
-  {
-    "name": "Netherlands",
-    "shortCode": "NL",
-    "longCode": "NLD",
-    "phonePrefix": "+31",
-    "latitude": 52.132633,
-    "longitude": 5.291266,
-    "currency": "Euro"
-  },
-  {
-    "name": "New Zealand",
-    "shortCode": "NZ",
-    "longCode": "NZL",
-    "phonePrefix": "+64",
-    "latitude": -40.900557,
-    "longitude": 174.885971,
-    "currency": "New Zealand dollar"
-  },
-  {
-    "name": "Nicaragua",
-    "shortCode": "NI",
-    "longCode": "NIC",
-    "phonePrefix": "+505",
-    "latitude": 12.865416,
-    "longitude": -85.207229,
-    "currency": "Nicaraguan córdoba"
-  },
-  {
-    "name": "Niger",
-    "shortCode": "NE",
-    "longCode": "NER",
-    "phonePrefix": "+227",
-    "latitude": 17.607789,
-    "longitude": 8.081666,
-    "currency": "West African CFA franc"
-  },
-  {
-    "name": "Nigeria",
-    "shortCode": "NG",
-    "longCode": "NGA",
-    "phonePrefix": "+234",
-    "latitude": 9.081999,
-    "longitude": 8.675277,
-    "currency": "Nigerian naira"
-  },
-  {
-    "name": "North Korea",
-    "shortCode": "KP",
-    "longCode": "PRK",
+    "currency": "AUD"
+    },
+    {
+    "countryName": "Korea (Democratic People's Republic of)",
+    "countryShortCode": "KP",
+    "countryLongCode": "PRK",
     "phonePrefix": "+850",
     "latitude": 40.339852,
     "longitude": 127.510093,
-    "currency": "North Korean won"
-  },
-  {
-    "name": "North Macedonia",
-    "shortCode": "MK",
-    "longCode": "MKD",
-    "phonePrefix": "+389",
-    "latitude": 41.608635,
-    "longitude": 21.745275,
-    "currency": "Macedonian denar"
-  },
-  {
-    "name": "Norway",
-    "shortCode": "NO",
-    "longCode": "NOR",
-    "phonePrefix": "+47",
-    "latitude": 60.472024,
-    "longitude": 8.468946,
-    "currency": "Norwegian krone"
-  },
-  {
-    "name": "Oman",
-    "shortCode": "OM",
-    "longCode": "OMN",
-    "phonePrefix": "+968",
-    "latitude": 21.512583,
-    "longitude": 55.923255,
-    "currency": "Omani rial"
-  },
-  {
-    "name": "Pakistan",
-    "shortCode": "PK",
-    "longCode": "PAK",
-    "phonePrefix": "+92",
-    "latitude": 30.375321,
-    "longitude": 69.345116,
-    "currency": "Pakistani rupee"
-  },
-  {
-    "name": "Palau",
-    "shortCode": "PW",
-    "longCode": "PLW",
-    "phonePrefix": "+680",
-    "latitude": 7.51498,
-    "longitude": 134.58252,
-    "currency": "United States dollar"
-  },
-  {
-    "name": "Palestine",
-    "shortCode": "PS",
-    "longCode": "PSE",
-    "phonePrefix": "+970",
-    "latitude": 31.952162,
-    "longitude": 35.233154,
-    "currency": "Israeli new shekel"
-  },
-  {
-    "name": "Panama",
-    "shortCode": "PA",
-    "longCode": "PAN",
-    "phonePrefix": "+507",
-    "latitude": 8.537981,
-    "longitude": -80.782127,
-    "currency": "Panamanian balboa"
-  },
-  {
-    "name": "Papua New Guinea",
-    "shortCode": "PG",
-    "longCode": "PNG",
-    "phonePrefix": "+675",
-    "latitude": -6.314993,
-    "longitude": 143.95555,
-    "currency": "Papua New Guinean kina"
-  },
-  {
-    "name": "Paraguay",
-    "shortCode": "PY",
-    "longCode": "PRY",
-    "phonePrefix": "+595",
-    "latitude": -23.442503,
-    "longitude": -58.443832,
-    "currency": "Paraguayan guaraní"
-  },
-  {
-    "name": "Peru",
-    "shortCode": "PE",
-    "longCode": "PER",
-    "phonePrefix": "+51",
-    "latitude": -9.189967,
-    "longitude": -75.015152,
-    "currency": "Peruvian sol"
-  },
-  {
-    "name": "Philippines",
-    "shortCode": "PH",
-    "longCode": "PHL",
-    "phonePrefix": "+63",
-    "latitude": 12.879721,
-    "longitude": 121.774017,
-    "currency": "Philippine peso"
-  },
-  {
-    "name": "Poland",
-    "shortCode": "PL",
-    "longCode": "POL",
-    "phonePrefix": "+48",
-    "latitude": 51.919438,
-    "longitude": 19.145136,
-    "currency": "Polish złoty"
-  },
-  {
-    "name": "Portugal",
-    "shortCode": "PT",
-    "longCode": "PRT",
-    "phonePrefix": "+351",
-    "latitude": 39.399872,
-    "longitude": -8.224454,
-    "currency": "Euro"
-  },
-  {
-    "name": "Qatar",
-    "shortCode": "QA",
-    "longCode": "QAT",
-    "phonePrefix": "+974",
-    "latitude": 25.354826,
-    "longitude": 51.183884,
-    "currency": "Qatari riyal"
-  },
-  {
-    "name": "Romania",
-    "shortCode": "RO",
-    "longCode": "ROU",
-    "phonePrefix": "+40",
-    "latitude": 45.943161,
-    "longitude": 24.96676,
-    "currency": "Romanian leu"
-  },
-  {
-    "name": "Russia",
-    "shortCode": "RU",
-    "longCode": "RUS",
-    "phonePrefix": "+7",
-    "latitude": 61.52401,
-    "longitude": 105.318756,
-    "currency": "Russian ruble"
-  },
-  {
-    "name": "Rwanda",
-    "shortCode": "RW",
-    "longCode": "RWA",
-    "phonePrefix": "+250",
-    "latitude": -1.940278,
-    "longitude": 29.873888,
-    "currency": "Rwandan franc"
-  },
-  {
-    "name": "Saint Kitts and Nevis",
-    "shortCode": "KN",
-    "longCode": "KNA",
-    "phonePrefix": "+1-869",
-    "latitude": 17.357822,
-    "longitude": -62.782998,
-    "currency": "East Caribbean dollar"
-  },
-  {
-    "name": "Saint Lucia",
-    "shortCode": "LC",
-    "longCode": "LCA",
-    "phonePrefix": "+1-758",
-    "latitude": 13.909444,
-    "longitude": -60.978893,
-    "currency": "East Caribbean dollar"
-  },
-  {
-    "name": "Saint Vincent and the Grenadines",
-    "shortCode": "VC",
-    "longCode": "VCT",
-    "phonePrefix": "+1-784",
-    "latitude": 12.984305,
-    "longitude": -61.287228,
-    "currency": "East Caribbean dollar"
-  },
-  {
-    "name": "Samoa",
-    "shortCode": "WS",
-    "longCode": "WSM",
-    "phonePrefix": "+685",
-    "latitude": -13.759029,
-    "longitude": -172.104629,
-    "currency": "Samoan tālā"
-  },
-  {
-    "name": "San Marino",
-    "shortCode": "SM",
-    "longCode": "SMR",
-    "phonePrefix": "+378",
-    "latitude": 43.94236,
-    "longitude": 12.457777,
-    "currency": "Euro"
-  },
-  {
-    "name": "São Tomé and Príncipe",
-    "shortCode": "ST",
-    "longCode": "STP",
-    "phonePrefix": "+239",
-    "latitude": 0.18636,
-    "longitude": 6.613081,
-    "currency": "São Tomé and Príncipe dobra"
-  },
-  {
-    "name": "Saudi Arabia",
-    "shortCode": "SA",
-    "longCode": "SAU",
-    "phonePrefix": "+966",
-    "latitude": 23.885942,
-    "longitude": 45.079162,
-    "currency": "Saudi riyal"
-  },
-  {
-    "name": "Senegal",
-    "shortCode": "SN",
-    "longCode": "SEN",
-    "phonePrefix": "+221",
-    "latitude": 14.497401,
-    "longitude": -14.452362,
-    "currency": "West African CFA franc"
-  },
-  {
-    "name": "Serbia",
-    "shortCode": "RS",
-    "longCode": "SRB",
-    "phonePrefix": "+381",
-    "latitude": 44.016521,
-    "longitude": 21.005859,
-    "currency": "Serbian dinar"
-  },
-  {
-    "name": "Seychelles",
-    "shortCode": "SC",
-    "longCode": "SYC",
-    "phonePrefix": "+248",
-    "latitude": -4.679574,
-    "longitude": 55.491977,
-    "currency": "Seychellois rupee"
-  },
-  {
-    "name": "Sierra Leone",
-    "shortCode": "SL",
-    "longCode": "SLE",
-    "phonePrefix": "+232",
-    "latitude": 8.460555,
-    "longitude": -11.779889,
-    "currency": "Sierra Leonean leone"
-  },
-  {
-    "name": "Singapore",
-    "shortCode": "SG",
-    "longCode": "SGP",
-    "phonePrefix": "+65",
-    "latitude": 1.352083,
-    "longitude": 103.819836,
-    "currency": "Singapore dollar"
-  },
-  {
-    "name": "Slovakia",
-    "shortCode": "SK",
-    "longCode": "SVK",
-    "phonePrefix": "+421",
-    "latitude": 48.669026,
-    "longitude": 19.699024,
-    "currency": "Euro"
-  },
-  {
-    "name": "Slovenia",
-    "shortCode": "SI",
-    "longCode": "SVN",
-    "phonePrefix": "+386",
-    "latitude": 46.151241,
-    "longitude": 14.995463,
-    "currency": "Euro"
-  },
-  {
-    "name": "Somalia",
-    "shortCode": "SO",
-    "longCode": "SOM",
-    "phonePrefix": "+252",
-    "latitude": 5.152149,
-    "longitude": 46.199616,
-    "currency": "Somali shilling"
+    "currency": "KPW"
     },
     {
-    "name": "South Africa",
-    "shortCode": "ZA",
-    "longCode": "ZAF",
-    "phonePrefix": "+27",
-    "latitude": -30.559482,
-    "longitude": 22.937506,
-    "currency": "South African rand"
-    },
-    {
-    "name": "South Korea",
-    "shortCode": "KR",
-    "longCode": "KOR",
+    "countryName": "Korea, Republic of",
+    "countryShortCode": "KR",
+    "countryLongCode": "KOR",
     "phonePrefix": "+82",
     "latitude": 35.907757,
     "longitude": 127.766922,
-    "currency": "South Korean won"
+    "currency": "KRW"
     },
     {
-    "name": "South Sudan",
-    "shortCode": "SS",
-    "longCode": "SSD",
-    "phonePrefix": "+211",
-    "latitude": 6.876991,
-    "longitude": 31.306978,
-    "currency": "South Sudanese pound"
+    "countryName": "Kuwait",
+    "countryShortCode": "KW",
+    "countryLongCode": "KWT",
+    "phonePrefix": "+965",
+    "latitude": 29.31166,
+    "longitude": 47.481766,
+    "currency": "KWD"
     },
     {
-    "name": "Spain",
-    "shortCode": "ES",
-    "longCode": "ESP",
-    "phonePrefix": "+34",
-    "latitude": 40.463667,
-    "longitude": -3.74922,
-    "currency": "Euro"
+    "countryName": "Kyrgyzstan",
+    "countryShortCode": "KG",
+    "countryLongCode": "KGZ",
+    "phonePrefix": "+996",
+    "latitude": 41.20438,
+    "longitude": 74.766098,
+    "currency": "KGS"
     },
     {
-    "name": "Sri Lanka",
-    "shortCode": "LK",
-    "longCode": "LKA",
-    "phonePrefix": "+94",
-    "latitude": 7.873054,
-    "longitude": 80.771797,
-    "currency": "Sri Lankan rupee"
+    "countryName": "Lao People's Democratic Republic",
+    "countryShortCode": "LA",
+    "countryLongCode": "LAO",
+    "phonePrefix": "+856",
+    "latitude": 19.85627,
+    "longitude": 102.495496,
+    "currency": "LAK"
     },
     {
-    "name": "Sudan",
-    "shortCode": "SD",
-    "longCode": "SDN",
-    "phonePrefix": "+249",
-    "latitude": 12.862807,
-    "longitude": 30.217636,
-    "currency": "Sudanese pound"
+    "countryName": "Latvia",
+    "countryShortCode": "LV",
+    "countryLongCode": "LVA",
+    "phonePrefix": "+371",
+    "latitude": 56.879635,
+    "longitude": 24.603189,
+    "currency": "EUR"
     },
     {
-    "name": "Suriname",
-    "shortCode": "SR",
-    "longCode": "SUR",
-    "phonePrefix": "+597",
-    "latitude": 3.919305,
-    "longitude": -56.027783,
-    "currency": "Surinamese dollar"
+    "countryName": "Lebanon",
+    "countryShortCode": "LB",
+    "countryLongCode": "LBN",
+    "phonePrefix": "+961",
+    "latitude": 33.854721,
+    "longitude": 35.862285,
+    "currency": "LBP"
     },
     {
-    "name": "Swaziland",
-    "shortCode": "SZ",
-    "longCode": "SWZ",
-    "phonePrefix": "+268",
-    "latitude": -26.522503,
-    "longitude": 31.465866,
-    "currency": "Swazi lilangeni"
+    "countryName": "Lesotho",
+    "countryShortCode": "LS",
+    "countryLongCode": "LSO",
+    "phonePrefix": "+266",
+    "latitude": -29.609988,
+    "longitude": 28.233608,
+    "currency": "LSL"
     },
     {
-    "name": "Sweden",
-    "shortCode": "SE",
-    "longCode": "SWE",
-    "phonePrefix": "+46",
-    "latitude": 60.128161,
-    "longitude": 18.643501,
-    "currency": "Swedish krona"
+    "countryName": "Liberia",
+    "countryShortCode": "LR",
+    "countryLongCode": "LBR",
+    "phonePrefix": "+231",
+    "latitude": 6.428055,
+    "longitude": -9.429499,
+    "currency": "LRD"
     },
     {
-    "name": "Switzerland",
-    "shortCode": "CH",
-    "longCode": "CHE",
-    "phonePrefix": "+41",
-    "latitude": 46.818188,
-    "longitude": 8.227512,
-    "currency": "Swiss franc"
+    "countryName": "Libya",
+    "countryShortCode": "LY",
+    "countryLongCode": "LBY",
+    "phonePrefix": "+218",
+    "latitude": 26.3351,
+    "longitude": 17.228331,
+    "currency": "LYD"
     },
     {
-    "name": "Syria",
-    "shortCode": "SY",
-    "longCode": "SYR",
-    "phonePrefix": "+963",
-    "latitude": 34.802075,
-    "longitude": 38.996815,
-    "currency": "Syrian pound"
-    },
-    {
-    "name": "Taiwan",
-    "shortCode": "TW",
-    "longCode": "TWN",
-    "phonePrefix": "+886",
-    "latitude": 23.69781,
-    "longitude": 120.960515,
-    "currency": "New Taiwan dollar"
-    },
-    {
-    "name": "Tajikistan",
-    "shortCode": "TJ",
-    "longCode": "TJK",
-    "phonePrefix": "+992",
-    "latitude": 38.861034,
-    "longitude": 71.276093,
-    "currency": "Tajikistani somoni"
-    },
-    {
-    "name": "Tanzania",
-    "shortCode": "TZ",
-    "longCode": "TZA",
-    "phonePrefix": "+255",
-    "latitude": -6.369028,
-    "longitude": 34.888822,
-    "currency": "Tanzanian shilling"
-    },
-    {
-    "name": "Thailand",
-    "shortCode": "TH",
-    "longCode": "THA",
-    "phonePrefix": "+66",
-    "latitude": 15.870032,
-    "longitude": 100.992541,
-    "currency": "Thai baht"
-    },
-    {
-    "name": "Timor-Leste",
-    "shortCode": "TL",
-    "longCode": "TLS",
-    "phonePrefix": "+670",
-    "latitude": -8.874217,
-    "longitude": 125.727539,
-    "currency": "United States dollar"
-    },
-    {
-    "name": "Togo",
-    "shortCode": "TG",
-    "longCode": "TGO",
-    "phonePrefix": "+228",
-    "latitude": 8.619543,
-    "longitude": 0.824782,
-    "currency": "West African CFA franc"
-    },
-    {
-    "name": "Tonga",
-    "shortCode": "TO",
-    "longCode": "TON",
-    "phonePrefix": "+676",
-    "latitude": -21.178986,
-    "longitude": -175.198242,
-    "currency": "Tongan paʻanga"
-    },
-    {
-    "name": "Trinidad and Tobago",
-    "shortCode": "TT",
-    "longCode": "TTO",
-    "phonePrefix": "+1",
-    "latitude": 10.691803,
-    "longitude": -61.222503,
-    "currency": "Trinidad and Tobago dollar"
-    },
-    {
-    "name": "Tunisia",
-    "shortCode": "TN",
-    "longCode": "TUN",
-    "phonePrefix": "+216",
-    "latitude": 33.886917,
-    "longitude": 9.537499,
-    "currency": "Tunisian dinar"
-    },
-    {
-    "name": "Turkey",
-    "shortCode": "TR",
-    "longCode": "TUR",
-    "phonePrefix": "+90",
-    "latitude": 38.963745,
-    "longitude": 35.243322,
-    "currency": "Turkish lira"
-    },
-    {
-    "name": "Turkmenistan",
-    "shortCode": "TM",
-    "longCode": "TKM",
-    "phonePrefix": "+993",
-    "latitude": 38.969719,
-    "longitude": 59.556278,
-    "currency": "Turkmenistan manat"
-    },
-    {
-    "name": "Tuvalu",
-    "shortCode": "TV",
-    "longCode": "TUV",
-    "phonePrefix": "+688",
-    "latitude": -7.109535,
-    "longitude": 177.64933,
-    "currency": "Tuvaluan dollar"
-    },
-    {
-    "name": "Uganda",
-    "shortCode": "UG",
-    "longCode": "UGA",
-    "phonePrefix": "+256",
-    "latitude": 1.373333,
-    "longitude": 32.290275,
-    "currency": "Ugandan shilling"
-    },
-    {
-    "name": "Ukraine",
-    "shortCode": "UA",
-    "longCode": "UKR",
-    "phonePrefix": "+380",
-    "latitude": 48.379433,
-    "longitude": 31.16558,
-    "currency": "Ukrainian hryvnia"
-    },
-    {
-    "name": "United Arab Emirates",
-    "shortCode": "AE",
-    "longCode": "ARE",
-    "phonePrefix": "+971",
-    "latitude": 23.424076,
-    "longitude": 53.847818,
-    "currency": "United Arab Emirates dirham"
-    },
-    {
-    "name": "United Kingdom",
-    "shortCode": "GB",
-    "longCode": "GBR",
-    "phonePrefix": "+44",
-    "latitude": 55.378051,
-    "longitude": -3.435973,
-    "currency": "British pound sterling"
-    },
-    {
-    "name": "United States",
-    "shortCode": "US",
-    "longCode": "USA",
-    "phonePrefix": "+1",
-    "latitude": 37.09024,
-    "longitude": -95.712891,
-    "currency": "United States dollar"
-    },
-    {
-    "name": "Uruguay",
-    "shortCode": "UY",
-    "longCode": "URY",
-    "phonePrefix": "+598",
-    "latitude": -32.522779,
-    "longitude": -55.765835,
-    "currency": "Uruguayan peso"
-    },
-    {
-    "name": "Uzbekistan",
-    "shortCode": "UZ",
-    "longCode": "UZB",
-    "phonePrefix": "+998",
-    "latitude": 41.377491,
-    "longitude": 64.585262,
-    "currency": "Uzbekistani som"
-    },
-    {
-    "name": "Vanuatu",
-    "shortCode": "VU",
-    "longCode": "VUT",
-    "phonePrefix": "+678",
-    "latitude": -15.376706,
-    "longitude": 166.959158,
-    "currency": "Vanuatu vatu"
-    },
-    {
-    "name": "Vatican City",
-    "shortCode": "VA",
-    "longCode": "VAT",
-    "phonePrefix": "+379",
-    "latitude": 41.902916,
-    "longitude": 12.453389,
-    "currency": "Euro"
-    },
-    {
-    "name": "Venezuela",
-    "shortCode": "VE",
-    "longCode": "VEN",
-    "phonePrefix": "+58",
-    "latitude": 6.42375,
-    "longitude": -66.58973,
-    "currency": "Venezuelan bolívar"
-    },
-    {
-    "name": "Vietnam",
-    "shortCode": "VN",
-    "longCode": "VNM",
-    "phonePrefix": "+84",
-    "latitude": 14.058324,
-    "longitude": 108.277199,
-    "currency": "Vietnamese đồng"
-    },
-    {
-    "name": "Yemen",
-    "shortCode": "YE",
-    "longCode": "YEM",
-    "phonePrefix": "+967",
-    "latitude": 15.552727,
-    "longitude": 48.516388,
-    "currency": "Yemeni rial"
-    },
-    {
-    "name": "Zambia",
-    "shortCode": "ZM",
-    "longCode": "ZMB",
-    "phonePrefix": "+260",
-    "latitude": -13.133897,
-    "longitude": 27.849332,
-    "currency": "Zambian kwacha"
-    },
-    {
-    "name": "Zimbabwe",
-    "shortCode": "ZW",
-    "longCode": "ZWE",
-    "phonePrefix": "+263",
-    "latitude": -19.015438,
-    "longitude": 29.154857,
-    "currency": "Zimbabwean dollar"
-    }
+      "countryName": "Madagascar",
+      "countryShortCode": "MG",
+      "countryLongCode": "MDG",
+      "phonePrefix": "+261",
+      "latitude": -18.766947,
+      "longitude": 46.869107,
+      "currency": "MGA"
+      },
+      {
+      "countryName": "Malawi",
+      "countryShortCode": "MW",
+      "countryLongCode": "MWI",
+      "phonePrefix": "+265",
+      "latitude": -13.254308,
+      "longitude": 34.301525,
+      "currency": "MWK"
+      },
+      {
+      "countryName": "Malaysia",
+      "countryShortCode": "MY",
+      "countryLongCode": "MYS",
+      "phonePrefix": "+60",
+      "latitude": 4.210484,
+      "longitude": 101.975766,
+      "currency": "MYR"
+      },
+      {
+      "countryName": "Maldives",
+      "countryShortCode": "MV",
+      "countryLongCode": "MDV",
+      "phonePrefix": "+960",
+      "latitude": 3.202778,
+      "longitude": 73.22068,
+      "currency": "MVR"
+      },
+      {
+      "countryName": "Mali",
+      "countryShortCode": "ML",
+      "countryLongCode": "MLI",
+      "phonePrefix": "+223",
+      "latitude": 17.570692,
+      "longitude": -3.996166,
+      "currency": "XOF"
+      },
+      {
+      "countryName": "Malta",
+      "countryShortCode": "MT",
+      "countryLongCode": "MLT",
+      "phonePrefix": "+356",
+      "latitude": 35.937496,
+      "longitude": 14.375416,
+      "currency": "EUR"
+      },
+      {
+      "countryName": "Marshall Islands",
+      "countryShortCode": "MH",
+      "countryLongCode": "MHL",
+      "phonePrefix": "+692",
+      "latitude": 7.131474,
+      "longitude": 171.184478,
+      "currency": "USD"
+      },
+      {
+      "countryName": "Martinique",
+      "countryShortCode": "MQ",
+      "countryLongCode": "MTQ",
+      "phonePrefix": "+596",
+      "latitude": 14.641528,
+      "longitude": -61.024174,
+      "currency": "EUR"
+      },
+      {
+      "countryName": "Mauritania",
+      "countryShortCode": "MR",
+      "countryLongCode": "MRT",
+      "phonePrefix": "+222",
+      "latitude": 21.00789,
+      "longitude": -10.940835,
+      "currency": "MRO"
+      },
+      {
+      "countryName": "Mauritius",
+      "countryShortCode": "MU",
+      "countryLongCode": "MUS",
+      "phonePrefix": "+230",
+      "latitude": -20.348404,
+      "longitude": 57.552152,
+      "currency": "MUR"
+      },
+      {
+      "countryName": "Mayotte",
+      "countryShortCode": "YT",
+      "countryLongCode": "MYT",
+      "phonePrefix": "+262",
+      "latitude": -12.8275,
+      "longitude": 45.166244,
+      "currency": "EUR"
+      },
+      {
+      "countryName": "Mexico",
+      "countryShortCode": "MX",
+      "countryLongCode": "MEX",
+      "phonePrefix": "+52",
+      "latitude": 23.634501,
+      "longitude": -102.552784,
+      "currency": "MXN"
+      },
+      {
+      "countryName": "Micronesia, Federated States of",
+      "countryShortCode": "FM",
+      "countryLongCode": "FSM",
+      "phonePrefix": "+691",
+      "latitude": 7.425554,
+      "longitude": 150.550812,
+      "currency": "USD"
+      },
+      {
+      "countryName": "Moldova, Republic of",
+      "countryShortCode": "MD",
+      "countryLongCode": "MDA",
+      "phonePrefix": "+373",
+      "latitude": 47.411631,
+      "longitude": 28.369885,
+      "currency": "MDL"
+      },
+      {
+      "countryName": "Monaco",
+      "countryShortCode": "MC",
+      "countryLongCode": "MCO",
+      "phonePrefix": "+377",
+      "latitude": 43.750298,
+      "longitude": 7.412841,
+      "currency": "EUR"
+      },
+      {
+      "countryName": "Mongolia",
+      "countryShortCode": "MN",
+      "countryLongCode": "MNG",
+      "phonePrefix": "+976",
+      "latitude": 46.862496,
+      "longitude": 103.846656,
+      "currency": "MNT"
+      },
+      {
+      "countryName": "Montenegro",
+      "countryShortCode": "ME",
+      "countryLongCode": "MNE",
+      "phonePrefix": "+382",
+      "latitude": 42.708678,
+      "longitude": 19.37439,
+      "currency": "EUR"
+      },
+      {
+      "countryName": "Montserrat",
+      "countryShortCode": "MS",
+      "countryLongCode": "MSR",
+      "phonePrefix": "+1-664",
+      "latitude": 16.742498,
+      "longitude": -62.187366,
+      "currency": "XCD"
+      },
+      {
+      "countryName": "Morocco",
+      "countryShortCode": "MA",
+      "countryLongCode": "MAR",
+      "phonePrefix": "+212",
+      "latitude": 31.791702,
+      "longitude": -7.09262,
+      "currency": "MAD"
+      },
+      {
+      "countryName": "Mozambique",
+      "countryShortCode": "MZ",
+      "countryLongCode": "MOZ",
+      "phonePrefix": "+258",
+      "latitude": -18.665695,
+      "longitude": 35.529562,
+      "currency": "MZN"
+      },
+      {
+      "countryName": "Myanmar",
+      "countryShortCode": "MM",
+      "countryLongCode": "MMR",
+      "phonePrefix": "+95",
+      "latitude": 21.913965,
+      "longitude": 95.956223,
+      "currency": "MMK"
+      },
+      {
+      "countryName": "Namibia",
+      "countryShortCode": "NA",
+      "countryLongCode": "NAM",
+      "phonePrefix": "+264",
+      "latitude": -22.95764,
+      "longitude": 18.49041,
+      "currency": "NAD"
+      },
+      {
+      "countryName": "Nauru",
+      "countryShortCode": "NR",
+      "countryLongCode": "NRU",
+      "phonePrefix": "+674",
+      "latitude": -0.522778,
+      "longitude": 166.931503,
+      "currency": "AUD"
+      },
+      {
+      "countryName": "Nepal",
+      "countryShortCode": "NP",
+      "countryLongCode": "NPL",
+      "phonePrefix": "+977",
+      "latitude": 28.394857,
+      "longitude": 84.124008,
+      "currency": "NPR"
+      },
+      {
+      "countryName": "Netherlands",
+      "countryShortCode": "NL",
+      "countryLongCode": "NLD",
+      "phonePrefix": "+31",
+      "latitude": 52.132633,
+      "longitude": 5.291266,
+      "currency": "EUR"
+      },
+      {
+      "countryName": "New Caledonia",
+      "countryShortCode": "NC",
+      "countryLongCode": "NCL",
+      "phonePrefix": "+687",
+      "latitude": -20.904305,
+      "longitude": 165.618042,
+      "currency": "XPF"
+      },
+      {
+      "countryName": "New Zealand",
+      "countryShortCode": "NZ",
+      "countryLongCode": "NZL",
+      "phonePrefix": "+64",
+      "latitude": -40.900557,
+      "longitude": 174.885971,
+      "currency": "NZD"
+      },
+      {
+      "countryName": "Nicaragua",
+      "countryShortCode": "NI",
+      "countryLongCode": "NIC",
+      "phonePrefix": "+505",
+      "latitude": 12.865416,
+      "longitude": -85.207229,
+      "currency": "NIO"
+      },
+      {
+      "countryName": "Niger",
+      "countryShortCode": "NE",
+      "countryLongCode": "NER",
+      "phonePrefix": "+227",
+      "latitude": 17.607789,
+      "longitude": 8.081666,
+      "currency": "XOF"
+      },
+      {
+      "countryName": "Nigeria",
+      "countryShortCode": "NG",
+      "countryLongCode": "NGA",
+      "phonePrefix": "+234",
+      "latitude": 9.081999,
+      "longitude": 8.675277,
+      "currency": "NGN"
+      },
+      {
+      "countryName": "Niue",
+      "countryShortCode": "NU",
+      "countryLongCode": "NIU",
+      "phonePrefix": "+683",
+      "latitude": -19.054445,
+      "longitude": -169.867233,
+      "currency": "NZD"
+      },
+      {
+      "countryName": "Norfolk Island",
+      "countryShortCode": "NF",
+      "countryLongCode": "NFK",
+      "phonePrefix": "+672",
+      "latitude": -29.040835,
+      "longitude": 167.954712,
+      "currency": "AUD"
+      },
+      {
+      "countryName": "Northern Mariana Islands",
+      "countryShortCode": "MP",
+      "countryLongCode": "MNP",
+      "phonePrefix": "+1-670",
+      "latitude": 17.33083,
+      "longitude": 145.38469,
+      "currency": "USD"
+      },
+      {
+      "countryName": "Norway",
+      "countryShortCode": "NO",
+      "countryLongCode": "NOR",
+      "phonePrefix": "+47",
+      "latitude": 60.472024,
+      "longitude": 8.468946,
+      "currency": "NOK"
+      },
+      {
+      "countryName": "Oman",
+      "countryShortCode": "OM",
+      "countryLongCode": "OMN",
+      "phonePrefix": "+968",
+      "latitude": 21.512583,
+      "longitude": 55.923255,
+      "currency": "OMR"
+      },
+      {
+      "countryName": "Pakistan",
+      "countryShortCode": "PK",
+      "countryLongCode": "PAK",
+      "phonePrefix": "+92",
+      "latitude": 30.375321,
+      "longitude": 69.345116,
+      "currency": "PKR"
+      },
+      {
+      "countryName": "Palau",
+      "countryShortCode": "PW",
+      "countryLongCode": "PLW",
+      "phonePrefix": "+680",
+      "latitude": 7.51498,
+      "longitude": 134.58252,
+      "currency": "USD"
+      },
+      {
+      "countryName": "Palestinian Territory, Occupied",
+      "countryShortCode": "PS",
+      "countryLongCode": "PSE",
+      "phonePrefix": "+970",
+      "latitude": 31.952162,
+      "longitude": 35.233154,
+      "currency": "ILS"
+      },
+      {
+      "countryName": "Panama",
+      "countryShortCode": "PA",
+      "countryLongCode": "PAN",
+      "phonePrefix": "+507",
+      "latitude": 8.537981,
+      "longitude": -80.782127,
+      "currency": "PAB"
+      },
+      {
+        "countryName": "Qatar",
+        "countryShortCode": "QA",
+        "countryLongCode": "QAT",
+        "phonePrefix": "+974",
+        "latitude": 25.354826,
+        "longitude": 51.183884,
+        "currency": "QAR"
+        },
+        {
+        "countryName": "Réunion",
+        "countryShortCode": "RE",
+        "countryLongCode": "REU",
+        "phonePrefix": "+262",
+        "latitude": -21.115141,
+        "longitude": 55.536384,
+        "currency": "EUR"
+        },
+        {
+        "countryName": "Romania",
+        "countryShortCode": "RO",
+        "countryLongCode": "ROU",
+        "phonePrefix": "+40",
+        "latitude": 45.943161,
+        "longitude": 24.96676,
+        "currency": "RON"
+        },
+        {
+        "countryName": "Russian Federation",
+        "countryShortCode": "RU",
+        "countryLongCode": "RUS",
+        "phonePrefix": "+7",
+        "latitude": 61.52401,
+        "longitude": 105.318756,
+        "currency": "RUB"
+        },
+        {
+        "countryName": "Rwanda",
+        "countryShortCode": "RW",
+        "countryLongCode": "RWA",
+        "phonePrefix": "+250",
+        "latitude": -1.940278,
+        "longitude": 29.873888,
+        "currency": "RWF"
+        },
+        {
+        "countryName": "Saint Barthélemy",
+        "countryShortCode": "BL",
+        "countryLongCode": "BLM",
+        "phonePrefix": "+590",
+        "latitude": 17.913922,
+        "longitude": -62.833852,
+        "currency": "EUR"
+        },
+        {
+        "countryName": "Saint Helena, Ascension and Tristan da Cunha",
+        "countryShortCode": "SH",
+        "countryLongCode": "SHN",
+        "phonePrefix": "+290",
+        "latitude": -24.143474,
+        "longitude": -10.030696,
+        "currency": "SHP"
+        },
+        {
+        "countryName": "Saint Kitts and Nevis",
+        "countryShortCode": "KN",
+        "countryLongCode": "KNA",
+        "phonePrefix": "+1-869",
+        "latitude": 17.357822,
+        "longitude": -62.782998,
+        "currency": "XCD"
+        },
+        {
+        "countryName": "Saint Lucia",
+        "countryShortCode": "LC",
+        "countryLongCode": "LCA",
+        "phonePrefix": "+1-758",
+        "latitude": 13.909444,
+        "longitude": -60.978893,
+        "currency": "XCD"
+        },
+        {
+        "countryName": "Saint Martin (French part)",
+        "countryShortCode": "MF",
+        "countryLongCode": "MAF",
+        "phonePrefix": "+590",
+        "latitude": 18.0708,
+        "longitude": -63.0501,
+        "currency": "EUR"
+        },
+        {
+        "countryName": "Saint Pierre and Miquelon",
+        "countryShortCode": "PM",
+        "countryLongCode": "SPM",
+        "phonePrefix": "+508",
+        "latitude": 46.941936,
+        "longitude": -56.27111,
+        "currency": "EUR"
+        },
+        {
+        "countryName": "Saint Vincent and the Grenadines",
+        "countryShortCode": "VC",
+        "countryLongCode": "VCT",
+        "phonePrefix": "+1-784",
+        "latitude": 12.984305,
+        "longitude": -61.287228,
+        "currency": "XCD"
+        },
+        {
+        "countryName": "Samoa",
+        "countryShortCode": "WS",
+        "countryLongCode": "WSM",
+        "phonePrefix": "+685",
+        "latitude": -13.759029,
+        "longitude": -172.104629,
+        "currency": "WST"
+        },
+        {
+        "countryName": "San Marino",
+        "countryShortCode": "SM",
+        "countryLongCode": "SMR",
+        "phonePrefix": "+378",
+        "latitude": 43.94236,
+        "longitude": 12.457777,
+        "currency": "EUR"
+        },
+        {
+        "countryName": "Sao Tome and Principe",
+        "countryShortCode": "ST",
+        "countryLongCode": "STP",
+        "phonePrefix": "+239",
+        "latitude": 0.18636,
+        "longitude": 6.613081,
+        "currency": "STN"
+        },
+        {
+        "countryName": "Saudi Arabia",
+        "countryShortCode": "SA",
+        "countryLongCode": "SAU",
+        "phonePrefix": "+966",
+        "latitude": 23.885942,
+        "longitude": 45.079162,
+        "currency": "SAR"
+        },
+        {
+        "countryName": "Senegal",
+        "countryShortCode": "SN",
+        "countryLongCode": "SEN",
+        "phonePrefix": "+221",
+        "latitude": 14.497401,
+        "longitude": -14.452362,
+        "currency": "XOF"
+        },
+        {
+        "countryName": "Serbia",
+        "countryShortCode": "RS",
+        "countryLongCode": "SRB",
+        "phonePrefix": "+381",
+        "latitude": 44.016521,
+        "longitude": 21.005859,
+        "currency": "RSD"
+        },
+        {
+        "countryName": "Seychelles",
+        "countryShortCode": "SC",
+        "countryLongCode": "SYC",
+        "phonePrefix": "+248",
+        "latitude": -4.679574,
+        "longitude": 55.491977,
+        "currency": "SCR"
+        },
+        {
+        "countryName": "Sierra Leone",
+        "countryShortCode": "SL",
+        "countryLongCode": "SLE",
+        "phonePrefix": "+232",
+        "latitude": 8.460555,
+        "longitude": -11.779889,
+        "currency": "SLL"
+        },
+        {
+        "countryName": "Singapore",
+        "countryShortCode": "SG",
+        "countryLongCode": "SGP",
+        "phonePrefix": "+65",
+        "latitude": 1.352083,
+        "longitude": 103.819836,
+        "currency": "SGD"
+        },
+        {
+        "countryName": "Sint Maarten (Dutch part)",
+        "countryShortCode": "SX",
+        "countryLongCode": "SXM",
+        "phonePrefix": "+1-721",
+        "latitude": 18.034718,
+        "longitude": -63.068108,
+        "currency": "ANG"
+        },
+        {
+        "countryName": "Slovakia",
+        "countryShortCode": "SK",
+        "countryLongCode": "SVK",
+        "phonePrefix": "+421",
+        "latitude": 48.669026,
+        "longitude": 19.699024,
+        "currency": "EUR"
+        },
+        {
+        "countryName": "Slovenia",
+        "countryShortCode": "SI",
+        "countryLongCode": "SVN",
+        "phonePrefix": "+386",
+        "latitude": 46.151241,
+        "longitude": 14.995463,
+        "currency": "EUR"
+        },
+        {
+        "countryName": "Solomon Islands",
+        "countryShortCode": "SB",
+        "countryLongCode": "SLB",
+        "phonePrefix": "+677",
+        "latitude": -9.64571,
+        "longitude": 160.156194,
+        "currency": "SBD"
+        },
+        {
+        "countryName": "Somalia",
+        "countryShortCode": "SO",
+        "countryLongCode": "SOM",
+        "phonePrefix": "+252",
+        "latitude": 5.152149,
+        "longitude": 46.199616,
+        "currency": "SOS"
+        },
+        {
+        "countryName": "South Africa",
+        "countryShortCode": "ZA",
+        "countryLongCode": "ZAF",
+        "phonePrefix": "+27",
+        "latitude": -30.559482,
+        "longitude": 22.937506,
+        "currency": "ZAR"
+        },
+        {
+        "countryName": "South Georgia and the South Sandwich Islands",
+        "countryShortCode": "GS",
+        "countryLongCode": "SGS",
+        "phonePrefix": "",
+        "latitude": -54.429579,
+        "longitude": -36.587909,
+        "currency": "GBP"
+        },
+        {
+        "countryName": "South Sudan",
+        "countryShortCode": "SS",
+        "countryLongCode": "SSD",
+        "phonePrefix": "+211",
+        "latitude": 6.876993,
+        "longitude": 31.306978,
+        "currency": "SSP"
+        },
+        {
+        "countryName": "Spain",
+        "countryShortCode": "ES",
+        "countryLongCode": "ESP",
+        "phonePrefix": "+34",
+        "latitude": 40.463667,
+        "longitude": -3.74922,
+        "currency": "EUR"
+        },
+        {
+        "countryName": "Sri Lanka",
+        "countryShortCode": "LK",
+        "countryLongCode": "LKA",
+        "phonePrefix": "+94",
+        "latitude": 7.873054,
+        "longitude": 80.771797,
+        "currency": "LKR"
+        },
+        {
+        "countryName": "Sudan",
+        "countryShortCode": "SD",
+        "countryLongCode": "SDN",
+        "phonePrefix": "+249",
+        "latitude": 12.862807,
+        "longitude": 30.217636,
+        "currency": "SDG"
+        },
+        {
+        "countryName": "Suriname",
+        "countryShortCode": "SR",
+        "countryLongCode": "SUR",
+        "phonePrefix": "+597",
+        "latitude": 3.919305,
+        "longitude": -56.027783,
+        "currency": "SRD"
+        },
+        {
+        "countryName": "Svalbard and Jan Mayen",
+        "countryShortCode": "SJ",
+        "countryLongCode": "SJM",
+        "phonePrefix": "+47",
+        "latitude": 77.553604,
+        "longitude": 23.670272,
+        "currency": "NOK"
+        },
+        {
+        "countryName": "Swaziland",
+        "countryShortCode": "SZ",
+        "countryLongCode": "SWZ",
+        "phonePrefix": "+268",
+        "latitude": -26.522503,
+        "longitude": 31.465866,
+        "currency": "SZL"
+        },
+        {
+        "countryName": "Sweden",
+        "countryShortCode": "SE",
+        "countryLongCode": "SWE",
+        "phonePrefix": "+46",
+        "latitude": 60.128161,
+        "longitude": 18.643501,
+        "currency": "SEK"
+        },
+        {
+        "countryName": "Switzerland",
+        "countryShortCode": "CH",
+        "countryLongCode": "CHE",
+        "phonePrefix": "+41",
+        "latitude": 46.818188,
+        "longitude": 8.227512,
+        "currency": "CHF"
+        },
+        {
+        "countryName": "Syrian Arab Republic",
+        "countryShortCode": "SY",
+        "countryLongCode": "SYR",
+        "phonePrefix": "+963",
+        "latitude": 34.802075,
+        "longitude": 38.996815,
+        "currency": "SYP"
+        },
+        {
+          "countryName": "Taiwan, Province of China",
+          "countryShortCode": "TW",
+          "countryLongCode": "TWN",
+          "phonePrefix": "+886",
+          "latitude": 23.69781,
+          "longitude": 120.960515,
+          "currency": "TWD"
+          },
+          {
+          "countryName": "Tajikistan",
+          "countryShortCode": "TJ",
+          "countryLongCode": "TJK",
+          "phonePrefix": "+992",
+          "latitude": 38.861034,
+          "longitude": 71.276093,
+          "currency": "TJS"
+          },
+          {
+          "countryName": "Tanzania, United Republic of",
+          "countryShortCode": "TZ",
+          "countryLongCode": "TZA",
+          "phonePrefix": "+255",
+          "latitude": -6.369028,
+          "longitude": 34.888822,
+          "currency": "TZS"
+          },
+          {
+          "countryName": "Thailand",
+          "countryShortCode": "TH",
+          "countryLongCode": "THA",
+          "phonePrefix": "+66",
+          "latitude": 15.870032,
+          "longitude": 100.992541,
+          "currency": "THB"
+          },
+          {
+          "countryName": "Timor-Leste",
+          "countryShortCode": "TL",
+          "countryLongCode": "TLS",
+          "phonePrefix": "+670",
+          "latitude": -8.874217,
+          "longitude": 125.727539,
+          "currency": "USD"
+          },
+          {
+          "countryName": "Togo",
+          "countryShortCode": "TG",
+          "countryLongCode": "TGO",
+          "phonePrefix": "+228",
+          "latitude": 8.619543,
+          "longitude": 0.824782,
+          "currency": "XOF"
+          },
+          {
+          "countryName": "Tokelau",
+          "countryShortCode": "TK",
+          "countryLongCode": "TKL",
+          "phonePrefix": "+690",
+          "latitude": -8.967363,
+          "longitude": -171.855881,
+          "currency": "NZD"
+          },
+          {
+          "countryName": "Tonga",
+          "countryShortCode": "TO",
+          "countryLongCode": "TON",
+          "phonePrefix": "+676",
+          "latitude": -21.178986,
+          "longitude": -175.198242,
+          "currency": "TOP"
+          },
+          {
+          "countryName": "Trinidad and Tobago",
+          "countryShortCode": "TT",
+          "countryLongCode": "TTO",
+          "phonePrefix": "+1-868",
+          "latitude": 10.691803,
+          "longitude": -61.222503,
+          "currency": "TTD"
+          },
+          {
+          "countryName": "Tunisia",
+          "countryShortCode": "TN",
+          "countryLongCode": "TUN",
+          "phonePrefix": "+216",
+          "latitude": 33.886917,
+          "longitude": 9.537499,
+          "currency": "TND"
+          },
+          {
+          "countryName": "Turkey",
+          "countryShortCode": "TR",
+          "countryLongCode": "TUR",
+          "phonePrefix": "+90",
+          "latitude": 38.963745,
+          "longitude": 35.243322,
+          "currency": "TRY"
+          },
+          {
+          "countryName": "Turkmenistan",
+          "countryShortCode": "TM",
+          "countryLongCode": "TKM",
+          "phonePrefix": "+993",
+          "latitude": 38.969719,
+          "longitude": 59.556278,
+          "currency": "TMT"
+          },
+          {
+          "countryName": "Turks and Caicos Islands",
+          "countryShortCode": "TC",
+          "countryLongCode": "TCA",
+          "phonePrefix": "+1-649",
+          "latitude": 21.694025,
+          "longitude": -71.797928,
+          "currency": "USD"
+          },
+          {
+          "countryName": "Tuvalu",
+          "countryShortCode": "TV",
+          "countryLongCode": "TUV",
+          "phonePrefix": "+688",
+          "latitude": -7.109535,
+          "longitude": 177.64933,
+          "currency": "AUD"
+          },
+          {
+          "countryName": "Uganda",
+          "countryShortCode": "UG",
+          "countryLongCode": "UGA",
+          "phonePrefix": "+256",
+          "latitude": 1.373333,
+          "longitude": 32.290275,
+          "currency": "UGX"
+          },
+          {
+          "countryName": "Ukraine",
+          "countryShortCode": "UA",
+          "countryLongCode": "UKR",
+          "phonePrefix": "+380",
+          "latitude": 48.379433,
+          "longitude": 31.16558,
+          "currency": "UAH"
+          },
+          {
+          "countryName": "United Arab Emirates",
+          "countryShortCode": "AE",
+          "countryLongCode": "ARE",
+          "phonePrefix": "+971",
+          "latitude": 23.424076,
+          "longitude": 53.847818,
+          "currency": "AED"
+          },
+          {
+          "countryName": "United Kingdom",
+          "countryShortCode": "GB",
+          "countryLongCode": "GBR",
+          "phonePrefix": "+44",
+          "latitude": 55.378051,
+          "longitude": -3.435973,
+          "currency": "GBP"
+          },
+          {
+          "countryName": "United States",
+          "countryShortCode": "US",
+          "countryLongCode": "USA",
+          "phonePrefix": "+1",
+          "latitude": 37.09024,
+          "longitude": -95.712891,
+          "currency": "USD"
+          },
+          {
+          "countryName": "Uruguay",
+          "countryShortCode": "UY",
+          "countryLongCode": "URY",
+          "phonePrefix": "+598",
+          "latitude": -32.522779,
+          "longitude": -55.765835,
+          "currency": "UYU"
+          },
+          {
+          "countryName": "Uzbekistan",
+          "countryShortCode": "UZ",
+          "countryLongCode": "UZB",
+          "phonePrefix": "+998",
+          "latitude": 41.377491,
+          "longitude": 64.585262,
+          "currency": "UZS"
+          },
+          {
+            "countryName": "Vanuatu",
+            "countryShortCode": "VU",
+            "countryLongCode": "VUT",
+            "phonePrefix": "+678",
+            "latitude": -15.376706,
+            "longitude": 166.959158,
+            "currency": "VUV"
+            },
+            {
+            "countryName": "Venezuela, Bolivarian Republic of",
+            "countryShortCode": "VE",
+            "countryLongCode": "VEN",
+            "phonePrefix": "+58",
+            "latitude": 6.42375,
+            "longitude": -66.58973,
+            "currency": "VES"
+            },
+            {
+            "countryName": "Vietnam",
+            "countryShortCode": "VN",
+            "countryLongCode": "VNM",
+            "phonePrefix": "+84",
+            "latitude": 14.058324,
+            "longitude": 108.277199,
+            "currency": "VND"
+            },
+            {
+            "countryName": "Virgin Islands, British",
+            "countryShortCode": "VG",
+            "countryLongCode": "VGB",
+            "phonePrefix": "+1-284",
+            "latitude": 18.420695,
+            "longitude": -64.639968,
+            "currency": "USD"
+            },
+            {
+            "countryName": "Virgin Islands, U.S.",
+            "countryShortCode": "VI",
+            "countryLongCode": "VIR",
+            "phonePrefix": "+1-340",
+            "latitude": 18.335765,
+            "longitude": -64.896335,
+            "currency": "USD"
+            },
+            {
+            "countryName": "Wallis and Futuna",
+            "countryShortCode": "WF",
+            "countryLongCode": "WLF",
+            "phonePrefix": "+681",
+            "latitude": -13.768752,
+            "longitude": -177.156097,
+            "currency": "XPF"
+            },
+            {
+            "countryName": "Western Sahara",
+            "countryShortCode": "EH",
+            "countryLongCode": "ESH",
+            "phonePrefix": "+212",
+            "latitude": 24.215527,
+            "longitude": -12.885834,
+            "currency": "MAD"
+            },
+            {
+            "countryName": "Yemen",
+            "countryShortCode": "YE",
+            "countryLongCode": "YEM",
+            "phonePrefix": "+967",
+            "latitude": 15.552727,
+            "longitude": 48.516388,
+            "currency": "YER"
+            },
+            {
+            "countryName": "Zambia",
+            "countryShortCode": "ZM",
+            "countryLongCode": "ZMB",
+            "phonePrefix": "+260",
+            "latitude": -13.133897,
+            "longitude": 27.849332,
+            "currency": "ZMW"
+            },
+            {
+            "countryName": "Zimbabwe",
+            "countryShortCode": "ZW",
+            "countryLongCode": "ZWE",
+            "phonePrefix": "+263",
+            "latitude": -19.015438,
+            "longitude": 29.154857,
+            "currency": "ZWL"
+            }
+      
 ]

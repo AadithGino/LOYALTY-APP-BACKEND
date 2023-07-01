@@ -5,6 +5,7 @@ import { WalletModule } from 'src/wallet/wallet.module';
 import { MongooseModule } from '@nestjs/mongoose';
 import { transactionSchema } from './schema/transaction.schema';
 import { TransactionHistoryService } from './transactionHistory.service';
+import { UsersModule } from 'src/users/users.module';
 
 @Module({
   imports: [
@@ -12,6 +13,7 @@ import { TransactionHistoryService } from './transactionHistory.service';
     MongooseModule.forFeature([
       { name: 'Transaction', schema: transactionSchema },
     ]),
+    UsersModule
   ],
   providers: [TransactionService, TransactionHistoryService],
   controllers: [TransactionController],

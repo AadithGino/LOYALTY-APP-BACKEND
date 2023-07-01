@@ -6,6 +6,7 @@ import { TierService } from 'src/tier/tier.service';
 import { TransactionService } from 'src/transaction/transaction.service';
 import {
   TransactionMode,
+  Transaction_APP,
   transactionType,
 } from 'src/transaction/schema/transaction.schema';
 import { JwtPayload } from 'src/auth/stragtegies';
@@ -61,6 +62,7 @@ export class PointsService {
         txn_desc,
         transactionType.Points,
         TransactionMode.DEPOSIT,
+        Transaction_APP.LOYALTY_APP,
         2,
         '',
         reward_id
@@ -79,6 +81,7 @@ export class PointsService {
         txn_desc,
         transactionType.Points,
         TransactionMode.DEPOSIT,
+        Transaction_APP.LOYALTY_APP,
         2,
         '',
         reward_id
