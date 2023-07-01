@@ -47,13 +47,28 @@ export class AuthService {
     };
   }
 
-  async sendEmail(email: string, otp: string) {
+  async sendEmailOTP(email: string, otp: string) {
     await this.mailService.sendMail({
       to: email,
       from: process.env.NODEMAILER_USERNAME,
       subject: 'Password Reset',
       template: 'password-reset',
       context: { otp },
+    });
+    return { message: 'Otp has been send successfully to your email address' };
+  }
+
+  async sendEmailCredentials(
+    email: string,
+    username: string,
+    password: string,
+  ) {
+    await this.mailService.sendMail({
+      to: email,
+      from: process.env.NODEMAILER_USERNAME,
+      subject: 'Adam Loyalty APP SignUp',
+      template: 'credentials',
+      context: { username, password },
     });
     return { message: 'Otp has been send successfully to your email address' };
   }
@@ -70,7 +85,9 @@ export class AuthService {
   }
 
   async userSignUp(dto: userSignUpDto) {
+    const password = dto.password;
     const user = await this.userService.userSignUp(dto);
+    await this.sendEmailCredentials(user.email, user.username, password);
     const tokens = await this.getTokens(user._id.toString(), user.email);
     await this.userService.updateRefreshToken(
       user._id.toString(),
@@ -113,7 +130,7 @@ export class AuthService {
         await this.userService.setOtpNull(email);
       },
     );
-    if (setOtp) return await this.sendEmail(email, otp);
+    if (setOtp) return await this.sendEmailOTP(email, otp);
   }
 
   async validateOtp(email: string, otp: string, password: string) {
@@ -127,7 +144,13 @@ export class AuthService {
   }
 
   async userSignUpReferal(dto: userSignUpDto, referalCode: string) {
+    const password = dto.password;
     const user = await this.userService.referalSignUp(dto, referalCode);
+    await this.sendEmailCredentials(
+      user.userData.email,
+      user.userData.username,
+      password,
+    );
     const tokens = await this.getTokens(
       user.userData._id.toString(),
       user.userData.email,

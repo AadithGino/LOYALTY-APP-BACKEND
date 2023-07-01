@@ -31,7 +31,7 @@ export class WalletService {
     private readonly userService: UsersService,
   ) {}
 
-  async getWalletBalance(user) {
+  async getWalletBalance(user: JwtPayload) {
     const wallet: any = await this.walletModel.findOne({ user_id: user.sub });
     const userdata = await this.userService.getUserByEmail(user.email);
     if (!wallet) {
@@ -144,5 +144,22 @@ export class WalletService {
       buffer[i] ^= key[i % key.length];
     }
     return buffer.readInt32BE(0);
+  }
+
+  async walletPurchase(dto, user: JwtPayload) {
+    const balance = await this.getWalletBalance(user);
+    if (balance.balance < dto.amount)
+      throw new ConflictException('Not enough balance');
+    await this.updateUserWalletBalance(user.sub, 0 - dto.amount);
+    await this.transactionHistoryService.addTransactionHistory(
+      { amount: dto.amount },
+      user.sub,
+      dto.reason,
+      transactionType.Wallet,
+      TransactionMode.WITHDRAWAL,
+      Transaction_APP.LOYALTY_APP,
+      2,
+    );
+    return { message: 'Transaction Successfull' };
   }
 }

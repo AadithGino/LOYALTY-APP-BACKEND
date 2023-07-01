@@ -17,7 +17,6 @@ import { Point } from 'src/points/schema/points.schema';
 export class UsersService {
   constructor(
     @InjectModel(User.name) private readonly userModel: Model<User>,
-    @InjectModel(Point.name) private readonly pointModel: Model<Point>,
   ) {}
 
   async userLogin(dto: userLoginDto) {

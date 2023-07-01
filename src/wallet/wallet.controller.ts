@@ -37,4 +37,9 @@ export class WalletController {
   ) {
     return await this.walletService.rechargeFriendWalletFromWallet(dto, user);
   }
+
+  @Post('/wallet-purchase')
+  walletPurchase(@Body() dto,@GetUser() user:JwtPayload){
+    return  this.walletService.walletPurchase(dto,user)
+  }
 }

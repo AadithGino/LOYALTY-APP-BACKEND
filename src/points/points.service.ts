@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, ConflictException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Point } from './schema/points.schema';
 import { Model } from 'mongoose';
@@ -43,7 +43,7 @@ export class PointsService {
     userId: string,
     points: number,
     txn_desc: string = 'Add Points',
-    reward_id?:string
+    reward_id?: string,
   ) {
     const pointExists = await this.pointModel.findOne({ user_id: userId });
 
@@ -65,9 +65,9 @@ export class PointsService {
         Transaction_APP.LOYALTY_APP,
         2,
         '',
-        reward_id
+        reward_id,
       );
-      return {message:"Points added successfully"};
+      return { message: 'Points added successfully' };
     } else {
       const newbalance = this.encryptBalance(points);
       const point = await this.pointModel.create({
@@ -84,15 +84,32 @@ export class PointsService {
         Transaction_APP.LOYALTY_APP,
         2,
         '',
-        reward_id
+        reward_id,
       );
-      return {message:"Points added successfully"};
+      return { message: 'Points added successfully' };
     }
+  }
+  
+  async pointPurchase(dto, user: JwtPayload) {
+    const balance = await this.getUserPoints(user);
+    if (balance.balance < dto.amount)
+      throw new ConflictException('Not enough balance');
+    await this.updateUserPointsNoHistory(user.sub, 0 - dto.amount);
+    await this.transactionHistoryService.addTransactionHistory(
+      { amount: dto.amount },
+      user.sub,
+      dto.reason,
+      transactionType.Points,
+      TransactionMode.WITHDRAWAL,
+      Transaction_APP.LOYALTY_APP,
+      2,
+    );
+    return { message: 'Transaction Successfull' };
   }
 
   async getPointsHistory(user: JwtPayload) {
     const history = await this.transactionService.getHistory(user.sub);
-    if(history?.transactions) return history.transactions;
+    if (history?.transactions) return history.transactions;
     return [];
   }
 
@@ -113,5 +130,28 @@ export class PointsService {
       buffer[i] ^= key[i % key.length];
     }
     return buffer.readInt32BE(0);
+  }
+
+  async updateUserPointsNoHistory(userId: string,points: number){
+    const pointExists = await this.pointModel.findOne({ user_id: userId });
+    if (pointExists) {
+      const decryptedBalabce = this.decryptBalance(pointExists.points);
+      const newbalance = this.encryptBalance(points + decryptedBalabce);
+      const point = await this.pointModel.updateOne(
+        { user_id: userId },
+        { $set: { points: newbalance } },
+        { new: true },
+      );
+      await this.tierService.updateUserTier(userId, decryptedBalabce + points);
+      return { message: 'Points added successfully' };
+    } else {
+      const newbalance = this.encryptBalance(points);
+      const point = await this.pointModel.create({
+        user_id: userId,
+        points: newbalance,
+      });
+      await this.tierService.updateUserTier(userId, points);
+      return { message: 'Points added successfully' };
+    }
   }
 }

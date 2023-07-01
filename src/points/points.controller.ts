@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Query } from '@nestjs/common';
+import { Controller, Get, Post, Body } from '@nestjs/common';
 import { PointsService } from './points.service';
 import { GetUser } from 'src/shared/decorators';
 import { JwtPayload } from 'src/auth/stragtegies';
@@ -20,5 +20,10 @@ export class PointsController {
   @Post('/add')
   addPoints(@GetUser() user: JwtPayload) {
     return this.pointService.updateUserPoints(user.sub, 100);
+  }
+
+  @Post('/point-purchase')
+  pointPurchase(@Body() dto,@GetUser() user:JwtPayload) {
+    return this.pointService.pointPurchase(dto,user)
   }
 }
