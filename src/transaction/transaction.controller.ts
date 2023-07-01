@@ -14,8 +14,11 @@ export class TransactionController {
     @GetUser() user: JwtPayload,
     @Query('start') start: string,
     @Query('end') end: string,
+    @Query('page') page,
+    @Query('limit') limit,
+    @Query('app') app: string,
   ) {
-    return this.transactionService.getPassport(user,start,end,Transaction_APP.LOYALTY_APP);
+    return this.transactionService.getPassport(user,start,end,Transaction_APP.LOYALTY_APP,page,limit);
   }
 
   // @Public()

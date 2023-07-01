@@ -227,10 +227,21 @@ export class TransactionService {
     return await this.transactionModel.findOne({ user_id: userId });
   }
 
-  async getPassport(user: JwtPayload, start: string, end: string, app: string) {
+  async getPassport(
+    user: JwtPayload,
+    start: string,
+    end: string,
+    app: string,
+    page: number,
+    limit:string,
+  ) {
     try {
+      
+      let pageSize = parseInt(limit)
+
       const startDate = new Date(start);
       const endDate = new Date(end);
+      endDate.setHours(23, 59, 59, 999);
       const transaction = await this.transactionModel.aggregate([
         { $match: { user_id: user.sub } },
         {
@@ -250,15 +261,45 @@ export class TransactionService {
             },
           },
         },
+        {
+          $group: {
+            _id: null,
+            totalCount: { $sum: { $size: '$transactions' } },
+            paginatedTransactions: { $push: '$transactions' },
+          },
+        },
+        {
+          $project: {
+            _id: 0,
+            totalCount: 1,
+            paginatedTransactions: {
+              $reduce: {
+                input: '$paginatedTransactions',
+                initialValue: [],
+                in: { $concatArrays: ['$$value', '$$this'] },
+              },
+            },
+          },
+        },
+        {
+          $project: {
+            totalCount: 1,
+            paginatedTransactions: {
+              $slice: [
+                '$paginatedTransactions',
+                (page - 1) * pageSize,
+                pageSize,
+              ],
+            },
+          },
+        },
       ]);
 
-      if (transaction.length === 0) {
-        return { history: [] };
-      }
-
-      const filteredTransactions = transaction[0].transactions;
-
-      return { history: filteredTransactions };
+      console.log(transaction);
+      return {
+        history: transaction[0].paginatedTransactions,
+        totalCount: transaction[0].totalCount,
+      };
     } catch (error) {
       console.log(error);
     }
