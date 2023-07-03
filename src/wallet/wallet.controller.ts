@@ -2,7 +2,11 @@ import { Body, Controller, Get, Post } from '@nestjs/common';
 import { WalletService } from './wallet.service';
 import { GetUser } from 'src/shared/decorators';
 import { JwtPayload } from 'src/auth/stragtegies';
-import { createPaymnetDto, walletRechargeFromWalletDto } from './dto';
+import {
+  createPaymnetDto,
+  walletPurchaseDto,
+  walletRechargeFromWalletDto,
+} from './dto';
 import { validatePaymentDto } from 'src/transaction/dto';
 
 @Controller('wallet')
@@ -24,7 +28,7 @@ export class WalletController {
 
   @Post('/validate-wallet-recharge')
   async validateWalletRechargeRequest(
-    @Body() dto:validatePaymentDto,
+    @Body() dto: validatePaymentDto,
     @GetUser() user: JwtPayload,
   ) {
     return await this.walletService.validateWalletRechargeRequest(dto, user);
@@ -39,7 +43,7 @@ export class WalletController {
   }
 
   @Post('/wallet-purchase')
-  walletPurchase(@Body() dto,@GetUser() user:JwtPayload){
-    return  this.walletService.walletPurchase(dto,user)
+  walletPurchase(@Body() dto: walletPurchaseDto, @GetUser() user: JwtPayload) {
+    return this.walletService.walletPurchase(dto, user);
   }
 }

@@ -11,7 +11,6 @@ import * as countries from '../shared/constants/country.json';
 import { userLoginDto, userSignUpDto } from 'src/auth/dto';
 import { updateUserProfileDto } from './dto';
 import { JwtPayload } from 'src/auth/stragtegies';
-import { Point } from 'src/points/schema/points.schema';
 
 @Injectable()
 export class UsersService {
@@ -39,9 +38,10 @@ export class UsersService {
     const user = await this.userModel.findOne({ email: dto.email });
     if (user) throw new ConflictException('Email already in use');
     const referralCode = await this.generateUniqueReferralCode(dto.username);
-
+    const card_number = await this.generateUniqueCardNumber()
     const detiails = {
       ...dto,
+      card_number,
       latitude: country.latitude,
       longitude: country.longitude,
       country_name: country.countryName,
@@ -203,7 +203,6 @@ export class UsersService {
   async generateReferralCode(username: string) {
     const cleanUsername = username.toLowerCase().replace(/\s/g, '');
     const randomString = Math.random().toString(36).substring(2, 8);
-    // Combine the clean username and random string to create the referral code
     const referralCode = `${cleanUsername}${randomString}`;
     return referralCode;
   }
@@ -228,11 +227,41 @@ export class UsersService {
   }
 
   async updateProfilePhoto(image: Express.Multer.File, user: JwtPayload) {
-     await this.userModel.updateOne(
+    await this.userModel.updateOne(
       { _id: user.sub },
       { $set: { profile_img_thumb: image.filename } },
     );
-
-    return {message:"Photo updated successfully"}
+    return { message: 'Photo updated successfully' };
   }
+
+  async generateUniqueCardNumber() {
+    let cardNumber;
+    let isUnique = false;
+
+    while (!isUnique) {
+      cardNumber = this.generateRandomNumber();
+      const existingUser = await this.userModel.findOne({
+        card_number: cardNumber,
+      });
+
+      if (!existingUser) {
+        isUnique = true;
+      }
+    }
+    return cardNumber;
+  }
+
+   generateRandomNumber(): string {
+    const length = 12;
+    let result = '';
+    const characters = '0123456789';
+  
+    for (let i = 0; i < length; i++) {
+      const randomIndex = Math.floor(Math.random() * characters.length);
+      result += characters.charAt(randomIndex);
+    }
+  
+    return result;
+  }
+  
 }

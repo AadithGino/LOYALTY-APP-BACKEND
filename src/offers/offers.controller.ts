@@ -103,4 +103,9 @@ export class OffersController {
   getPrefrerenceOffer(@GetUser() user:JwtPayload){
     return this.offerService.getPreferenceOffers(user)
   }
+
+  @Get('/get-offers/:categoryId')
+  getOffersByCategory(@Param('categoryId') categoryId: string){
+    return this.offerService.getOffersByCategory(categoryId)
+  }
 }

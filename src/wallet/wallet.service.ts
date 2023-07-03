@@ -4,6 +4,7 @@ import {
   forwardRef,
   Inject,
   ConflictException,
+  UnauthorizedException,
 } from '@nestjs/common';
 import { Wallet } from './schema/wallet.schema';
 import { Model } from 'mongoose';
@@ -12,13 +13,14 @@ import { UsersService } from 'src/users/users.service';
 import { TransactionService } from 'src/transaction/transaction.service';
 import { JwtPayload } from 'src/auth/stragtegies';
 import { validatePaymentDto } from 'src/transaction/dto';
-import { walletRechargeFromWalletDto } from './dto';
+import { walletPurchaseDto, walletRechargeFromWalletDto } from './dto';
 import {
   TransactionMode,
   Transaction_APP,
   transactionType,
 } from 'src/transaction/schema/transaction.schema';
 import { TransactionHistoryService } from 'src/transaction/transactionHistory.service';
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class WalletService {
@@ -92,7 +94,9 @@ export class WalletService {
     user: JwtPayload,
   ) {
     const balance = await this.getWalletBalance(user);
-
+    const userData = await this.userService.getUserById(user.sub);
+    const validPassword = await bcrypt.compare(dto.password, userData.password);
+    if (!validPassword) throw new UnauthorizedException('Invalid Password');
     if (balance.balance < dto.amount)
       throw new ConflictException('Not enough balance');
     await this.updateUserWalletBalance(user.sub, 0 - dto.amount);
@@ -146,8 +150,22 @@ export class WalletService {
     return buffer.readInt32BE(0);
   }
 
-  async walletPurchase(dto, user: JwtPayload) {
+  async walletPurchase(dto: walletPurchaseDto, user: JwtPayload) {
     const balance = await this.getWalletBalance(user);
+    const userData = await this.userService.getUserById(user.sub);
+    const validPassword = await bcrypt.compare(dto.password, userData.password);
+    if (!validPassword) {
+      await this.transactionHistoryService.addFailureTransactionHistory(
+        dto.amount,
+        user.sub,
+        dto.reason,
+        transactionType.Wallet,
+        TransactionMode.WITHDRAWAL,
+        dto.transaction_app,
+        'Invalid password',
+      );
+      throw new UnauthorizedException('Invalid Password');
+    }
     if (balance.balance < dto.amount)
       throw new ConflictException('Not enough balance');
     await this.updateUserWalletBalance(user.sub, 0 - dto.amount);
@@ -157,9 +175,11 @@ export class WalletService {
       dto.reason,
       transactionType.Wallet,
       TransactionMode.WITHDRAWAL,
-      Transaction_APP.LOYALTY_APP,
+      dto.transaction_app,
       2,
     );
     return { message: 'Transaction Successfull' };
   }
 }
+
+

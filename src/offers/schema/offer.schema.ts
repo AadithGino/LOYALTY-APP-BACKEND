@@ -17,6 +17,15 @@ export class Offer {
   @Prop({ required: true })
   expiry: Date;
 
+  @Prop({ required: true })
+  start: Date;
+
+  @Prop()
+  contact:string;
+
+  @Prop()
+  url:string
+
   @Prop({ required: true, ref: 'OfferCategory',type:Types.ObjectId})
   category_id: Types.ObjectId;
 

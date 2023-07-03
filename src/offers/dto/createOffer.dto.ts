@@ -14,6 +14,18 @@ export class createOfferDto {
   expiry: Date;
 
   @IsNotEmpty()
+  @IsDateString()
+  start: Date;
+
+  @IsNotEmpty()
   @IsString()
-  category_id: string;
+  url: string;
+
+  @IsNotEmpty()
+  @IsString()
+  category_id: string;  
+
+  @IsNotEmpty()
+  @IsString()
+  contact:string; 
 }

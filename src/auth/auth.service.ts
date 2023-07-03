@@ -48,9 +48,10 @@ export class AuthService {
   }
 
   async sendEmailOTP(email: string, otp: string) {
+    const noReplyEmail = `no-reply@${process.env.NODEMAILER_USERNAME}`; // Set the no-reply email address
     await this.mailService.sendMail({
       to: email,
-      from: process.env.NODEMAILER_USERNAME,
+      from: noReplyEmail,
       subject: 'Password Reset',
       template: 'password-reset',
       context: { otp },

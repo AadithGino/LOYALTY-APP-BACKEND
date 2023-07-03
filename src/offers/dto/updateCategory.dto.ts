@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsString } from 'class-validator';
+import { IsDateString, IsNotEmpty, IsString } from 'class-validator';
 
 export class updateOfferCategoryDto {
   @IsNotEmpty()
@@ -8,6 +8,22 @@ export class updateOfferCategoryDto {
   @IsNotEmpty()
   @IsString()
   description: string;
+
+  @IsNotEmpty()
+  @IsDateString()
+  start: string;
+
+  @IsNotEmpty()
+  @IsDateString()
+  expiry: string;
+
+  @IsNotEmpty()
+  @IsString()
+  url: string;
+
+  @IsNotEmpty()
+  @IsString()
+  contact: string;
 
   @IsNotEmpty()
   @IsString()

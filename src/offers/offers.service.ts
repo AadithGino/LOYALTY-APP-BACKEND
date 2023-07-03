@@ -83,6 +83,7 @@ export class OffersService {
     return { message: 'Deleted Successfully' };
   }
 
+  // getting offers which are not deleted and not expired
   async getActiveOffers() {
     const today = new Date();
     today.setHours(0, 0, 0, 0).toString();
@@ -101,14 +102,30 @@ export class OffersService {
     return await this.offerModel.findOne({ _id: id }).populate('category_id');
   }
 
+  // getting offers which are not deleted and not expired
   async getPreferenceOffers(user: JwtPayload) {
     const userData = await this.userService.getUserById(user.sub);
-    console.log(userData.interests);
-
+    const today = new Date();
+    today.setHours(0, 0, 0, 0).toString();
     const offers = await this.offerModel
-      .find({ category_id: { $in: userData.interests } })
+      .find({
+        category_id: { $in: userData.interests },
+        expiry: { $gte: today },
+        is_deleted: false,
+      })
       .exec();
     if (offers.length > 0) return offers;
     return await this.offerModel.find();
+  }
+
+  // getting offers which are not deleted and not expired
+  async getOffersByCategory(categoryId: string) {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0).toString();
+    return this.offerModel.find({
+      category_id: categoryId,
+      expiry: { $gte: today },
+      is_deleted: false,
+    });
   }
 }

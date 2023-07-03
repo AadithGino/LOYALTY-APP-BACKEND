@@ -250,13 +250,67 @@ export class TransactionHistoryService {
         },
       ]);
 
-      if(transaction.length < 1) {return{history:[]}}
+      if (transaction.length < 1) {
+        return { history: [] };
+      }
       return {
         history: transaction[0].paginatedTransactions,
         totalCount: transaction[0].totalCount,
       };
     } catch (error) {
       console.log(error);
+    }
+  }
+
+  async addFailureTransactionHistory(
+    amount: number,
+    userId: string,
+    txn_reason: string,
+    txn_type: transactionType,
+    txn_mode: TransactionMode,
+    transaction_app: string,
+    comment: string,
+  ) {
+    try {
+      const exists = await this.transactionModel.findOne({ user_id: userId });
+      if (exists) {
+        const transactiondetails: TransactionItem = {
+          sender_id: userId,
+          amount: amount,
+          txn_reason,
+          txn_type,
+          txn_mode,
+          status: 0,
+          txn_date: new Date(),
+          txn_app: transaction_app,
+          comments: comment,
+        };
+        const document = await this.transactionModel.findOneAndUpdate(
+          { user_id: userId },
+          { $push: { transactions: transactiondetails } },
+          { new: true },
+        );
+        return document.transactions[document.transactions.length - 1];
+      } else {
+        const transactiondetails: TransactionItem = {
+          sender_id: userId,
+          amount: amount,
+          txn_reason,
+          txn_type,
+          txn_mode,
+          status: 0,
+          txn_date: new Date(),
+          txn_app: transaction_app,
+          comments: comment,
+        };
+        const document = await this.transactionModel.create({
+          user_id: userId,
+          transactions: transactiondetails,
+        });
+        return document.transactions[document.transactions.length - 1];
+      }
+    } catch (error) {
+      throw new InternalServerErrorException(error.message);
     }
   }
 }

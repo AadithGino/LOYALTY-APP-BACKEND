@@ -1,4 +1,4 @@
-import { Injectable, ConflictException } from '@nestjs/common';
+import { Injectable, ConflictException, UnauthorizedException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Point } from './schema/points.schema';
 import { Model } from 'mongoose';
@@ -11,6 +11,9 @@ import {
 } from 'src/transaction/schema/transaction.schema';
 import { JwtPayload } from 'src/auth/stragtegies';
 import { TransactionHistoryService } from 'src/transaction/transactionHistory.service';
+import * as bcrypt from 'bcrypt';
+import { UsersService } from 'src/users/users.service';
+import { pointPurchaseDto } from './dto/pointPurchase.dto';
 
 @Injectable()
 export class PointsService {
@@ -20,6 +23,7 @@ export class PointsService {
     private readonly tierService: TierService,
     private readonly transactionService: TransactionService,
     private readonly transactionHistoryService: TransactionHistoryService,
+    private readonly userService: UsersService,
   ) {}
 
   async getUserPoints(user) {
@@ -90,7 +94,10 @@ export class PointsService {
     }
   }
   
-  async pointPurchase(dto, user: JwtPayload) {
+  async pointPurchase(dto:pointPurchaseDto, user: JwtPayload) {
+     const userData = await this.userService.getUserById(user.sub)
+    const validPassword = await bcrypt.compare(dto.password,userData.password)
+    if(!validPassword) throw new UnauthorizedException("Invalid Password")
     const balance = await this.getUserPoints(user);
     if (balance.balance < dto.amount)
       throw new ConflictException('Not enough balance');
@@ -101,7 +108,7 @@ export class PointsService {
       dto.reason,
       transactionType.Points,
       TransactionMode.WITHDRAWAL,
-      Transaction_APP.LOYALTY_APP,
+      dto.transaction_app,
       2,
     );
     return { message: 'Transaction Successfull' };

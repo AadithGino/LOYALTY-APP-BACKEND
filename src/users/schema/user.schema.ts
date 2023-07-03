@@ -64,6 +64,9 @@ export class User {
   @Prop()
   place: string;
 
+  @Prop()
+  card_number: string;
+
   @Prop({ default: 'Bronze' })
   tier: string;
 

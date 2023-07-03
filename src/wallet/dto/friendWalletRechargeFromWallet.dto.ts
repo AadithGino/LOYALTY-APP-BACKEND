@@ -8,4 +8,8 @@ export class walletRechargeFromWalletDto {
   @IsNotEmpty()
   @IsString()
   user_id: string;
+
+  @IsNotEmpty()
+  @IsString()
+  password: string;
 }
