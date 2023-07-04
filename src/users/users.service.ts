@@ -244,7 +244,8 @@ export class UsersService {
     let isUnique = false;
 
     while (!isUnique) {
-      cardNumber = this.generateRandomNumber();
+      cardNumber = await this.getNextCardNumber();
+      console.log(cardNumber);
       const existingUser = await this.userModel.findOne({
         card_number: cardNumber,
       });
@@ -256,16 +257,20 @@ export class UsersService {
     return cardNumber;
   }
 
-  generateRandomNumber(): string {
-    const length = 12;
-    let result = '';
-    const characters = '0123456789';
-
-    for (let i = 0; i < length; i++) {
-      const randomIndex = Math.floor(Math.random() * characters.length);
-      result += characters.charAt(randomIndex);
+  async  getNextCardNumber() {
+    const lastUser = await this.userModel.findOne({}, {}, { sort: { card_number: -1 } });
+  
+    if (lastUser) {
+      const lastCardNumber = lastUser.card_number;
+      const newCardNumber = this.incrementCardNumber(lastCardNumber);
+      return newCardNumber;
     }
-
-    return result;
+  
+    return process.env.CARD_NUMBER;
+  }
+  
+   incrementCardNumber(cardNumber) {
+    let incrementedNumber = BigInt(cardNumber) + BigInt(1);
+    return incrementedNumber.toString().padStart(12, '0');
   }
 }

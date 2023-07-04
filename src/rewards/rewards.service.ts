@@ -1,4 +1,4 @@
-import { Injectable, Inject, forwardRef } from '@nestjs/common';
+import { Injectable, Inject, forwardRef, HttpException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Reward } from './schema/rewards.schema';
 import { Model } from 'mongoose';
@@ -14,7 +14,7 @@ export class RewardsService {
     @Inject(forwardRef(() => TransactionService))
     private readonly transactionHistoryService: TransactionHistoryService,
     private readonly pointService: PointsService,
-  ) {}
+  ) { }
 
   async getRewards() {
     return await this.rewardModel.find({ is_deleted: false });
@@ -34,12 +34,13 @@ export class RewardsService {
   }
 
   async deleteReward(dto) {
-    await this.rewardModel.deleteOne({ _id: dto.id });
+    await this.rewardModel.updateOne({ _id: dto.id }, { $set: { is_deleted: true } });
     return { message: 'Successfully deleted' };
   }
 
   async claimReward(dto, user) {
     const reward = await this.rewardModel.findOne({ _id: dto.id });
+    if (reward.is_deleted && !reward.status) throw new HttpException("Reward Expired", 400)
     const points = reward.points_on_completetion;
     await this.pointService.updateUserPoints(
       user.sub,
