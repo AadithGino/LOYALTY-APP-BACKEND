@@ -1,4 +1,8 @@
-import { Injectable, ConflictException, UnauthorizedException } from '@nestjs/common';
+import {
+  Injectable,
+  ConflictException,
+  UnauthorizedException,
+} from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Point } from './schema/points.schema';
 import { Model } from 'mongoose';
@@ -93,13 +97,13 @@ export class PointsService {
       return { message: 'Points added successfully' };
     }
   }
-  
-  async pointPurchase(dto:pointPurchaseDto, user: JwtPayload) {
-     const userData = await this.userService.getUserById(user.sub)
-    const validPassword = await bcrypt.compare(dto.password,userData.password)
-    if(!validPassword) throw new UnauthorizedException("Invalid Password")
+
+  async pointPurchase(dto: pointPurchaseDto, user: JwtPayload) {
+    const userData = await this.userService.getUserById(user.sub);
+    const validPassword = await bcrypt.compare(dto.password, userData.password);
+    if (!validPassword) throw new UnauthorizedException('Invalid Password');
     const balance = await this.getUserPoints(user);
-    if (balance.balance < dto.amount)
+    if (balance.points < dto.amount)
       throw new ConflictException('Not enough balance');
     await this.updateUserPointsNoHistory(user.sub, 0 - dto.amount);
     await this.transactionHistoryService.addTransactionHistory(
@@ -139,7 +143,7 @@ export class PointsService {
     return buffer.readInt32BE(0);
   }
 
-  async updateUserPointsNoHistory(userId: string,points: number){
+  async updateUserPointsNoHistory(userId: string, points: number) {
     const pointExists = await this.pointModel.findOne({ user_id: userId });
     if (pointExists) {
       const decryptedBalabce = this.decryptBalance(pointExists.points);

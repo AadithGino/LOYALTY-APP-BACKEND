@@ -207,8 +207,8 @@ export class TransactionHistoryService {
                 as: 'transaction',
                 cond: {
                   $and: [
-                    { $gte: ['$$transaction.created_at', startDate] },
-                    { $lte: ['$$transaction.created_at', endDate] },
+                    { $gte: ['$$transaction.txn_date', startDate] },
+                    { $lte: ['$$transaction.txn_date', endDate] },
                     app ? { $eq: ['$$transaction.txn_app', app] } : '',
                   ],
                 },
@@ -216,28 +216,22 @@ export class TransactionHistoryService {
             },
           },
         },
+        { $unwind: '$transactions' },
+        {
+          $sort: {
+            'transactions.txn_date': -1, // Sort in descending order
+          },
+        },
         {
           $group: {
             _id: null,
-            totalCount: { $sum: { $size: '$transactions' } },
+            totalCount: { $sum: 1 },
             paginatedTransactions: { $push: '$transactions' },
           },
         },
         {
           $project: {
             _id: 0,
-            totalCount: 1,
-            paginatedTransactions: {
-              $reduce: {
-                input: '$paginatedTransactions',
-                initialValue: [],
-                in: { $concatArrays: ['$$value', '$$this'] },
-              },
-            },
-          },
-        },
-        {
-          $project: {
             totalCount: 1,
             paginatedTransactions: {
               $slice: [
