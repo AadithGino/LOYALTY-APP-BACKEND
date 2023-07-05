@@ -54,7 +54,7 @@ export class RewardsController {
   @Roles(UserRoles.ADMIN)
   @UseGuards(RoleGuard)
   @Delete()
-  deleteReward(@Body() dto) {
-    return this.rewardService.deleteReward(dto);
+  deleteReward(@Body('id') id) {
+    return this.rewardService.deleteReward(id);
   }
 }

@@ -31,7 +31,9 @@ export class TierService {
   }
 
   async getSingleTier(tier: string) {
-    return await this.tierModel.findOne({ name: tier });
+    return await this.tierModel.findOne({
+      name: { $regex: new RegExp(tier, 'i') },
+    });
   }
 
   async updateUserTier(userId: string, points: number) {

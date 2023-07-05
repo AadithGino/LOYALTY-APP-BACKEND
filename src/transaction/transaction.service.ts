@@ -242,10 +242,10 @@ export class TransactionService {
       dto.amount,
       user.sub.toString(),
       userData.currency,
-      dto.reason,
+      "Wallet Recharge",
       user.email,
-      transactionType.SPEND,
-      TransactionMode.WITHDRAWAL,
+      transactionType.Wallet,
+      TransactionMode.DEPOSIT,
       dto.transaction_app,
     );
   }

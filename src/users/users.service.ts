@@ -38,7 +38,7 @@ export class UsersService {
     const user = await this.userModel.findOne({ email: dto.email });
     if (user) throw new ConflictException('Email already in use');
     const referralCode = await this.generateUniqueReferralCode(dto.username);
-    const card_number = await this.generateUniqueCardNumber();
+    const card_number = await this.getNextCardNumber();
     const detiails = {
       ...dto,
       card_number,
@@ -96,6 +96,10 @@ export class UsersService {
 
   async getUserById(id: string): Promise<User> {
     const user = await this.userModel.findOne({ _id: id });
+    // user.card_number = `${user.card_number.slice(
+    //   0,
+    //   4,
+    // )} ${user.card_number.slice(4, 8)} ${user.card_number.slice(8)}`;
     return user;
   }
 
@@ -239,38 +243,23 @@ export class UsersService {
     return { message: 'Photo updated successfully' };
   }
 
-  async generateUniqueCardNumber() {
-    let cardNumber;
-    let isUnique = false;
-
-    while (!isUnique) {
-      cardNumber = await this.getNextCardNumber();
-      console.log(cardNumber);
-      const existingUser = await this.userModel.findOne({
-        card_number: cardNumber,
-      });
-
-      if (!existingUser) {
-        isUnique = true;
-      }
-    }
-    return cardNumber;
-  }
-
-  async  getNextCardNumber() {
-    const lastUser = await this.userModel.findOne({}, {}, { sort: { card_number: -1 } });
-  
+  async getNextCardNumber() {
+    const lastUser = await this.userModel.findOne(
+      {},
+      {},
+      { sort: { card_number: -1 } },
+    );
     if (lastUser) {
       const lastCardNumber = lastUser.card_number;
       const newCardNumber = this.incrementCardNumber(lastCardNumber);
       return newCardNumber;
     }
-  
     return process.env.CARD_NUMBER;
   }
-  
-   incrementCardNumber(cardNumber) {
+
+  incrementCardNumber(cardNumber) {
     let incrementedNumber = BigInt(cardNumber) + BigInt(1);
+    // let incrementedNumber = BigInt(cardNumber) + BigInt(Math.floor(Math.random() * 10) + 1)
     return incrementedNumber.toString().padStart(12, '0');
   }
 }

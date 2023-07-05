@@ -3,7 +3,7 @@ import {
   Controller,
   HttpCode,
   HttpStatus,
-  Post, 
+  Post,
   UseGuards,
   Param,
 } from '@nestjs/common';
@@ -34,7 +34,7 @@ export class AuthController {
   @Post('/signup/:referal')
   userSignUpReferal(
     @Body() dto: userSignUpDto,
-    @Param('referal') referalCode:string,
+    @Param('referal') referalCode: string,
   ): Promise<Tokens> {
     return this.authService.userSignUpReferal(dto, referalCode);
   }

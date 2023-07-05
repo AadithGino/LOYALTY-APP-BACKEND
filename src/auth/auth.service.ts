@@ -88,7 +88,7 @@ export class AuthService {
   async userSignUp(dto: userSignUpDto) {
     const password = dto.password;
     const user = await this.userService.userSignUp(dto);
-    await this.sendEmailCredentials(user.email, user.username, password);
+    // await this.sendEmailCredentials(user.email, user.username, password);
     const tokens = await this.getTokens(user._id.toString(), user.email);
     await this.userService.updateRefreshToken(
       user._id.toString(),

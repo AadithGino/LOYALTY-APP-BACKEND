@@ -14,7 +14,7 @@ export class RewardsService {
     @Inject(forwardRef(() => TransactionService))
     private readonly transactionHistoryService: TransactionHistoryService,
     private readonly pointService: PointsService,
-  ) { }
+  ) {}
 
   async getRewards() {
     return await this.rewardModel.find({ is_deleted: false });
@@ -33,14 +33,18 @@ export class RewardsService {
     return { message: 'Successfully updated' };
   }
 
-  async deleteReward(dto) {
-    await this.rewardModel.updateOne({ _id: dto.id }, { $set: { is_deleted: true } });
+  async deleteReward(id: string) {
+    await this.rewardModel.updateOne(
+      { _id: id },
+      { $set: { is_deleted: true } },
+    );
     return { message: 'Successfully deleted' };
   }
 
   async claimReward(dto, user) {
     const reward = await this.rewardModel.findOne({ _id: dto.id });
-    if (reward.is_deleted && !reward.status) throw new HttpException("Reward Expired", 400)
+    if (reward.is_deleted && !reward.status)
+      throw new HttpException('Reward Expired', 400);
     const points = reward.points_on_completetion;
     await this.pointService.updateUserPoints(
       user.sub,
