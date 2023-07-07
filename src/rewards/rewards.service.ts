@@ -52,5 +52,6 @@ export class RewardsService {
       'Claimed Reward Points',
       reward._id.toString(),
     );
+    return { message: 'reward successfully claimed' };
   }
 }

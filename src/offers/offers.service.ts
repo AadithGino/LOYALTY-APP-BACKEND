@@ -15,6 +15,8 @@ import { Offer } from './schema/offer.schema';
 import { updateOfferDto } from './dto/updateOffer.dto';
 import { UsersService } from 'src/users/users.service';
 import { JwtPayload } from 'src/auth/stragtegies';
+import * as fs from 'fs';
+import * as path from 'path';
 
 @Injectable()
 export class OffersService {
@@ -66,13 +68,21 @@ export class OffersService {
   }
 
   async updateOffer(dto: updateOfferDto, image: Express.Multer.File) {
-    const category = await this.getSingleCategory(dto.category_id);
-    if (!category) throw new NotFoundException('Category not found');
-    if (image) {
-      const details = { ...dto, image: image.filename };
-      return this.offerModel.updateOne({ _id: dto._id }, { $set: details });
+    try {
+      const category = await this.getSingleCategory(dto.category_id);
+      const offer = await this.offerModel.findOne({ _id: dto._id });
+      if (offer.image) {
+        this.deleteFile(offer.image);
+      }
+      if (!category) throw new NotFoundException('Category not found');
+      if (image) {
+        const details = { ...dto, image: image.filename };
+        return this.offerModel.updateOne({ _id: dto._id }, { $set: details });
+      }
+      return this.offerModel.updateOne({ _id: dto._id }, { $set: dto });
+    } catch (error) {
+      console.log(error);
     }
-    return this.offerModel.updateOne({ _id: dto._id }, { $set: dto });
   }
 
   async deleteOffer(id: string) {
@@ -127,5 +137,12 @@ export class OffersService {
       expiry: { $gte: today },
       is_deleted: false,
     });
+  }
+
+  deleteFile(filename: string): void {
+    const filePath = path.resolve(__dirname, '..', '..', 'uploads', filename);
+    if (fs.existsSync(filePath)) {
+      fs.unlinkSync(filePath);
+    }
   }
 }

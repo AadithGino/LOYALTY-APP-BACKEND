@@ -11,6 +11,8 @@ import * as countries from '../shared/constants/country.json';
 import { userLoginDto, userSignUpDto } from 'src/auth/dto';
 import { updateUserProfileDto } from './dto';
 import { JwtPayload } from 'src/auth/stragtegies';
+import * as fs from 'fs';
+import * as path from 'path';
 
 @Injectable()
 export class UsersService {
@@ -96,10 +98,10 @@ export class UsersService {
 
   async getUserById(id: string): Promise<User> {
     const user = await this.userModel.findOne({ _id: id });
-    user.card_number = `${user.card_number.slice(
-      0,
-      4,
-    )} ${user.card_number.slice(4, 8)} ${user.card_number.slice(8)}`;
+    // user.card_number = `${user.card_number.slice(
+    //   0,
+    //   4,
+    // )} ${user.card_number.slice(4, 8)} ${user.card_number.slice(8)}`;
     return user;
   }
 
@@ -236,6 +238,10 @@ export class UsersService {
   }
 
   async updateProfilePhoto(image: Express.Multer.File, user: JwtPayload) {
+    const userData = await this.userModel.findOne({ _id: user.sub });
+    if (userData.profile_img_thumb) {
+      this.deleteFile(userData.profile_img_thumb);
+    }
     await this.userModel.updateOne(
       { _id: user.sub },
       { $set: { profile_img_thumb: image.filename } },
@@ -261,10 +267,17 @@ export class UsersService {
       ).toString();
       generatedCardNumber = generatedCardNumber.slice(0, 12); // Limit length to 12 digits
       console.log(generatedCardNumber.slice(8));
-
     } while (
       process.env.PREM_CARD_NUMBER.includes(generatedCardNumber.slice(8))
     );
     return generatedCardNumber;
+  }
+
+  deleteFile(filename: string): void {
+    const filePath = path.resolve(__dirname, '..', '..', 'uploads', filename);
+
+    if (fs.existsSync(filePath)) {
+      fs.unlinkSync(filePath);
+    }
   }
 }
