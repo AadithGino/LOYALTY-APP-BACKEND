@@ -13,6 +13,9 @@ export class Point {
   @Prop()
   points: string;
 
+  @Prop()
+  redeemed_points: string
+
   @Prop({ default: true })
   status: boolean;
 }

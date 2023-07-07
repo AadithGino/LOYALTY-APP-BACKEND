@@ -21,6 +21,8 @@ import {
 } from 'src/transaction/schema/transaction.schema';
 import { TransactionHistoryService } from 'src/transaction/transactionHistory.service';
 import * as bcrypt from 'bcrypt';
+import { Point } from 'src/points/schema/points.schema';
+import { TierService } from 'src/tier/tier.service';
 
 @Injectable()
 export class WalletService {
@@ -31,6 +33,8 @@ export class WalletService {
     private readonly transactionHistoryService: TransactionHistoryService,
     @InjectModel(Wallet.name) private readonly walletModel: Model<Wallet>,
     private readonly userService: UsersService,
+    private readonly tierService: TierService,
+    @InjectModel(Point.name) private readonly pointModel: Model<Point>,
   ) {}
 
   async getWalletBalance(user: JwtPayload) {
@@ -154,6 +158,10 @@ export class WalletService {
     const balance = await this.getWalletBalance(user);
     const userData = await this.userService.getUserById(user.sub);
     const validPassword = await bcrypt.compare(dto.password, userData.password);
+    const tierData: any = await this.tierService.getSingleTier(userData.tier);
+    const rewardPoint = Math.round(
+      dto.amount / tierData.benefits.moneyToBeSpend,
+    );
     if (!validPassword) {
       await this.transactionHistoryService.addFailureTransactionHistory(
         dto.amount,
@@ -178,8 +186,50 @@ export class WalletService {
       dto.transaction_app,
       2,
     );
+    await this.updatePointsOnPurchase(user.sub, rewardPoint);
     return { message: 'Transaction Successfull' };
   }
+
+  async updatePointsOnPurchase(userId: string, points: number) {
+    const pointExists = await this.pointModel.findOne({ user_id: userId });
+    if (pointExists) {
+      const decryptedBalabce = this.decryptBalance(pointExists.points);
+      const newbalance = this.encryptBalance(points + decryptedBalabce);
+      const point = await this.pointModel.updateOne(
+        { user_id: userId },
+        { $set: { points: newbalance } },
+        { new: true },
+      );
+      await this.transactionHistoryService.addTransactionHistory(
+        { amount: points },
+        userId,
+        'Points on wallet purchase',
+        transactionType.Points,
+        TransactionMode.DEPOSIT,
+        Transaction_APP.LOYALTY_APP,
+        2,
+        '',
+      );
+      await this.tierService.updateUserTier(userId, decryptedBalabce + points);
+      return { message: 'Points added successfully' };
+    } else {
+      const newbalance = this.encryptBalance(points);
+      const point = await this.pointModel.create({
+        user_id: userId,
+        points: newbalance,
+      });
+      await this.transactionHistoryService.addTransactionHistory(
+        { amount: points },
+        userId,
+        'Points on wallet purchase',
+        transactionType.Points,
+        TransactionMode.DEPOSIT,
+        Transaction_APP.LOYALTY_APP,
+        2,
+        '',
+      );
+      await this.tierService.updateUserTier(userId, points);
+      return { message: 'Points added successfully' };
+    }
+  }
 }
-
-

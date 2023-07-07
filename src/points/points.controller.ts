@@ -24,7 +24,12 @@ export class PointsController {
   }
 
   @Post('/point-purchase')
-  pointPurchase(@Body() dto:pointPurchaseDto,@GetUser() user:JwtPayload) {
-    return this.pointService.pointPurchase(dto,user)
+  pointPurchase(@Body() dto: pointPurchaseDto, @GetUser() user: JwtPayload) {
+    return this.pointService.pointPurchase(dto, user);
+  }
+
+  @Post('/point-redeem')
+  pointRedeem(@Body('amount') amount: number, @GetUser() user: JwtPayload) {
+    return this.pointService.redeemPointsToWallet(amount, user);
   }
 }
