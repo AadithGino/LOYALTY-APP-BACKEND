@@ -16,6 +16,7 @@ import { TierModule } from './tier/tier.module';
 import { PointsModule } from './points/points.module';
 import { RewardsModule } from './rewards/rewards.module';
 import { OffersModule } from './offers/offers.module';
+import { ServeStaticModule } from '@nestjs/serve-static';
 
 
 @Module({
@@ -46,6 +47,10 @@ import { OffersModule } from './offers/offers.module';
     PointsModule,
     RewardsModule,
     OffersModule,
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '..', 'uploads'), // Specify the path to the uploads folder
+      serveRoot: '/uploads', // Specify the base URL for serving the files
+    }),
   ],
   controllers: [AppController],
   providers: [AppService, { provide: APP_GUARD, useClass: AtGuard }],
