@@ -43,6 +43,7 @@ export class RewardsService {
 
   async claimReward(dto, user) {
     const reward = await this.rewardModel.findOne({ _id: dto.id });
+    console.log(reward);
     if (reward.is_deleted && !reward.status)
       throw new HttpException('Reward Expired', 400);
     const points = reward.points_on_completetion;

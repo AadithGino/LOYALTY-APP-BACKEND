@@ -13,7 +13,7 @@ import { UsersModule } from 'src/users/users.module';
     MongooseModule.forFeature([
       { name: 'Transaction', schema: transactionSchema },
     ]),
-    UsersModule
+    UsersModule,
   ],
   providers: [TransactionService, TransactionHistoryService],
   controllers: [TransactionController],

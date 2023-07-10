@@ -7,4 +7,8 @@ export class userLoginDto {
   @IsNotEmpty()
   @IsString()
   password: string;
+
+  @IsNotEmpty()
+  @IsString()
+  ip_address: string;
 }

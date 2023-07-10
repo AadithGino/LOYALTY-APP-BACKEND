@@ -61,7 +61,7 @@ export class AuthController {
 
   @Public()
   @Post('/password-reset')
-  sendEmail(@Body() dto: passwordResetDto) {
+  sendEmail(@Body() dto: passwordResetDto) { 
     return this.authService.passWordReset(dto.email);
   }
 

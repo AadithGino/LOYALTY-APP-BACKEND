@@ -120,6 +120,12 @@ export class User {
 
   @Prop()
   rt_token: string;
+
+  @Prop()
+  ip_address: string;
+
+  @Prop()
+  first_ip_address: string;
 }
 
 export const userSchema = SchemaFactory.createForClass(User);

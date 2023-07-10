@@ -90,9 +90,10 @@ export class AuthService {
     const user = await this.userService.userSignUp(dto);
     // await this.sendEmailCredentials(user.email, user.username, password);
     const tokens = await this.getTokens(user._id.toString(), user.email);
-    await this.userService.updateRefreshToken(
+    await this.userService.updateRefreshTokenandIpAddress(
       user._id.toString(),
       tokens.refresh_token,
+      dto.ip_address
     );
     return tokens;
   }
@@ -100,9 +101,10 @@ export class AuthService {
   async userLogin(dto: userLoginDto) {
     const user = await this.userService.userLogin(dto);
     const tokens = await this.getTokens(user._id.toString(), user.email);
-    await this.userService.updateRefreshToken(
+    await this.userService.updateRefreshTokenandIpAddress(
       user._id.toString(),
       tokens.refresh_token,
+      dto.ip_address
     );
     return { tokens, username: user.username };
   }
@@ -114,7 +116,7 @@ export class AuthService {
   async refreshToken(userId: string, token: string) {
     const user = await this.userService.refreshToken(userId, token);
     const tokens = await this.getTokens(user._id.toString(), user.email);
-    await this.userService.updateRefreshToken(userId, tokens.refresh_token);
+    await this.userService.updateRefreshTokenandIpAddress(userId, tokens.refresh_token);
     return tokens;
   }
 
@@ -140,7 +142,7 @@ export class AuthService {
     if (!validOtp) throw new UnauthorizedException('Invalid OTP');
     await this.userService.updatePassword(email, password);
     const tokens = await this.getTokens(user._id, user.email);
-    await this.userService.updateRefreshToken(user._id, tokens.refresh_token);
+    await this.userService.updateRefreshTokenandIpAddress(user._id, tokens.refresh_token);
     return tokens;
   }
 
@@ -156,7 +158,7 @@ export class AuthService {
       user.userData._id.toString(),
       user.userData.email,
     );
-    await this.userService.updateRefreshToken(
+    await this.userService.updateRefreshTokenandIpAddress(
       user.userData._id.toString(),
       tokens.refresh_token,
     );

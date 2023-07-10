@@ -51,18 +51,23 @@ export class UsersService {
       currency: country.currency,
       referral_code: referralCode,
       refered_by: referedById ? referedById : '',
+      first_ip_address:dto.ip_address
     };
     return await this.userModel.create(detiails);
   }
 
   // updating the refresh token with the new hashed token
 
-  async updateRefreshToken(userId: string, refreshToken: string) {
+  async updateRefreshTokenandIpAddress(
+    userId: string,
+    refreshToken: string,
+    ip_address?: string,
+  ) {
     const newrefreshToken = refreshToken.slice(172);
     const rt = await bcrypt.hash(newrefreshToken, 10);
     return await this.userModel.updateOne(
       { _id: new Types.ObjectId(userId) },
-      { $set: { rt_token: rt } },
+      { $set: { rt_token: rt, ip_address: ip_address } },
     );
   }
 

@@ -113,19 +113,51 @@ export class OffersService {
   }
 
   // getting offers which are not deleted and not expired
+  // async getPreferenceOffers(user: JwtPayload) {
+  //   const userData = await this.userService.getUserById(user.sub);
+  //   const today = new Date();
+  //   today.setHours(0, 0, 0, 0).toString();
+  //   const offers = await this.offerModel
+  //     .find({
+  //       category_id: { $in: userData.interests },
+  //       expiry: { $gte: today },
+  //       is_deleted: false,
+  //     })
+  //     .exec();
+  //   if (offers.length > 0) return offers;
+  //   return await this.offerModel.find();
+  // }
+
   async getPreferenceOffers(user: JwtPayload) {
     const userData = await this.userService.getUserById(user.sub);
     const today = new Date();
-    today.setHours(0, 0, 0, 0).toString();
-    const offers = await this.offerModel
+    today.setHours(0, 0, 0, 0);
+  
+    const preferredOffers = await this.offerModel
       .find({
         category_id: { $in: userData.interests },
         expiry: { $gte: today },
         is_deleted: false,
       })
       .exec();
-    if (offers.length > 0) return offers;
-    return await this.offerModel.find();
+  
+    let remainingOffers = [];
+  
+    if (preferredOffers.length > 0) {
+      const preferredOfferIds = preferredOffers.map(offer => offer._id);
+      remainingOffers = await this.offerModel
+        .find({
+          _id: { $nin: preferredOfferIds },
+          is_deleted: false,
+          expiry: { $gte: today },
+        })
+        .exec();
+    } else {
+      remainingOffers = await this.offerModel.find({ is_deleted: false }).exec();
+    }
+  
+    const offers = [...preferredOffers, ...remainingOffers];
+    return offers;
   }
 
   // getting offers which are not deleted and not expired
