@@ -31,16 +31,16 @@ export class PointsService {
     private readonly tierService: TierService,
     private readonly transactionService: TransactionService,
     private readonly transactionHistoryService: TransactionHistoryService,
-    private readonly userService: UsersService,
-    // private readonly walletService: WalletService,
+    private readonly userService: UsersService, // private readonly walletService: WalletService,
   ) {}
 
   async getUserPoints(user: JwtPayload) {
     try {
-      const pointExist: any = await this.pointModel.findOne({
-        user_id: user.sub,
-      });
-  
+      const pointExist: any = await this.pointModel
+        .findOne({
+          user_id: user.sub,
+        })
+        .lean();
       if (!pointExist) {
         const newPoint: any = await this.pointModel.create({
           user_id: user.sub,
@@ -58,7 +58,6 @@ export class PointsService {
       return pointExist;
     } catch (error) {
       console.log(error);
-      
     }
   }
 
@@ -219,7 +218,7 @@ export class PointsService {
   //         2,
   //       );
   //     }
-      
+
   //   // } catch (error) {
   //   //   console.log(error);
   //   // }
@@ -235,25 +234,5 @@ export class PointsService {
   //      { new: true },
   //    );
   //    return 'updated'
-  // }
-
-  // async convertAEDToCurrency(
-  //   amount: number,
-  //   currencyCode: string,
-  // ): Promise<number> {
-  //   const response = await axios.get(
-  //     `http://data.fixer.io/api/convert?access_key=${this.API_KEY}&from=AED&to=${currencyCode}&amount=${amount}`,
-  //   );
-
-  //   const rates = response.data.rates;
-  //   // const targetRate = rates[currencyCode];
-  //   console.log(response.data, 'respinse');
-
-  //   // if (!targetRate) {
-  //   //   throw new Error(`Currency code '${currencyCode}' is not supported.`);
-  //   // }
-
-  //   const convertedAmount = amount;
-  //   return convertedAmount;
   // }
 }
