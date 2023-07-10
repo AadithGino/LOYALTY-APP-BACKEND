@@ -31,7 +31,7 @@ export class UsersService {
     return result;
   }
 
-  async userSignUp(dto: userSignUpDto, referedById?: string) {
+  async userSignUp(dto: userSignUpDto, ip: string, referedById?: string) {
     dto.password = await bcrypt.hash(dto.password, 10);
     const country = countries.find(
       (country) => country.countryShortCode === dto.country_code,
@@ -51,7 +51,8 @@ export class UsersService {
       currency: country.currency,
       referral_code: referralCode,
       refered_by: referedById ? referedById : '',
-      first_ip_address:dto.ip_address
+      first_ip_address: ip,
+      ip_address: ip,
     };
     return await this.userModel.create(detiails);
   }
@@ -223,13 +224,17 @@ export class UsersService {
     return referralCode;
   }
 
-  async referalSignUp(dto: userSignUpDto, referalCode: string) {
+  async referalSignUp(dto: userSignUpDto, ip: string, referalCode: string) {
     const validReferalCode = await this.userModel.findOne({
       referral_code: referalCode,
     });
     if (!validReferalCode)
       throw new UnauthorizedException('Invalid referal code');
-    const user = await this.userSignUp(dto, validReferalCode._id.toString());
+    const user = await this.userSignUp(
+      dto,
+      ip,
+      validReferalCode._id.toString(),
+    );
     await this.userModel.updateOne(
       { _id: validReferalCode._id },
       { $push: { refered_users: user._id } },

@@ -85,26 +85,26 @@ export class AuthService {
     return otp;
   }
 
-  async userSignUp(dto: userSignUpDto) {
+  async userSignUp(dto: userSignUpDto, ip: string) {
     const password = dto.password;
-    const user = await this.userService.userSignUp(dto);
+    const user = await this.userService.userSignUp(dto, ip);
     // await this.sendEmailCredentials(user.email, user.username, password);
     const tokens = await this.getTokens(user._id.toString(), user.email);
     await this.userService.updateRefreshTokenandIpAddress(
       user._id.toString(),
       tokens.refresh_token,
-      dto.ip_address
+      ip,
     );
     return tokens;
   }
 
-  async userLogin(dto: userLoginDto) {
+  async userLogin(dto: userLoginDto, ip: string) {
     const user = await this.userService.userLogin(dto);
     const tokens = await this.getTokens(user._id.toString(), user.email);
     await this.userService.updateRefreshTokenandIpAddress(
       user._id.toString(),
       tokens.refresh_token,
-      dto.ip_address
+      ip,
     );
     return { tokens, username: user.username };
   }
@@ -116,7 +116,10 @@ export class AuthService {
   async refreshToken(userId: string, token: string) {
     const user = await this.userService.refreshToken(userId, token);
     const tokens = await this.getTokens(user._id.toString(), user.email);
-    await this.userService.updateRefreshTokenandIpAddress(userId, tokens.refresh_token);
+    await this.userService.updateRefreshTokenandIpAddress(
+      userId,
+      tokens.refresh_token,
+    );
     return tokens;
   }
 
@@ -142,13 +145,16 @@ export class AuthService {
     if (!validOtp) throw new UnauthorizedException('Invalid OTP');
     await this.userService.updatePassword(email, password);
     const tokens = await this.getTokens(user._id, user.email);
-    await this.userService.updateRefreshTokenandIpAddress(user._id, tokens.refresh_token);
+    await this.userService.updateRefreshTokenandIpAddress(
+      user._id,
+      tokens.refresh_token,
+    );
     return tokens;
   }
 
-  async userSignUpReferal(dto: userSignUpDto, referalCode: string) {
+  async userSignUpReferal(dto: userSignUpDto, referalCode: string, ip: string) {
     const password = dto.password;
-    const user = await this.userService.referalSignUp(dto, referalCode);
+    const user = await this.userService.referalSignUp(dto, ip, referalCode);
     await this.sendEmailCredentials(
       user.userData.email,
       user.userData.username,
@@ -161,6 +167,7 @@ export class AuthService {
     await this.userService.updateRefreshTokenandIpAddress(
       user.userData._id.toString(),
       tokens.refresh_token,
+      ip,
     );
     await this.pointService.updateUserPoints(
       user.userData._id.toString(),

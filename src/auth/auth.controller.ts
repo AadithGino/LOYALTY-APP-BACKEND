@@ -19,6 +19,7 @@ import {
 } from './dto';
 import { Tokens } from './types/tokens.types';
 import { JwtPayload } from './stragtegies';
+import { RealIP } from 'nestjs-real-ip';
 
 @Controller('auth')
 export class AuthController {
@@ -26,8 +27,11 @@ export class AuthController {
 
   @Public()
   @Post('/signup')
-  userSignUp(@Body() dto: userSignUpDto): Promise<Tokens> {
-    return this.authService.userSignUp(dto);
+  userSignUp(
+    @Body() dto: userSignUpDto,
+    @RealIP() ip: string,
+  ): Promise<Tokens> {
+    return this.authService.userSignUp(dto, ip);
   }
 
   @Public()
@@ -35,15 +39,16 @@ export class AuthController {
   userSignUpReferal(
     @Body() dto: userSignUpDto,
     @Param('referal') referalCode: string,
+    @RealIP() ip: string,
   ): Promise<Tokens> {
-    return this.authService.userSignUpReferal(dto, referalCode);
+    return this.authService.userSignUpReferal(dto, referalCode, ip);
   }
 
   @Public()
   @Post('/login')
   @HttpCode(HttpStatus.OK)
-  userLogin(@Body() dto: userLoginDto) {
-    return this.authService.userLogin(dto);
+  userLogin(@Body() dto: userLoginDto, @RealIP() ip: string) {
+    return this.authService.userLogin(dto, ip);
   }
 
   @Public()
@@ -61,7 +66,7 @@ export class AuthController {
 
   @Public()
   @Post('/password-reset')
-  sendEmail(@Body() dto: passwordResetDto) { 
+  sendEmail(@Body() dto: passwordResetDto) {
     return this.authService.passWordReset(dto.email);
   }
 

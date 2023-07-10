@@ -22,8 +22,4 @@ export class userSignUpDto {
   @IsNotEmpty()
   @IsString()
   country_code: string;
-
-  @IsNotEmpty()
-  @IsString()
-  ip_address: string;
 }
