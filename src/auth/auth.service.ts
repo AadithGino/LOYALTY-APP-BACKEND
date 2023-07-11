@@ -59,6 +59,18 @@ export class AuthService {
     return { message: 'Otp has been send successfully to your email address' };
   }
 
+  async verfiyEmailOTP(email: string, otp: string) {
+    const noReplyEmail = `no-reply@${process.env.NODEMAILER_USERNAME}`; // Set the no-reply email address
+    await this.mailService.sendMail({
+      to: email,
+      from: noReplyEmail,
+      subject: 'Verify Email',
+      template: 'register-otp',
+      context: { otp },
+    });
+    return { message: 'Otp has been send successfully to your email address' };
+  }
+
   async sendEmailCredentials(
     email: string,
     username: string,
@@ -86,16 +98,16 @@ export class AuthService {
   }
 
   async userSignUp(dto: userSignUpDto, ip: string) {
-    const password = dto.password;
     const user = await this.userService.userSignUp(dto, ip);
-    // await this.sendEmailCredentials(user.email, user.username, password);
-    const tokens = await this.getTokens(user._id.toString(), user.email);
-    await this.userService.updateRefreshTokenandIpAddress(
-      user._id.toString(),
-      tokens.refresh_token,
-      ip,
+    const otp = this.generateOTP();
+    const setOtp = await this.userService.updateOtp(dto.email, otp);
+    this.resetJob = schedule.scheduleJob(
+      new Date(Date.now() + 2 * 60 * 1000),
+      async () => {
+        await this.userService.setOtpNull(dto.email);
+      },
     );
-    return tokens;
+    if (setOtp) return await this.verfiyEmailOTP(dto.email, otp);
   }
 
   async userLogin(dto: userLoginDto, ip: string) {
@@ -123,11 +135,23 @@ export class AuthService {
     return tokens;
   }
 
+  async verifyEmail(email: string, otp: string) {
+    const user = await this.userService.verifyEmailOtp(email, otp);
+    const tokens = await this.getTokens(user._id.toString(), user.email);
+    await this.userService.updateRefreshTokenandIpAddress(
+      user._id.toString(),
+      tokens.refresh_token,
+    );
+    return tokens;
+  }
+
   async passWordReset(email: string) {
     const user = await this.userService.getUserByEmail(email);
 
     if (!user || !user.is_active || user.is_deleted)
-      throw new UnauthorizedException('Email does not exist');
+      throw new UnauthorizedException(
+        'Email does not exist or Email not verfied',
+      );
     const otp = this.generateOTP();
     const setOtp = await this.userService.updateOtp(email, otp);
     this.resetJob = schedule.scheduleJob(
@@ -160,15 +184,6 @@ export class AuthService {
       user.userData.username,
       password,
     );
-    const tokens = await this.getTokens(
-      user.userData._id.toString(),
-      user.userData.email,
-    );
-    await this.userService.updateRefreshTokenandIpAddress(
-      user.userData._id.toString(),
-      tokens.refresh_token,
-      ip,
-    );
     await this.pointService.updateUserPoints(
       user.userData._id.toString(),
       25,
@@ -179,6 +194,14 @@ export class AuthService {
       25,
       'Referal Points',
     );
-    return tokens;
+    const otp = this.generateOTP();
+    const setOtp = await this.userService.updateOtp(dto.email, otp);
+    this.resetJob = schedule.scheduleJob(
+      new Date(Date.now() + 2 * 60 * 1000),
+      async () => {
+        await this.userService.setOtpNull(dto.email);
+      },
+    );
+    if (setOtp) return await this.verfiyEmailOTP(dto.email, otp);
   }
 }

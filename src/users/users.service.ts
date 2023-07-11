@@ -23,7 +23,7 @@ export class UsersService {
   async userLogin(dto: userLoginDto) {
     const result = await this.userModel.findOne({ email: dto.email });
     if (!result || !result.is_active || result.is_deleted)
-      throw new UnauthorizedException('Invalid Email');
+      throw new UnauthorizedException('Invalid Email or Email not verified');
 
     const validPassword = await bcrypt.compare(dto.password, result.password);
     if (!validPassword) throw new UnauthorizedException('Invalid Password');
@@ -37,24 +37,35 @@ export class UsersService {
       (country) => country.countryShortCode === dto.country_code,
     );
     if (!country) throw new ConflictException('Invalid Country');
-    const user = await this.userModel.findOne({ email: dto.email });
-    if (user) throw new ConflictException('Email already in use');
-    const referralCode = await this.generateUniqueReferralCode(dto.username);
-    const card_number = await this.generateUniqueCardNumber();
-    const detiails = {
-      ...dto,
-      card_number,
-      latitude: country.latitude,
-      longitude: country.longitude,
-      country_name: country.countryName,
-      mb_code: country.phonePrefix,
-      currency: country.currency,
-      referral_code: referralCode,
-      refered_by: referedById ? referedById : '',
-      first_ip_address: ip,
-      ip_address: ip,
-    };
-    return await this.userModel.create(detiails);
+    const user = await this.userModel.findOne({
+      email: dto.email,
+    });
+    if (user?.is_active === true) {
+      throw new ConflictException('Email already in use');
+    } else if (user?.is_active === false) {
+      console.log("USER ALREADY EXISTS RETURNING THAT USER");
+      
+      return user;
+    } else {
+      console.log("NEW USER CREATED");
+      
+      const referralCode = await this.generateUniqueReferralCode(dto.username);
+      const card_number = await this.generateUniqueCardNumber();
+      const detiails = {
+        ...dto,
+        card_number,
+        latitude: country.latitude,
+        longitude: country.longitude,
+        country_name: country.countryName,
+        mb_code: country.phonePrefix,
+        currency: country.currency,
+        referral_code: referralCode,
+        refered_by: referedById ? referedById : '',
+        first_ip_address: ip,
+        ip_address: ip,
+      };
+      return await this.userModel.create(detiails);
+    }
   }
 
   // updating the refresh token with the new hashed token
@@ -98,8 +109,19 @@ export class UsersService {
     return user;
   }
 
+  async verifyEmailOtp(email: string, otp: string) {
+    const user = await this.userModel.findOne({ email: email });
+    const validOtp = await bcrypt.compare(otp, user.otp);
+    if (!validOtp) throw new UnauthorizedException('Invalid OTP');
+    await this.userModel.updateOne(
+      { _id: user._id },
+      { $set: { is_active: true } },
+    );
+    return user;
+  }
+
   async getUserByEmail(email: string): Promise<User> {
-    return await this.userModel.findOne({ email: email });
+    return await this.userModel.findOne({ email: email, is_active: true });
   }
 
   async getUserById(id: string): Promise<User> {
@@ -271,12 +293,10 @@ export class UsersService {
     do {
       const randomNumber = Math.floor(Math.random() * 299); // Generate random number between 0 and 498
       randomThreeDigitNumber = randomNumber.toString().padStart(3, '0');
-      console.log(randomThreeDigitNumber);
       generatedCardNumber = (
         parseInt(highestCardNumber) + parseInt(randomThreeDigitNumber)
       ).toString();
       generatedCardNumber = generatedCardNumber.slice(0, 12); // Limit length to 12 digits
-      console.log(generatedCardNumber.slice(8));
     } while (
       process.env.PREM_CARD_NUMBER.includes(generatedCardNumber.slice(8))
     );

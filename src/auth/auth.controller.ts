@@ -23,14 +23,14 @@ import { RealIP } from 'nestjs-real-ip';
 
 @Controller('auth')
 export class AuthController {
-  constructor(private readonly authService: AuthService) {}
+  constructor(private readonly authService: AuthService) { }
 
   @Public()
   @Post('/signup')
   userSignUp(
     @Body() dto: userSignUpDto,
     @RealIP() ip: string,
-  ): Promise<Tokens> {
+  ) {
     return this.authService.userSignUp(dto, ip);
   }
 
@@ -40,7 +40,7 @@ export class AuthController {
     @Body() dto: userSignUpDto,
     @Param('referal') referalCode: string,
     @RealIP() ip: string,
-  ): Promise<Tokens> {
+  ) {
     return this.authService.userSignUpReferal(dto, referalCode, ip);
   }
 
@@ -74,5 +74,11 @@ export class AuthController {
   @Post('/validate-otp')
   validateOtp(@Body() dto: validateOtpDto): Promise<Tokens> {
     return this.authService.validateOtp(dto.email, dto.otp, dto.password);
+  }
+
+  @Public()
+  @Post('/verify-email')
+  verifyEmail(@Body() dto) {
+    return this.authService.verifyEmail(dto.email, dto.otp);
   }
 }

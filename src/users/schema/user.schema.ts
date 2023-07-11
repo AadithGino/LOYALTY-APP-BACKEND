@@ -31,7 +31,6 @@ export class User {
   username: string;
 
   @Prop({
-    unique: true,
     required: true,
     trim: true,
     validator: {
@@ -88,7 +87,7 @@ export class User {
   @Prop()
   currency: string;
 
-  @Prop({ default: true })
+  @Prop({ default: false })
   is_active: boolean;
 
   @Prop({ default: false })

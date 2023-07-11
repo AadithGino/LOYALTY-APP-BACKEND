@@ -20,6 +20,8 @@ export class ApiResponseInterceptor implements NestInterceptor {
           return {
             statusCode,
             data,
+            message:data.message?data.message:"Success",
+            status:true
           };
         } else {
           // Error response

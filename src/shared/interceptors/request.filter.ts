@@ -12,11 +12,9 @@ export class ApiExceptionFilter implements ExceptionFilter {
     const error = exception.getResponse ? exception.getResponse() : 'Internal server error';
 
     response.status(status).json({
-      success: false,
       statusCode: status,
-      error,
-      timestamp: new Date().toISOString(),
-      path: request.url,
+      status:false,
+      message:error.message,
     });
   }
 }
