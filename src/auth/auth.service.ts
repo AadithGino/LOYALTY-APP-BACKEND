@@ -177,13 +177,7 @@ export class AuthService {
   }
 
   async userSignUpReferal(dto: userSignUpDto, referalCode: string, ip: string) {
-    const password = dto.password;
     const user = await this.userService.referalSignUp(dto, ip, referalCode);
-    await this.sendEmailCredentials(
-      user.userData.email,
-      user.userData.username,
-      password,
-    );
     await this.pointService.updateUserPoints(
       user.userData._id.toString(),
       25,
