@@ -43,12 +43,12 @@ export class UsersService {
     if (user?.is_active === true) {
       throw new ConflictException('Email already in use');
     } else if (user?.is_active === false) {
-      console.log("USER ALREADY EXISTS RETURNING THAT USER");
-      
+      console.log('USER ALREADY EXISTS RETURNING THAT USER');
+
       return user;
     } else {
-      console.log("NEW USER CREATED");
-      
+      console.log('NEW USER CREATED');
+
       const referralCode = await this.generateUniqueReferralCode(dto.username);
       const card_number = await this.generateUniqueCardNumber();
       const detiails = {
@@ -178,8 +178,11 @@ export class UsersService {
     return { message: 'User profile updated successfully' };
   }
 
-  async getAllUsers() {
-    return await this.userModel.find();
+  async getAllUsers(user: JwtPayload, page: number = 1, limit: number = 10) {
+    return await this.userModel
+      .find({ email: { $ne: user.email } })
+      .skip((page - 1) * limit)
+      .limit(limit);
   }
 
   async updateUserPassword(dto, user: JwtPayload) {

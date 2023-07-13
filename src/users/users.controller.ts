@@ -6,6 +6,7 @@ import {
   Body,
   UseInterceptors,
   UploadedFile,
+  Query,
 } from '@nestjs/common';
 import { Roles } from 'src/shared/decorators/roles.decorator';
 import { RoleGuard } from 'src/shared/guards';
@@ -35,8 +36,12 @@ export class UsersController {
   }
 
   @Get('/all')
-  getAllUsers() {
-    return this.userService.getAllUsers();
+  getAllUsers(
+    @Query('page') page: number,
+    @Query('limit') limit: number,
+    @GetUser() user: JwtPayload,
+  ) {
+    return this.userService.getAllUsers(user, page, limit);
   }
 
   @Post('/update-password')

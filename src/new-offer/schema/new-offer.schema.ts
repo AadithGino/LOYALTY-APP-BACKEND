@@ -13,6 +13,9 @@ export class NewOffer {
   @Prop()
   description: string;
 
+  @Prop()
+  app:string;
+
   @Prop({ default: true })
   image: string;
 }

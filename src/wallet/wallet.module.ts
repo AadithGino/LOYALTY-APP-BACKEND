@@ -14,7 +14,7 @@ import { TierModule } from 'src/tier/tier.module';
       { name: 'Wallet', schema: WalletSchema },
       { name: 'Point', schema: pointSchema },
     ]),
-    // TierModule,
+    TierModule,
     UsersModule,
     forwardRef(() => TransactionModule),
   ],

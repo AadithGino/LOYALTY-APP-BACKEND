@@ -14,7 +14,7 @@ export class ApiExceptionFilter implements ExceptionFilter {
     response.status(status).json({
       statusCode: status,
       status:false,
-      message:error.message,
+      data:error,
     });
   }
 }
