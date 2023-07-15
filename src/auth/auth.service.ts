@@ -98,7 +98,8 @@ export class AuthService {
   }
 
   async userSignUp(dto: userSignUpDto, ip: string) {
-    const user = await this.userService.userSignUp(dto, ip);
+    try {
+      const user = await this.userService.userSignUp(dto, ip);
     const otp = this.generateOTP();
     const setOtp = await this.userService.updateOtp(dto.email, otp);
     this.resetJob = schedule.scheduleJob(
@@ -108,6 +109,10 @@ export class AuthService {
       },
     );
     if (setOtp) return await this.verfiyEmailOTP(dto.email, otp);
+    } catch (error) {
+      console.log(error);
+      
+    }
   }
 
   async userLogin(dto: userLoginDto, ip: string) {
