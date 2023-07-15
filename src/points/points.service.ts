@@ -51,7 +51,7 @@ export class PointsService {
         // newPoint.redeemed_points = this.decryptBalance(
         //   newPoint?.redeemed_points,
         // );
-        return newPoint;
+        return { ...newPoint._doc, points: 0 };
       }
       pointExist.points = this.decryptBalance(pointExist.points);
       // pointExist.redeemed_points = this.decryptBalance(
@@ -232,10 +232,10 @@ export class PointsService {
   //   );
   //   return { message: 'updated' };
   // }
-  async covertAmountToPoints(amount: number,user:JwtPayload){
-    const userData = await this.userService.getUserById(user.sub)
-    const tierData:any = await this.tierService.getSingleTier(userData.tier)
-    const converetedAmount = tierData.benefits.pointValue * 20
-    return {points:Math.round(amount/converetedAmount)}
+  async covertAmountToPoints(amount: number, user: JwtPayload) {
+    const userData = await this.userService.getUserById(user.sub);
+    const tierData: any = await this.tierService.getSingleTier(userData.tier);
+    const converetedAmount = tierData.benefits.pointValue * 20;
+    return { points: Math.round(amount / converetedAmount) };
   }
 }

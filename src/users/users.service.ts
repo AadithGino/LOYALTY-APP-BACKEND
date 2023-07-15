@@ -110,6 +110,7 @@ export class UsersService {
   async verifyEmailOtp(email: string, otp: string) {
     const user = await this.userModel.findOne({ email: email });
     if(!user) throw new HttpException('Invalid Email',400);
+    if(!user.otp) throw new HttpException('Otp Expired',400);
     const validOtp = await bcrypt.compare(otp, user.otp);
     if (!validOtp) throw new UnauthorizedException('Invalid OTP');
     await this.userModel.updateOne(
@@ -147,6 +148,7 @@ export class UsersService {
 
   async compareOtp(email: string, otp: string) {
     const user = await this.userModel.findOne({ email: email });
+    if(!user.otp) throw new HttpException('Otp Expired',400);
     const validOtp = await bcrypt.compare(otp, user.otp);
     if (validOtp) return user;
     return false;
