@@ -45,18 +45,18 @@ export class PointsService {
         const newPoint: any = await this.pointModel.create({
           user_id: user.sub,
           points: this.encryptBalance(0),
-          redeemed_points: this.encryptBalance(0),
+          // redeemed_points: this.encryptBalance(0),
         });
         newPoint.points = this.decryptBalance(newPoint.points);
-        newPoint.redeemed_points = this.decryptBalance(
-          newPoint?.redeemed_points,
-        );
+        // newPoint.redeemed_points = this.decryptBalance(
+        //   newPoint?.redeemed_points,
+        // );
         return newPoint;
       }
       pointExist.points = this.decryptBalance(pointExist.points);
-      pointExist.redeemed_points = this.decryptBalance(
-        pointExist.redeemed_points,
-      );
+      // pointExist.redeemed_points = this.decryptBalance(
+      //   pointExist.redeemed_points,
+      // );
       return pointExist;
     } catch (error) {
       console.log(error);
