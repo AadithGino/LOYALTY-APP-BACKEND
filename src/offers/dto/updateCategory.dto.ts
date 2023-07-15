@@ -10,22 +10,6 @@ export class updateOfferCategoryDto {
   description: string;
 
   @IsNotEmpty()
-  @IsDateString()
-  start: string;
-
-  @IsNotEmpty()
-  @IsDateString()
-  expiry: string;
-
-  @IsNotEmpty()
-  @IsString()
-  url: string;
-
-  @IsNotEmpty()
-  @IsString()
-  contact: string;
-
-  @IsNotEmpty()
   @IsString()
   _id: string;
 }

@@ -11,7 +11,19 @@ export class updateOfferDto {
 
   @IsNotEmpty()
   @IsDateString()
-  expiry: Date;
+  start: string;
+
+  @IsNotEmpty()
+  @IsDateString()
+  expiry: string;
+
+  @IsNotEmpty()
+  @IsString()
+  url: string;
+
+  @IsNotEmpty()
+  @IsString()
+  contact: string;
 
   @IsNotEmpty()
   @IsString()

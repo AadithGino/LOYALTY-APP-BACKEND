@@ -10,6 +10,7 @@ export class NewOfferService {
   ) {}
 
   async addNewOffer(dto) {
+  try {
     const offerExists = await this.newOfferModel.findOne({ app: dto.app });
     if (offerExists) {
       await this.newOfferModel.updateOne(
@@ -21,6 +22,10 @@ export class NewOfferService {
       await this.newOfferModel.create(dto);
       return { message: 'added successfully' };
     }
+  } catch (error) {
+    console.log(error);
+    
+  }
   }
 
   async getOffers() {

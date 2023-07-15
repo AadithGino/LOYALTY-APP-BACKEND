@@ -32,4 +32,9 @@ export class PointsController {
   // pointRedeem(@Body('amount') amount: number, @GetUser() user: JwtPayload) {
   //   return this.pointService.redeemPointsToWallet(amount, user);
   // }
+
+  @Post('/convert-amount-to-point')
+  convertAmountToPoint(@Body('amount') amount: number, @GetUser() user){
+    return this.pointService.covertAmountToPoints(amount,user)
+  }
 }

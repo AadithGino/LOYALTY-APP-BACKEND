@@ -22,7 +22,7 @@ import {
 } from './dto';
 import { updateOfferDto } from './dto/updateOffer.dto';
 import { uploadInterceptor } from 'src/shared/imageUpload/multer';
-import { GetUser } from 'src/shared/decorators';
+import { GetUser, Public } from 'src/shared/decorators';
 import { JwtPayload } from 'src/auth/stragtegies';
 
 @Controller('offers')
@@ -31,25 +31,34 @@ export class OffersController {
 
   @Roles(UserRoles.ADMIN)
   @UseGuards(RoleGuard)
+  @UseInterceptors(uploadInterceptor())
   @Post('/category')
-  addOfferCategory(@Body() dto: createOfferCategoryDto) {
-    return this.offerService.addOfferCategory(dto);
+  addOfferCategory(
+    @Body() dto: createOfferCategoryDto,
+    @UploadedFile() image: Express.Multer.File,
+  ) {
+    return this.offerService.addOfferCategory(dto, image);
   }
 
   @Roles(UserRoles.ADMIN)
   @UseGuards(RoleGuard)
-  @Put('/category')
-  updateOfferCategory(@Body() dto: updateOfferCategoryDto) {
-    return this.offerService.updateOfferCategory(dto);
+  @Post('/category-update')
+  @UseInterceptors(uploadInterceptor())
+  updateOfferCategory(
+    @Body() dto: updateOfferCategoryDto,
+    @UploadedFile() image: Express.Multer.File,
+  ) {
+    return this.offerService.updateOfferCategory(dto, image);
   }
 
+  @Public()
   @Get('/category')
   getCategory() {
     return this.offerService.getAllOfferCategory();
   }
 
   @Get('/category/:categoryId')
-  getSingleCategory(@Param('categoryId') categoryId:string) {
+  getSingleCategory(@Param('categoryId') categoryId: string) {
     return this.offerService.getSingleCategory(categoryId);
   }
 
@@ -89,6 +98,7 @@ export class OffersController {
     return this.offerService.getAllOffers();
   }
 
+  @Public()
   @Get()
   getActiveOffers() {
     return this.offerService.getActiveOffers();
@@ -100,12 +110,12 @@ export class OffersController {
   }
 
   @Get('/get-preference')
-  getPrefrerenceOffer(@GetUser() user:JwtPayload){
-    return this.offerService.getPreferenceOffers(user)
+  getPrefrerenceOffer(@GetUser() user: JwtPayload) {
+    return this.offerService.getPreferenceOffers(user);
   }
 
   @Get('/get-offers/:categoryId')
-  getOffersByCategory(@Param('categoryId') categoryId: string){
-    return this.offerService.getOffersByCategory(categoryId)
+  getOffersByCategory(@Param('categoryId') categoryId: string) {
+    return this.offerService.getOffersByCategory(categoryId);
   }
 }

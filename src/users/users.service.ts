@@ -1,6 +1,7 @@
 import {
   ConflictException,
   Injectable,
+  HttpException,
   UnauthorizedException,
 } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
@@ -13,6 +14,7 @@ import { updateUserProfileDto } from './dto';
 import { JwtPayload } from 'src/auth/stragtegies';
 import * as fs from 'fs';
 import * as path from 'path';
+
 
 @Injectable()
 export class UsersService {
@@ -43,12 +45,8 @@ export class UsersService {
     if (user?.is_active === true) {
       throw new ConflictException('Email already in use');
     } else if (user?.is_active === false) {
-      console.log('USER ALREADY EXISTS RETURNING THAT USER');
-
       return user;
     } else {
-      console.log('NEW USER CREATED');
-
       const referralCode = await this.generateUniqueReferralCode(dto.username);
       const card_number = await this.generateUniqueCardNumber();
       const detiails = {
@@ -111,6 +109,7 @@ export class UsersService {
 
   async verifyEmailOtp(email: string, otp: string) {
     const user = await this.userModel.findOne({ email: email });
+    if(!user) throw new HttpException('Invalid Email',400);
     const validOtp = await bcrypt.compare(otp, user.otp);
     if (!validOtp) throw new UnauthorizedException('Invalid OTP');
     await this.userModel.updateOne(

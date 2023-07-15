@@ -13,7 +13,7 @@ export class NewOffer {
   @Prop()
   description: string;
 
-  @Prop()
+  @Prop({trim:true})
   app:string;
 
   @Prop({ default: true })

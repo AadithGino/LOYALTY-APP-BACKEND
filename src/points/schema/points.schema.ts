@@ -15,6 +15,9 @@ export class Point {
 
   @Prop({ default: true })
   status: boolean;
+
+  @Prop()
+  redeemed_points: string
 }
 
 export const pointSchema = SchemaFactory.createForClass(Point);

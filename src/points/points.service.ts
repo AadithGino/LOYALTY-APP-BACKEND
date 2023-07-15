@@ -19,7 +19,6 @@ import * as bcrypt from 'bcrypt';
 import { UsersService } from 'src/users/users.service';
 import { pointPurchaseDto } from './dto/pointPurchase.dto';
 import { WalletService } from 'src/wallet/wallet.service';
-import axios from 'axios';
 
 @Injectable()
 export class PointsService {
@@ -31,7 +30,8 @@ export class PointsService {
     private readonly tierService: TierService,
     private readonly transactionService: TransactionService,
     private readonly transactionHistoryService: TransactionHistoryService,
-    private readonly userService: UsersService, // private readonly walletService: WalletService,
+    private readonly userService: UsersService,
+    private readonly walletService: WalletService,
   ) {}
 
   async getUserPoints(user: JwtPayload) {
@@ -48,13 +48,15 @@ export class PointsService {
           redeemed_points: this.encryptBalance(0),
         });
         newPoint.points = this.decryptBalance(newPoint.points);
-        // newPoint.redeemed_points = this.decryptBalance(newPoint.redeemed_points);
+        newPoint.redeemed_points = this.decryptBalance(
+          newPoint?.redeemed_points,
+        );
         return newPoint;
       }
       pointExist.points = this.decryptBalance(pointExist.points);
-      // pointExist.redeemed_points = this.decryptBalance(
-      //   pointExist.redeemed_points,
-      // );
+      pointExist.redeemed_points = this.decryptBalance(
+        pointExist.redeemed_points,
+      );
       return pointExist;
     } catch (error) {
       console.log(error);
@@ -182,57 +184,58 @@ export class PointsService {
 
   // async redeemPointsToWallet(amount: number, user: JwtPayload) {
   //   // try {
-  //     if (amount > 0) {
-  //       const balance = await this.getUserPoints(user);
-  //       if (balance.points < amount)
-  //         throw new ConflictException('Not enough balance');
-  //       await this.updateUserPointsNoHistory(user.sub, 0 - amount);
-  //       const userData = await this.userService.getUserById(user.sub);
-  //       const tierData: any = await this.tierService.getSingleTier(
-  //         userData.tier,
-  //       );
-  //       const walletamount = Math.round(amount / tierData.benefits.pointValue);
-  //       console.log(walletamount);
-  //       await this.walletService.updateUserWalletBalance(
-  //         user.sub,
-  //         walletamount,
-  //       );
-  //       await this.updateRedeemedPoints(user.sub,amount)
-  //       await this.transactionHistoryService.addTransactionHistory(
-  //         { amount: amount },
-  //         user.sub,
-  //         'Points redeemed to wallet',
-  //         transactionType.Points,
-  //         TransactionMode.WITHDRAWAL,
-  //         Transaction_APP.LOYALTY_APP,
-  //         2,
-  //       );
+  //   if (amount > 0) {
+  //     const balance = await this.getUserPoints(user);
+  //     if (balance.points < amount)
+  //       throw new ConflictException('Not enough balance');
+  //     await this.updateUserPointsNoHistory(user.sub, 0 - amount);
+  //     const userData = await this.userService.getUserById(user.sub);
+  //     const tierData: any = await this.tierService.getSingleTier(userData.tier);
+  //     const walletamount = Math.round(amount / tierData.benefits.pointValue);
+  //     console.log(walletamount);
+  //     await this.walletService.updateUserWalletBalance(user.sub, walletamount);
+  //     await this.updateRedeemedPoints(user.sub, amount);
+  //     await this.transactionHistoryService.addTransactionHistory(
+  //       { amount: amount },
+  //       user.sub,
+  //       'Points redeemed to wallet',
+  //       transactionType.Points,
+  //       TransactionMode.WITHDRAWAL,
+  //       Transaction_APP.LOYALTY_APP,
+  //       2,
+  //     );
 
-  //       await this.transactionHistoryService.addTransactionHistory(
-  //         { amount: walletamount },
-  //         user.sub,
-  //         'Amount added to wallet by redeeming points',
-  //         transactionType.Wallet,
-  //         TransactionMode.DEPOSIT,
-  //         Transaction_APP.LOYALTY_APP,
-  //         2,
-  //       );
-  //     }
-
-  //   // } catch (error) {
-  //   //   console.log(error);
-  //   // }
+  //     await this.transactionHistoryService.addTransactionHistory(
+  //       { amount: walletamount },
+  //       user.sub,
+  //       'Amount added to wallet by redeeming points',
+  //       transactionType.Wallet,
+  //       TransactionMode.DEPOSIT,
+  //       Transaction_APP.LOYALTY_APP,
+  //       2,
+  //     );
   // }
 
-  // async updateRedeemedPoints(userId:string,points:number){
+  // } catch (error) {
+  //   console.log(error);
+  // }
+  // }
+
+  // async updateRedeemedPoints(userId: string, points: number) {
   //   const pointExists = await this.pointModel.findOne({ user_id: userId });
   //   const decryptedBalabce = this.decryptBalance(pointExists.redeemed_points);
-  //    const newbalance = this.encryptBalance(points + decryptedBalabce);
-  //    const point = await this.pointModel.updateOne(
-  //      { user_id: userId },
-  //      { $set: { redeemed_points: newbalance } },
-  //      { new: true },
-  //    );
-  //    return 'updated'
+  //   const newbalance = this.encryptBalance(points + decryptedBalabce);
+  //   const point = await this.pointModel.updateOne(
+  //     { user_id: userId },
+  //     { $set: { redeemed_points: newbalance } },
+  //     { new: true },
+  //   );
+  //   return { message: 'updated' };
   // }
+  async covertAmountToPoints(amount: number,user:JwtPayload){
+    const userData = await this.userService.getUserById(user.sub)
+    const tierData:any = await this.tierService.getSingleTier(userData.tier)
+    const converetedAmount = tierData.benefits.pointValue * 20
+    return {points:Math.round(amount/converetedAmount)}
+  }
 }

@@ -14,7 +14,7 @@ import { WalletModule } from 'src/wallet/wallet.module';
     TierModule,
     TransactionModule,
     UsersModule,
-    // WalletModule
+    WalletModule
   ],
   providers: [PointsService],
   controllers: [PointsController],

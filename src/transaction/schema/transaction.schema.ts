@@ -70,7 +70,7 @@ export class Transaction {
         }, // Generate new ObjectId by default
         txn_id: { type: String },
         txn_date: { type: Date },
-        txn_app:{ type: String},
+        txn_app: { type: String, trim: true }, // Add trim option to automatically trim whitespace
         txn_type: { type: String },
         txn_mode: { type: String },
         reward_id: { type: String },

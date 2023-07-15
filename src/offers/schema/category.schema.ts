@@ -13,6 +13,9 @@ export class OfferCategory {
   @Prop({ required: true })
   description: string;
 
+  @Prop()
+  image:string;
+
   @Prop({ default: true })
   is_active: boolean;
 }

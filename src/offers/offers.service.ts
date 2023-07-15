@@ -28,17 +28,26 @@ export class OffersService {
     private readonly userService: UsersService,
   ) {}
 
-  async addOfferCategory(dto: createOfferCategoryDto) {
+  async addOfferCategory(
+    dto: createOfferCategoryDto,
+    image: Express.Multer.File,
+  ) {
     const exists = await this.categoryModel.findOne({
       name: { $regex: new RegExp(dto.name, 'i') },
     });
 
     if (exists) throw new ConflictException('Category already exists');
-    const category = await this.categoryModel.create(dto);
+    const category = await this.categoryModel.create({
+      ...dto,
+      image: image.filename,
+    });
     return { message: 'Category created successfully', data: category };
   }
 
-  async updateOfferCategory(dto: updateOfferCategoryDto) {
+  async updateOfferCategory(
+    dto: updateOfferCategoryDto,
+    image: Express.Multer.File,
+  ) {
     const exists = await this.categoryModel.findOne({
       name: { $regex: new RegExp(dto.name, 'i') },
     });
@@ -46,7 +55,14 @@ export class OffersService {
     if (exists && exists._id.toString() !== dto._id)
       throw new ConflictException('Category name already exists');
 
-    await this.categoryModel.updateOne({ _id: dto._id }, { $set: dto });
+      const offerCategory = await this.categoryModel.findOne({_id:dto._id})
+    if (offerCategory.image) {
+      this.deleteFile(offerCategory.image);
+    }
+    await this.categoryModel.updateOne(
+      { _id: dto._id },
+      { $set: { ...dto, image: image.filename } },
+    );
     return { message: 'Category updated successfully' };
   }
 
@@ -132,7 +148,7 @@ export class OffersService {
     const userData = await this.userService.getUserById(user.sub);
     const today = new Date();
     today.setHours(0, 0, 0, 0);
-  
+
     const preferredOffers = await this.offerModel
       .find({
         category_id: { $in: userData.interests },
@@ -140,11 +156,11 @@ export class OffersService {
         is_deleted: false,
       })
       .exec();
-  
+
     let remainingOffers = [];
-  
+
     if (preferredOffers.length > 0) {
-      const preferredOfferIds = preferredOffers.map(offer => offer._id);
+      const preferredOfferIds = preferredOffers.map((offer) => offer._id);
       remainingOffers = await this.offerModel
         .find({
           _id: { $nin: preferredOfferIds },
@@ -153,9 +169,11 @@ export class OffersService {
         })
         .exec();
     } else {
-      remainingOffers = await this.offerModel.find({ is_deleted: false }).exec();
+      remainingOffers = await this.offerModel
+        .find({ is_deleted: false })
+        .exec();
     }
-  
+
     const offers = [...preferredOffers, ...remainingOffers];
     return offers;
   }
