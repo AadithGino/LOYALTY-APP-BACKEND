@@ -20,7 +20,7 @@ export class AppListService {
   }
 
   async updateApp(dto, image: Express.Multer.File) {
-    try {
+    if (image) {
       const app = await this.appListModel.findOne({ _id: dto._id });
       this.deleteFile(app.image);
       await this.appListModel.updateOne(
@@ -28,8 +28,12 @@ export class AppListService {
         { $set: { name: dto.name, image: image.filename } },
       );
       return { message: 'updated successfully' };
-    } catch (error) {
-      return error;
+    } else {
+      await this.appListModel.updateOne(
+        { _id: dto._id },
+        { $set: { name: dto.name } },
+      );
+      return { message: 'updated successfully' };
     }
   }
 

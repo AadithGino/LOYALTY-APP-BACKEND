@@ -55,14 +55,21 @@ export class OffersService {
     if (exists && exists._id.toString() !== dto._id)
       throw new ConflictException('Category name already exists');
 
-    const offerCategory = await this.categoryModel.findOne({ _id: dto._id });
-    if (offerCategory.image) {
-      this.deleteFile(offerCategory.image);
+    if (image) {
+      const offerCategory = await this.categoryModel.findOne({ _id: dto._id });
+      if (offerCategory.image) {
+        this.deleteFile(offerCategory.image);
+      }
+      await this.categoryModel.updateOne(
+        { _id: dto._id },
+        { $set: { ...dto, image: image.filename } },
+      );
+    } else {
+      await this.categoryModel.updateOne(
+        { _id: dto._id },
+        { $set: { ...dto } },
+      );
     }
-    await this.categoryModel.updateOne(
-      { _id: dto._id },
-      { $set: { ...dto, image: image.filename } },
-    );
     return { message: 'Category updated successfully' };
   }
 
@@ -84,21 +91,17 @@ export class OffersService {
   }
 
   async updateOffer(dto: updateOfferDto, image: Express.Multer.File) {
-    try {
-      const category = await this.getSingleCategory(dto.category_id);
-      const offer = await this.offerModel.findOne({ _id: dto._id });
-      if (offer.image) {
-        this.deleteFile(offer.image);
-      }
-      if (!category) throw new NotFoundException('Category not found');
-      if (image) {
-        const details = { ...dto, image: image.filename };
-        return this.offerModel.updateOne({ _id: dto._id }, { $set: details });
-      }
-      return this.offerModel.updateOne({ _id: dto._id }, { $set: dto });
-    } catch (error) {
-      console.log(error);
+    const category = await this.getSingleCategory(dto.category_id);
+    const offer = await this.offerModel.findOne({ _id: dto._id });
+    if (offer.image) {
+      this.deleteFile(offer.image);
     }
+    if (!category) throw new NotFoundException('Category not found');
+    if (image) {
+      const details = { ...dto, image: image.filename };
+      return this.offerModel.updateOne({ _id: dto._id }, { $set: details });
+    }
+    return this.offerModel.updateOne({ _id: dto._id }, { $set: dto });
   }
 
   async deleteOffer(id: string) {

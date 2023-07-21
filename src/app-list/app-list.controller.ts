@@ -42,7 +42,7 @@ export class AppListController {
   @UseInterceptors(uploadInterceptor())
   @Put()
   updateApp(@Body() dto: updateAppDto, @UploadedFile() image) {
-    return this.appListService.updateApp(dto, image);
+    return this.appListService.updateApp(dto,image);
   }
 
   @Roles(UserRoles.ADMIN)

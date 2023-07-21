@@ -5,6 +5,10 @@ import {
   Body,
   UseInterceptors,
   UploadedFile,
+  Get,
+  Put,
+  Query,
+  Delete,
 } from '@nestjs/common';
 import { uploadInterceptor } from 'src/shared/imageUpload/multer';
 import { BrandsService } from './brands.service';
@@ -22,5 +26,23 @@ export class BrandsController {
   @Post()
   addBrand(@Body() dto, @UploadedFile() image: Express.Multer.File) {
     return this.brandService.addBrand(dto, image);
+  }
+
+  @Roles(UserRoles.ADMIN)
+  @UseGuards(RoleGuard)
+  @UseInterceptors(uploadInterceptor())
+  @Put()
+  updateBrand(@Body() dto, @UploadedFile() image: Express.Multer.File) {
+    return this.brandService.updateBrand(dto, image);
+  }
+
+  @Get()
+  getAllBrands() {
+    return this.brandService.getAllBrands();
+  }
+
+  @Delete()
+  deleteBrand(@Query('id') id: string) {
+    return this.brandService.deleteBrand(id);
   }
 }

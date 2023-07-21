@@ -56,7 +56,7 @@ import { BrandsModule } from './brands/brands.module';
     }),
     NewOfferModule,
     AppListModule,
-    // BrandsModule,
+    BrandsModule,
   ],
   controllers: [AppController],
   providers: [AppService, { provide: APP_GUARD, useClass: AtGuard }],

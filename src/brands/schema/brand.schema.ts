@@ -16,7 +16,8 @@ export class Brand {
   @Prop({})
   url: string;
 
-  
+  @Prop({ default: false })
+  is_deleted: boolean;
 }
 
 export const BrandSchema = SchemaFactory.createForClass(Brand);
