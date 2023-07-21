@@ -19,6 +19,7 @@ import { OffersModule } from './offers/offers.module';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { NewOfferModule } from './new-offer/new-offer.module';
 import { AppListModule } from './app-list/app-list.module';
+import { BrandsModule } from './brands/brands.module';
 
 
 @Module({
@@ -55,6 +56,7 @@ import { AppListModule } from './app-list/app-list.module';
     }),
     NewOfferModule,
     AppListModule,
+    // BrandsModule,
   ],
   controllers: [AppController],
   providers: [AppService, { provide: APP_GUARD, useClass: AtGuard }],

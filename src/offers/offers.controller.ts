@@ -121,7 +121,7 @@ export class OffersController {
 
   // get offers by category name
   @Get('/category-offers/:category')
-  getCategoryOffers(@Param('category') category){
+  getCategoryOffers(@Param('category') category:string){
     return this.offerService.getCategoryOffers(category)
   }
 }
