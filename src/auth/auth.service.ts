@@ -101,18 +101,17 @@ export class AuthService {
   async userSignUp(dto: userSignUpDto, ip: string) {
     try {
       const user = await this.userService.userSignUp(dto, ip);
-    const otp = this.generateOTP();
-    const setOtp = await this.userService.updateOtp(dto.email, otp);
-    this.resetJob = schedule.scheduleJob(
-      new Date(Date.now() + 2 * 60 * 1000),
-      async () => {
-        await this.userService.setOtpNull(dto.email);
-      },
-    );
-    if (setOtp) return await this.verfiyEmailOTP(dto.email, otp);
+      const otp = this.generateOTP();
+      const setOtp = await this.userService.updateOtp(dto.email, otp);
+      this.resetJob = schedule.scheduleJob(
+        new Date(Date.now() + 2 * 60 * 1000),
+        async () => {
+          await this.userService.setOtpNull(dto.email);
+        },
+      );
+      if (setOtp) return await this.verfiyEmailOTP(dto.email, otp);
     } catch (error) {
       console.log(error);
-      
     }
   }
 
@@ -148,6 +147,7 @@ export class AuthService {
       user._id.toString(),
       tokens.refresh_token,
     );
+    await this.pointService.updateUserPoints(user._id.toString(),100,"Points on SignUp")
     return tokens;
   }
 
