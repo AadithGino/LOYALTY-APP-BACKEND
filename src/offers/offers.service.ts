@@ -55,7 +55,7 @@ export class OffersService {
     if (exists && exists._id.toString() !== dto._id)
       throw new ConflictException('Category name already exists');
 
-      const offerCategory = await this.categoryModel.findOne({_id:dto._id})
+    const offerCategory = await this.categoryModel.findOne({ _id: dto._id });
     if (offerCategory.image) {
       this.deleteFile(offerCategory.image);
     }
@@ -187,6 +187,13 @@ export class OffersService {
       expiry: { $gte: today },
       is_deleted: false,
     });
+  }
+
+  async getCategoryOffers(category: string) {
+    const id = await this.categoryModel.findOne({
+      name: { $regex: new RegExp(category, 'i') },
+    });
+    return this.getOffersByCategory(id._id.toString());
   }
 
   deleteFile(filename: string): void {

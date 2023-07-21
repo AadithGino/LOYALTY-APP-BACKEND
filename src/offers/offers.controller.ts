@@ -118,4 +118,10 @@ export class OffersController {
   getOffersByCategory(@Param('categoryId') categoryId: string) {
     return this.offerService.getOffersByCategory(categoryId);
   }
+
+  // get offers by category name
+  @Get('/category-offers/:category')
+  getCategoryOffers(@Param('category') category){
+    return this.offerService.getCategoryOffers(category)
+  }
 }
