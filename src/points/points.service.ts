@@ -51,13 +51,19 @@ export class PointsService {
         // newPoint.redeemed_points = this.decryptBalance(
         //   newPoint?.redeemed_points,
         // );
-        return { ...newPoint._doc, points: 0 };
+        const worth = 0;
+        return { ...newPoint._doc, points: 0, worth: 0 };
       }
       pointExist.points = this.decryptBalance(pointExist.points);
       // pointExist.redeemed_points = this.decryptBalance(
       //   pointExist.redeemed_points,
       // );
-      return pointExist;
+      const userData = await this.userService.getUserById(user.sub);
+      const userTierData: any = await this.tierService.getSingleTier(
+        userData.tier,
+      );
+      const worth = pointExist.points * userTierData.benefits.pointValue;
+      return { ...pointExist, worth };
     } catch (error) {
       console.log(error);
     }

@@ -18,6 +18,7 @@ import { RewardsModule } from './rewards/rewards.module';
 import { OffersModule } from './offers/offers.module';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { NewOfferModule } from './new-offer/new-offer.module';
+import { AppListModule } from './app-list/app-list.module';
 
 
 @Module({
@@ -53,6 +54,7 @@ import { NewOfferModule } from './new-offer/new-offer.module';
       serveRoot: '/uploads', // Specify the base URL for serving the files
     }),
     NewOfferModule,
+    AppListModule,
   ],
   controllers: [AppController],
   providers: [AppService, { provide: APP_GUARD, useClass: AtGuard }],
