@@ -124,4 +124,9 @@ export class OffersController {
   getCategoryOffers(@Param('category') category:string){
     return this.offerService.getCategoryOffers(category)
   }
+
+  @Post('/add-external-offer')
+  addOtherOffer(@Body() dto){
+    return this.offerService.addOtherOffer(dto)
+  }
 }

@@ -233,9 +233,9 @@ export class OffersService {
     return s3UploadResponse.Location;
   }
 
-  async deleteImageFromS3(key: string): Promise<void> {
-    console.log('Ddsf');
 
+  // access denied have to setup the access for image delete 
+  async deleteImageFromS3(key: string): Promise<void> {
     const bucketName = process.env.AWS_S3_BUCKET;
     const params: AWS.S3.Types.DeleteObjectRequest = {
       Bucket: bucketName,
@@ -247,5 +247,9 @@ export class OffersService {
     } catch (error) {
       console.log(error);
     }
+  }
+
+  async addOtherOffer(dto){
+    return await this.offerModel.create(dto)
   }
 }
