@@ -29,6 +29,7 @@
     "@nestjs/passport": "^9.0.3",
     "@nestjs/schedule": "^3.0.0",
     "@nestjs/serve-static": "^4.0.0",
+    "aws-sdk": "^2.1419.0",
     "axios": "^1.4.0",
     "bcrypt": "^5.1.0",
     "class-transformer": "^0.5.1",

@@ -17,16 +17,25 @@ import { UsersService } from 'src/users/users.service';
 import { JwtPayload } from 'src/auth/stragtegies';
 import * as fs from 'fs';
 import * as path from 'path';
+import * as AWS from 'aws-sdk';
 
 @Injectable()
 export class OffersService {
+  private s3: AWS.S3;
+
   constructor(
     @InjectModel(OfferCategory.name)
     private categoryModel: Model<OfferCategory>,
     @InjectModel(Offer.name)
     private offerModel: Model<Offer>,
     private readonly userService: UsersService,
-  ) {}
+  ) {
+    this.s3 = new AWS.S3({
+      accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+      secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+      region: process.env.AWS_S3_REGION,
+    });
+  }
 
   async addOfferCategory(
     dto: createOfferCategoryDto,
@@ -83,9 +92,9 @@ export class OffersService {
 
   async addOffer(dto: createOfferDto, image: Express.Multer.File) {
     const category = await this.getSingleCategory(dto.category_id);
-
     if (!category) throw new NotFoundException('Category not found');
-    const details = { ...dto, image: image.filename };
+    const imageUrl = await this.uploadImageToS3(image);
+    const details = { ...dto, image: imageUrl };
     const offer = await this.offerModel.create(details);
     return offer;
   }
@@ -93,12 +102,15 @@ export class OffersService {
   async updateOffer(dto: updateOfferDto, image: Express.Multer.File) {
     const category = await this.getSingleCategory(dto.category_id);
     const offer = await this.offerModel.findOne({ _id: dto._id });
-    if (offer.image) {
-      this.deleteFile(offer.image);
-    }
+    console.log(offer);
+
     if (!category) throw new NotFoundException('Category not found');
     if (image) {
-      const details = { ...dto, image: image.filename };
+      if (offer.image) {
+        // this.deleteImageFromS3(offer.image);
+      }
+      const imageUrl = await this.uploadImageToS3(image);
+      const details = { ...dto, image: imageUrl };
       return this.offerModel.updateOne({ _id: dto._id }, { $set: details });
     }
     return this.offerModel.updateOne({ _id: dto._id }, { $set: dto });
@@ -203,6 +215,37 @@ export class OffersService {
     const filePath = path.resolve(__dirname, '..', '..', 'uploads', filename);
     if (fs.existsSync(filePath)) {
       fs.unlinkSync(filePath);
+    }
+  }
+
+  async uploadImageToS3(image: Express.Multer.File): Promise<string> {
+    const uploadParams = {
+      Bucket: process.env.AWS_S3_BUCKET,
+      Key: `images/${image.filename}`,
+      Body: fs.readFileSync(image.path),
+    };
+
+    const s3UploadResponse = await this.s3.upload(uploadParams).promise();
+    // Delete the local image file after successful upload to S3
+    this.deleteFile(image.filename);
+    console.log(s3UploadResponse.Location.slice(50));
+    console.log(s3UploadResponse.Key);
+    return s3UploadResponse.Location;
+  }
+
+  async deleteImageFromS3(key: string): Promise<void> {
+    console.log('Ddsf');
+
+    const bucketName = process.env.AWS_S3_BUCKET;
+    const params: AWS.S3.Types.DeleteObjectRequest = {
+      Bucket: bucketName,
+      Key: `images/${key.slice(50)}`,
+    };
+    try {
+      const delteted = await this.s3.deleteObject(params).promise();
+      console.log(delteted);
+    } catch (error) {
+      console.log(error);
     }
   }
 }
