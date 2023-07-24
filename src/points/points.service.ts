@@ -183,7 +183,7 @@ export class PointsService {
         user_id: userId,
         points: newbalance,
       });
-      await this.tierService.updateUserTier(userId, points);
+        await this.tierService.updateUserTier(userId, points);
       return { message: 'Points added successfully' };
     }
   }

@@ -192,7 +192,8 @@ export class WalletService {
   }
 
   async updatePointsOnPurchase(userId: string, points: number) {
-    const pointExists = await this.pointModel.findOne({ user_id: userId });
+    if(points >= 1 || points > 0){
+      const pointExists = await this.pointModel.findOne({ user_id: userId });
     if (pointExists) {
       const decryptedBalabce = this.decryptBalance(pointExists.points);
       const newbalance = this.encryptBalance(points + decryptedBalabce);
@@ -231,6 +232,7 @@ export class WalletService {
       );
       await this.tierService.updateUserTier(userId, points);
       return { message: 'Points added successfully' };
+    }
     }
   }
 }

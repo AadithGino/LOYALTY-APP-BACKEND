@@ -20,6 +20,9 @@ export class Tier {
   @Prop({ enum: ['Bronze', 'Silver', 'Gold', 'Platinum'], unique: true })
   name: string;
 
+  @Prop()
+  order:number
+
   @Prop({ type: Object })
   benefits: {};
 

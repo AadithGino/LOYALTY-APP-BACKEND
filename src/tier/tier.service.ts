@@ -38,12 +38,24 @@ export class TierService {
 
   async updateUserTier(userId: string, points: number) {
     const tiers: any = await this.getTiers();
+    const userData = await this.userModel.findOne({_id:userId});
+    const userCurrentTier = tiers.find((m)=>m.name===userData.tier)
+    console.log(userCurrentTier);
     let newTier = 'Bronze';
+    let newTierOrder=1;
     tiers.forEach((tier) => {
       if (points >= tier.cretieria.minPointsForTier) {
         newTier = tier.name;
+        newTierOrder=tier.order;
       }
     });
+    console.log(userCurrentTier.order,newTierOrder+"====>");
+    if(userCurrentTier.order >= newTierOrder){
+      console.log("not Updating");
+      return;
+    }
+    console.log("Updating");
+    
     return await this.userModel.updateOne(
       { _id: userId },
       { $set: { tier: newTier } },
