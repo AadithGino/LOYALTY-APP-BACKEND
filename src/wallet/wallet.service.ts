@@ -188,7 +188,7 @@ export class WalletService {
       2,
     );
     await this.updatePointsOnPurchase(user.sub, rewardPoint);
-    return { message: 'Transaction Successfull',transaction_id:transaction._id};
+    return { message: 'Transaction Successfull',transaction_id:transaction._id,amount:dto.amount};
   }
 
   async updatePointsOnPurchase(userId: string, points: number) {
