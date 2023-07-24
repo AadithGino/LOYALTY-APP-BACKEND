@@ -99,7 +99,7 @@ export class AuthService {
   }
 
   async userSignUp(dto: userSignUpDto, ip: string) {
-    try {
+    // try {
       const user = await this.userService.userSignUp(dto, ip);
       const otp = this.generateOTP();
       const setOtp = await this.userService.updateOtp(dto.email, otp);
@@ -110,9 +110,9 @@ export class AuthService {
         },
       );
       if (setOtp) return await this.verfiyEmailOTP(dto.email, otp);
-    } catch (error) {
-      console.log(error);
-    }
+    // } catch (error) {
+    //   console.log(error);
+    // }
   }
 
   async userLogin(dto: userLoginDto, ip: string) {
